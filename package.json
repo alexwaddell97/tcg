@@ -1,0 +1,22 @@
+{
+  "name": "tcg",
+  "private": true,
+  "pnpm": {
+    "onlyBuiltDependencies": ["@swc/core", "electron", "electron-winstaller", "esbuild"]
+  },
+  "scripts": {
+    "dev:web": "pnpm --filter @tcg/web dev",
+    "dev:server": "pnpm --filter @tcg/server dev",
+    "dev:electron": "pnpm --filter @tcg/web electron:dev",
+    "build": "turbo run build",
+    "build:electron": "pnpm --filter @tcg/web electron:build",
+    "build:electron:mac": "pnpm --filter @tcg/web electron:build:mac",
+    "build:electron:win": "pnpm --filter @tcg/web electron:build:win",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.6",
+    "typescript": "~5.9.3"
+  }
+}
