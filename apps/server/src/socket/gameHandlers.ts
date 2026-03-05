@@ -6,77 +6,102 @@ type IoServer = Server<ClientToServerEvents, ServerToClientEvents, Record<string
 type IoSocket = Socket<ClientToServerEvents, ServerToClientEvents, Record<string, never>, SocketData>
 
 export function registerGameHandlers(io: IoServer, socket: IoSocket) {
-  socket.on('game:play_card', ({ cardInstanceId, targetId }) => {
-    const roomId = socket.data.roomId
-    if (!roomId) return
+  // Helper: ensure the engine has a re-broadcast callback for async transitions (e.g. round_end → planning)
+  function withEngine(cb: (engine: InstanceType<typeof import('../game/GameEngine.js').GameEngine>) => void) {
+    const roomId = socket.data.roomId ?? ''
     const engine = roomManager.getEngine(roomId)
     if (!engine) return
-
-    const result = engine.processAction({
-      type: 'play_card',
-      playerId: socket.data.playerId,
-      cardInstanceId,
-      targetId,
-      timestamp: Date.now(),
-    })
-
-    socket.emit('game:action_result', { ...result.newState.lastAction!, success: result.success, error: result.error })
-
-    if (result.success) {
-      broadcastGameState(io, roomId, engine, socket)
-    }
-  })
-
-  socket.on('game:attack', ({ attackerInstanceId, targetId }) => {
-    const roomId = socket.data.roomId
-    if (!roomId) return
-    const engine = roomManager.getEngine(roomId)
-    if (!engine) return
-
-    const result = engine.processAction({
-      type: 'attack',
-      playerId: socket.data.playerId,
-      cardInstanceId: attackerInstanceId,
-      targetId,
-      timestamp: Date.now(),
-    })
-
-    if (result.success) {
-      broadcastGameState(io, roomId, engine, socket)
-    }
-  })
-
-  socket.on('game:end_turn', () => {
-    const roomId = socket.data.roomId
-    if (!roomId) return
-    const engine = roomManager.getEngine(roomId)
-    if (!engine) return
-
-    const result = engine.processAction({
-      type: 'end_turn',
-      playerId: socket.data.playerId,
-      timestamp: Date.now(),
-    })
-
-    if (result.success) {
-      broadcastGameState(io, roomId, engine, socket)
+    engine.onStateChange ??= () => {
+      broadcastGameState(io, roomId, engine)
       checkGameOver(io, roomId, engine)
     }
+    cb(engine)
+  }
+
+  socket.on('game:place_card', ({ cardInstanceId, laneIndex, slotIndex }) => {
+    withEngine((engine) => {
+      const result = engine.processAction({
+        type: 'place_card',
+        playerId: socket.data.playerId,
+        cardInstanceId,
+        laneIndex,
+        slotIndex,
+        timestamp: Date.now(),
+      })
+      socket.emit('game:action_result', { success: result.success, error: result.error })
+      if (result.success) {
+        broadcastGameState(io, socket.data.roomId!, engine)
+        checkGameOver(io, socket.data.roomId!, engine)
+      }
+    })
+  })
+
+  socket.on('game:pass_turn', () => {
+    withEngine((engine) => {
+      const result = engine.processAction({
+        type: 'pass_turn',
+        playerId: socket.data.playerId,
+        timestamp: Date.now(),
+      })
+      socket.emit('game:action_result', { success: result.success, error: result.error })
+      if (result.success) {
+        broadcastGameState(io, socket.data.roomId!, engine)
+        checkGameOver(io, socket.data.roomId!, engine)
+      }
+    })
+  })
+
+  socket.on('game:pass_round', () => {
+    withEngine((engine) => {
+      const result = engine.processAction({
+        type: 'pass_round',
+        playerId: socket.data.playerId,
+        timestamp: Date.now(),
+      })
+      socket.emit('game:action_result', { success: result.success, error: result.error })
+      if (result.success) {
+        broadcastGameState(io, socket.data.roomId!, engine)
+        checkGameOver(io, socket.data.roomId!, engine)
+      }
+    })
   })
 
   socket.on('game:surrender', () => {
+    withEngine((engine) => {
+      engine.processAction({
+        type: 'surrender',
+        playerId: socket.data.playerId,
+        timestamp: Date.now(),
+      })
+      broadcastGameState(io, socket.data.roomId!, engine)
+      checkGameOver(io, socket.data.roomId!, engine)
+    })
+  })
+
+  socket.on('game:commend', () => {
+    const roomId = socket.data.roomId
+    if (!roomId) return
+    // Broadcast to everyone in the room except the sender
+    socket.to(roomId).emit('game:commended', { fromDisplayName: socket.data.displayName })
+  })
+
+  socket.on('disconnect', () => {
     const roomId = socket.data.roomId
     if (!roomId) return
     const engine = roomManager.getEngine(roomId)
     if (!engine) return
 
+    // Notify the opponent immediately
+    io.to(roomId).emit('game:player_disconnected', socket.data.playerId)
+
+    // Auto-surrender on behalf of the leaving player
     engine.processAction({
       type: 'surrender',
       playerId: socket.data.playerId,
       timestamp: Date.now(),
     })
 
-    broadcastGameState(io, roomId, engine, socket)
+    broadcastGameState(io, roomId, engine)
     checkGameOver(io, roomId, engine)
   })
 }
@@ -84,12 +109,12 @@ export function registerGameHandlers(io: IoServer, socket: IoSocket) {
 function broadcastGameState(
   io: IoServer,
   roomId: string,
-  engine: InstanceType<typeof import('../game/GameEngine.js').GameEngine>,
-  socket: IoSocket
+  engine: InstanceType<typeof import('../game/GameEngine.js').GameEngine>
 ) {
-  const sockets = [...io.sockets.sockets.values()].filter(s => s.data.roomId === roomId)
-  for (const s of sockets) {
-    s.emit('game:state_update', engine.getStateFor(s.data.playerId))
+  for (const s of io.sockets.sockets.values()) {
+    if (s.data.roomId === roomId) {
+      s.emit('game:state_update', engine.getStateFor(s.data.playerId))
+    }
   }
 }
 

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { getSocket, type TypedSocket } from '../lib/socket.ts'
+import { getSocket } from '../lib/socket.ts'
 import type { ServerToClientEvents } from '@tcg/shared'
 
 type EventKey = keyof ServerToClientEvents

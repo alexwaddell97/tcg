@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react'
-import { X } from 'lucide-react'
+import { X } from '@phosphor-icons/react'
 
 interface ModalProps {
   title: string
@@ -14,14 +14,14 @@ export default function Modal({ title, children, onClose }: ModalProps) {
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md rounded-xl bg-slate-800 border border-slate-700 shadow-2xl"
+        className="w-full max-w-md rounded-xl bg-stone-900 border border-stone-700/60 shadow-2xl shadow-black/60"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-700">
-          <h2 className="text-lg font-semibold text-white">{title}</h2>
+        <div className="flex items-center justify-between px-6 py-4 border-b border-stone-700/60">
+          <h2 className="text-lg font-semibold text-stone-100">{title}</h2>
           <button
             onClick={onClose}
-            className="p-1 rounded text-slate-400 hover:text-white transition-colors"
+            className="p-1 rounded text-stone-400 hover:text-stone-100 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>

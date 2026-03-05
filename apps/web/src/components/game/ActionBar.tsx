@@ -1,35 +1,47 @@
-import { SkipForward, Flag } from 'lucide-react'
+import { SkipForward, FastForward } from '@phosphor-icons/react'
 import type { GamePhase } from '@tcg/shared'
 import Button from '../ui/Button.tsx'
 
 interface ActionBarProps {
-  isMyTurn: boolean
   phase: GamePhase
-  onEndTurn: () => void
-  onSurrender: () => void
+  hasPassed: boolean
+  hasSubmitted: boolean
+  onPassTurn: () => void
+  onPassRound: () => void
 }
 
-export default function ActionBar({ isMyTurn, phase, onEndTurn, onSurrender }: ActionBarProps) {
+export default function ActionBar({
+  phase,
+  hasPassed,
+  hasSubmitted,
+  onPassTurn,
+  onPassRound,
+}: ActionBarProps) {
+  const isPlanning = phase === 'planning'
+  const canAct = isPlanning && !hasPassed && !hasSubmitted
+
   return (
-    <div className="flex items-center gap-2 justify-between">
+    <div className="flex items-center gap-1.5 sm:gap-2 justify-end">
       <Button
-        variant="danger"
+        variant="secondary"
         size="sm"
-        onClick={onSurrender}
-        className="opacity-60 hover:opacity-100"
+        onClick={onPassTurn}
+        disabled={!canAct}
+        title="Skip placing a card this turn"
       >
-        <Flag className="w-3.5 h-3.5" />
-        Surrender
+        <SkipForward className="w-3.5 h-3.5" weight="bold" />
+        <span className="hidden sm:inline">Skip </span>Turn
       </Button>
 
       <Button
         variant="primary"
         size="md"
-        onClick={onEndTurn}
-        disabled={!isMyTurn || phase === 'game_over'}
+        onClick={onPassRound}
+        disabled={!isPlanning || hasPassed}
+        title="Forfeit remaining turns this round (Gwent-style pass)"
       >
-        <SkipForward className="w-4 h-4" />
-        End Turn
+        <FastForward className="w-4 h-4" weight="bold" />
+        <span className="hidden sm:inline">Pass </span>Round
       </Button>
     </div>
   )

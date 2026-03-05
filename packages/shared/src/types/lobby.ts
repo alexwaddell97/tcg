@@ -4,7 +4,10 @@ export interface LobbyPlayer {
   id: string
   displayName: string
   isReady: boolean
+  avatarEmoji?: string
+  rank?: string
   deckId?: string
+  deckDefinitionIds?: string[]
 }
 
 export interface Room {

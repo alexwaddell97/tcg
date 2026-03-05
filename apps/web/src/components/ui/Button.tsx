@@ -19,10 +19,10 @@ export default function Button({
       className={cn(
         'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed',
         {
-          'bg-amber-500 text-slate-900 hover:bg-amber-400': variant === 'primary',
-          'bg-slate-700 text-white hover:bg-slate-600': variant === 'secondary',
-          'bg-red-600 text-white hover:bg-red-500': variant === 'danger',
-          'text-slate-400 hover:text-white hover:bg-slate-800': variant === 'ghost',
+          'bg-amber-600 text-stone-950 hover:bg-amber-500 border border-amber-400/40 shadow-sm shadow-amber-900/50': variant === 'primary',
+          'bg-stone-800 text-stone-100 hover:bg-stone-700 border border-stone-600/50': variant === 'secondary',
+          'bg-red-900/80 text-red-100 hover:bg-red-800 border border-red-700/50': variant === 'danger',
+          'text-stone-400 hover:text-stone-100 hover:bg-stone-900': variant === 'ghost',
         },
         {
           'px-3 py-1.5 text-sm': size === 'sm',

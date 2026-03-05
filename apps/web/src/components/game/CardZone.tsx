@@ -1,4 +1,12 @@
-import type { BoardCreature } from '@tcg/shared'
+// BoardCreature type was removed from @tcg/shared — using local stub
+type BoardCreature = {
+  instanceId: string
+  card: { name: string }
+  currentPower: number
+  currentToughness: number
+  tapped: boolean
+  canAttack: boolean
+}
 import { cn } from '../../lib/cn.ts'
 
 interface CardZoneProps {
@@ -17,19 +25,19 @@ export default function CardZone({ creatures, label, isOpponent = false }: CardZ
           : 'border-emerald-800/40 bg-emerald-900/10'
       )}
     >
-      <p className="text-xs text-slate-500 uppercase tracking-wider">{label}</p>
+      <p className="text-xs text-stone-500 uppercase tracking-wider">{label}</p>
       <div className="flex flex-wrap gap-2">
         {creatures.map((creature) => (
           <div
             key={creature.instanceId}
             className={cn(
-              'relative rounded-lg border p-2 bg-slate-800 min-w-16 text-center transition-all',
+              'relative rounded-lg border p-2 bg-stone-900 min-w-16 text-center transition-all',
               creature.tapped ? 'opacity-60 rotate-3' : '',
               isOpponent ? 'border-red-700' : 'border-emerald-700'
             )}
           >
             <p className="text-white text-xs font-medium truncate max-w-16">{creature.card.name}</p>
-            <p className="text-slate-400 text-xs">
+            <p className="text-stone-400 text-xs">
               {creature.currentPower}/{creature.currentToughness}
             </p>
             {creature.canAttack && !creature.tapped && (

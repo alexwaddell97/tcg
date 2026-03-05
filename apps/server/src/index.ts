@@ -5,7 +5,7 @@ import cors from 'cors'
 import { v4 as uuid } from 'uuid'
 import type { ClientToServerEvents, ServerToClientEvents, SocketData } from '@tcg/shared'
 import { config } from './config.js'
-import { registerLobbyHandlers } from './socket/lobbyHandlers.js'
+import { registerMatchmakingHandlers } from './socket/lobbyHandlers.js'
 import { registerGameHandlers } from './socket/gameHandlers.js'
 
 const app = express()
@@ -31,14 +31,12 @@ io.on('connection', (socket) => {
 
   console.log(`[+] ${socket.data.displayName} connected (${socket.id})`)
 
-  registerLobbyHandlers(io, socket)
+  registerMatchmakingHandlers(io, socket)
   registerGameHandlers(io, socket)
 
   socket.on('disconnect', (reason) => {
     console.log(`[-] ${socket.data.displayName} disconnected: ${reason}`)
-    if (socket.data.roomId) {
-      io.to(socket.data.roomId).emit('game:player_disconnected', socket.data.playerId)
-    }
+    // Game disconnect + surrender is handled inside registerGameHandlers
   })
 })
 

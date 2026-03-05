@@ -15,13 +15,10 @@ export function getSocket(): TypedSocket {
   return socket
 }
 
-export function connectSocket(displayName: string): TypedSocket {
+export function connectSocket(): TypedSocket {
   const s = getSocket()
   if (!s.connected) {
     s.connect()
-    s.once('connect', () => {
-      s.emit('lobby:join', { displayName })
-    })
   }
   return s
 }

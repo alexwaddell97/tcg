@@ -2,26 +2,24 @@ import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSocketEvent } from './useSocket.ts'
 import { useGameStore } from '../stores/useGameStore.ts'
-import { useLobbyStore } from '../stores/useLobbyStore.ts'
-import { useAuthStore } from '../stores/useAuthStore.ts'
-import type { GameState, Room } from '@tcg/shared'
+import { useMatchmakingStore } from '../stores/useLobbyStore.ts'
+import type { GameState } from '@tcg/shared'
 
 export function useGameSync() {
   const navigate = useNavigate()
   const setGameState = useGameStore((s) => s.setGameState)
   const setGameOver = useGameStore((s) => s.setGameOver)
-  const setCurrentRoom = useLobbyStore((s) => s.setCurrentRoom)
-  const upsertRoom = useLobbyStore((s) => s.upsertRoom)
-  const removeRoom = useLobbyStore((s) => s.removeRoom)
-  const setRooms = useLobbyStore((s) => s.setRooms)
-  const setConnected = useAuthStore((s) => s.setConnected)
+  const setCommendedBy = useGameStore((s) => s.setCommendedBy)
+  const setStatus = useMatchmakingStore((s) => s.setStatus)
+  const setQueueSize = useMatchmakingStore((s) => s.setQueueSize)
 
   const handleGameStart = useCallback(
     (state: GameState) => {
+      setStatus('found')
       setGameState(state)
       navigate('/game')
     },
-    [setGameState, navigate]
+    [setGameState, navigate, setStatus]
   )
 
   const handleGameUpdate = useCallback(
@@ -38,41 +36,32 @@ export function useGameSync() {
     [setGameOver]
   )
 
-  const handleRoomList = useCallback(
-    (rooms: Room[]) => {
-      setRooms(rooms)
+  const handleMatchmakingStatus = useCallback(
+    ({ status, queueSize }: { status: 'idle' | 'searching' | 'found'; queueSize?: number }) => {
+      setStatus(status)
+      if (queueSize !== undefined) setQueueSize(queueSize)
     },
-    [setRooms]
+    [setStatus, setQueueSize]
   )
 
-  const handleRoomUpdated = useCallback(
-    (room: Room) => {
-      upsertRoom(room)
-      setCurrentRoom(room)
+  const handlePlayerDisconnected = useCallback(
+    (_playerId: string) => {
+      useGameStore.setState({ opponentDisconnected: true })
     },
-    [upsertRoom, setCurrentRoom]
+    []
   )
 
-  const handleRoomCreated = useCallback(
-    (room: Room) => {
-      upsertRoom(room)
-      setCurrentRoom(room)
+  const handleCommended = useCallback(
+    ({ fromDisplayName }: { fromDisplayName: string }) => {
+      setCommendedBy(fromDisplayName)
     },
-    [upsertRoom, setCurrentRoom]
-  )
-
-  const handleRoomRemoved = useCallback(
-    (roomId: string) => {
-      removeRoom(roomId)
-    },
-    [removeRoom]
+    [setCommendedBy]
   )
 
   useSocketEvent('game:start', handleGameStart)
   useSocketEvent('game:state_update', handleGameUpdate)
   useSocketEvent('game:over', handleGameOver)
-  useSocketEvent('lobby:room_list', handleRoomList)
-  useSocketEvent('lobby:room_updated', handleRoomUpdated)
-  useSocketEvent('lobby:room_created', handleRoomCreated)
-  useSocketEvent('lobby:room_removed', handleRoomRemoved)
+  useSocketEvent('game:player_disconnected', handlePlayerDisconnected)
+  useSocketEvent('game:commended', handleCommended)
+  useSocketEvent('matchmaking:status', handleMatchmakingStatus)
 }

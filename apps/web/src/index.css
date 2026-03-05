@@ -1,7 +1,12 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@theme {
+  --font-ui: 'Inter', system-ui, sans-serif;
+}
 
 :root {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Crimson Text', Georgia, serif;
   color-scheme: dark;
 }
 
@@ -9,11 +14,19 @@
   box-sizing: border-box;
 }
 
+html, body {
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #0f172a;
-  color: #f1f5f9;
+  background-color: #0d0906;
+  color: #e7e0d8;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cinzel', Georgia, serif;
 }
 
 /* Scrollbar styling */
@@ -23,14 +36,297 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: #1a1410;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #475569;
+  background: #5a3e2b;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #7a5a3a;
+}
+
+/* ─── Chrome image/video compositing antialiasing fix ───────────────────── */
+/* Without this, images inside 3-D-transformed card containers render with    */
+/* jagged sub-pixel edges in Chrome (Safari handles it automatically).        */
+img, video {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* ─── Card rarity visual effects ─────────────────────────────────────────── */
+/* Animate opacity of a pseudo-element with a STATIC box-shadow instead of   */
+/* animating shadow values directly. Opacity is GPU-composited (no repaint).  */
+
+@keyframes legendary-glow-pulse {
+  0%, 100% { opacity: 0.65; }
+  50%       { opacity: 1; }
+}
+
+.card-legendary::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  box-shadow: 0 0 0 2px #f59e0b, 0 0 20px 6px rgba(245,158,11,0.5), 0 0 32px 8px rgba(168,85,247,0.2);
+  animation: legendary-glow-pulse 3s ease-in-out infinite;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+@keyframes rare-glow-pulse {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+.card-rare::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  box-shadow: 0 0 0 1.5px #60a5fa, 0 0 14px 4px rgba(96,165,250,0.45);
+  animation: rare-glow-pulse 2.2s ease-in-out infinite;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+/* Holographic sheen: GPU-composited translateX sweep.                        */
+/* background-position animation forces paint every frame; transform does not. */
+@keyframes holo-sheen {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(300%); }
+}
+
+.card-holo-sheen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -50%;
+  width: 50%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255,255,255,0.06) 30%,
+    rgba(255,255,255,0.13) 50%,
+    rgba(255,255,255,0.06) 70%,
+    transparent
+  );
+  animation: holo-sheen 4s linear infinite;
+  pointer-events: none;
+  border-radius: inherit;
+  will-change: transform;
+}
+
+/* ─── Pack Opening ──────────────────────────────────────────────────────────── */
+
+@keyframes pack-card-enter {
+  0%   { opacity: 0; transform: translateY(70px) scale(0.8); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pack-hover-idle {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%       { transform: translateY(-6px) rotate(1deg); }
+}
+
+@keyframes pack-back-glow-uncommon {
+  0%, 100% { box-shadow: 0 0 0 2px #10b981, 0 0 16px 6px rgba(16,185,129,0.5); }
+  50%       { box-shadow: 0 0 0 2px #34d399, 0 0 28px 10px rgba(52,211,153,0.65); }
+}
+
+@keyframes pack-back-glow-rare {
+  0%, 100% { box-shadow: 0 0 0 2px #3b82f6, 0 0 16px 6px rgba(59,130,246,0.5); }
+  50%       { box-shadow: 0 0 0 2px #93c5fd, 0 0 28px 10px rgba(147,197,253,0.65); }
+}
+
+@keyframes pack-back-glow-legendary {
+  0%   { box-shadow: 0 0 0 2.5px #f59e0b, 0 0 22px 8px rgba(245,158,11,0.65); }
+  33%  { box-shadow: 0 0 0 2.5px #a855f7, 0 0 22px 8px rgba(168,85,247,0.65); }
+  66%  { box-shadow: 0 0 0 2.5px #ec4899, 0 0 22px 8px rgba(236,72,153,0.65); }
+  100% { box-shadow: 0 0 0 2.5px #f59e0b, 0 0 22px 8px rgba(245,158,11,0.65); }
+}
+
+@keyframes reveal-flash {
+  0%   { opacity: 0.6; }
+  100% { opacity: 0; }
+}
+
+.pack-card-back-uncommon  { animation: pack-back-glow-uncommon  1.8s ease-in-out infinite; }
+.pack-card-back-rare      { animation: pack-back-glow-rare      1.5s ease-in-out infinite; }
+.pack-card-back-legendary { animation: pack-back-glow-legendary 2.5s linear infinite; }
+
+@keyframes legendary-charge {
+  0%   { box-shadow: 0 0 0 2.5px #f59e0b, 0 0 22px  8px rgba(245,158,11,0.65); transform: scale(1); }
+  40%  { box-shadow: 0 0 0 3px   #fbbf24, 0 0 42px 18px rgba(251,191,36,0.9);  transform: scale(1.03); }
+  72%  { box-shadow: 0 0 0 4px   #fef3c7, 0 0 62px 28px rgba(255,255,255,0.65); transform: scale(1.04) translateX(-3px); }
+  79%  { box-shadow: 0 0 0 4px   #fef3c7, 0 0 62px 28px rgba(255,255,255,0.7);  transform: scale(1.04) translateX(3px); }
+  86%  { box-shadow: 0 0 0 4.5px #fff,    0 0 70px 34px rgba(255,255,255,0.8);  transform: scale(1.05) translateX(-2px); }
+  93%  { box-shadow: 0 0 0 4.5px #fff,    0 0 70px 34px rgba(255,255,255,0.85); transform: scale(1.05) translateX(2px); }
+  100% { box-shadow: 0 0 0 5px   #fff,    0 0 90px 45px rgba(255,255,255,1);    transform: scale(1.07); }
+}
+
+.pack-card-charging {
+  animation: legendary-charge 0.68s cubic-bezier(0.2, 0, 0.85, 1) forwards !important;
+}
+
+@keyframes legendary-bg-fade-in {
+  0%   { opacity: 0; transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes legendary-dim-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes legendary-dim-burst {
+  0%   { opacity: 0.55; }
+  25%  { opacity: 0.45; }
+  100% { opacity: 0; }
+}
+
+/* idle hover animation while face-down */
+.pack-card-idle {
+  animation: pack-hover-idle 2.8s ease-in-out infinite;
+}
+
+/* 3D flip container */
+.pack-flip-container {
+  perspective: 900px;
+}
+
+/* The global `img { backface-visibility: hidden; transform: translateZ(0) }`
+   antialiasing rule gives every image its own GPU compositing layer and its own
+   backface-visibility context, which breaks the parent face's backface-visibility.
+   Override both properties for images inside flip containers so 3-D hiding works. */
+.pack-flip-container img,
+.pack-flip-container video {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-transform: none;
+  transform: none;
+}
+
+.pack-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pack-flip-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.pack-flip-face,
+.pack-flip-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Belt-and-suspenders: forcibly hide the back face at the flip midpoint in case
+   any browser still glitches. Delay of 0.18s covers the first ~90° of rotation. */
+.pack-flip-inner.flipped .pack-flip-back {
+  visibility: hidden;
+  transition: visibility 0s 0.18s;
+}
+
+.pack-flip-face {
+  transform: rotateY(180deg);
+}
+
+/* entrance stagger helpers */
+.pack-card-enter {
+  animation: pack-card-enter 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ─── Legendary Reveal Effect ──────────────────────────────────────────────── */
+
+@keyframes legendary-burst {
+  0%   { opacity: 0; transform: scale(0.2); }
+  25%  { opacity: 0.85; transform: scale(1); }
+  100% { opacity: 0; transform: scale(3.2); }
+}
+
+@keyframes legendary-ring-expand {
+  0%   { opacity: 0.9; transform: scale(0.08) rotate(0deg); }
+  100% { opacity: 0;   transform: scale(6) rotate(400deg); }
+}
+
+@keyframes legendary-orb-spiral {
+  0%   {
+    opacity: 0;
+    transform: rotate(var(--orb-angle)) translateX(0px) scale(0);
+  }
+  18%  {
+    opacity: 1;
+    transform: rotate(calc(var(--orb-angle) + 40deg)) translateX(72px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(calc(var(--orb-angle) + 210deg)) translateX(340px) scale(0.1);
+  }
+}
+
+@keyframes legendary-sparkle-pop {
+  0%   { opacity: 0; transform: rotate(var(--orb-angle)) translateX(30px) scale(0); }
+  45%  { opacity: 1; transform: rotate(var(--orb-angle)) translateX(95px) scale(1.5); }
+  100% { opacity: 0; transform: rotate(var(--orb-angle)) translateX(180px) scale(0); }
+}
+
+.legendary-reveal-burst {
+  animation: legendary-burst 2s cubic-bezier(0.2, 0, 0.6, 1) forwards;
+}
+
+.legendary-reveal-ring {
+  opacity: 0;
+  animation: legendary-ring-expand 1.5s ease-out forwards;
+}
+
+.legendary-reveal-orb {
+  opacity: 0;
+  animation: legendary-orb-spiral 2s cubic-bezier(0.1, 0, 0.55, 1) forwards;
+  transform-origin: center center;
+}
+
+.legendary-reveal-sparkle {
+  opacity: 0;
+  animation: legendary-sparkle-pop 1.3s ease-out forwards;
+  transform-origin: center center;
+}
+
+/* ─── Pack Rip Animation ─────────────────────────────────────────────── */
+
+@keyframes pack-rip-shake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  15%  { transform: translate(-6px, -2px) rotate(-2deg); }
+  30%  { transform: translate(6px,  2px) rotate(2deg); }
+  45%  { transform: translate(-5px, -1px) rotate(-1.5deg); }
+  60%  { transform: translate(5px,  2px) rotate(1.5deg); }
+  75%  { transform: translate(-3px, -1px) rotate(-1deg); }
+  90%  { transform: translate(3px,  1px) rotate(1deg); }
+}
+
+@keyframes pack-rip-top {
+  0%   { transform: translateY(0) rotate(0deg);    opacity: 1; }
+  100% { transform: translateY(-120vh) rotate(-22deg); opacity: 0; }
+}
+
+@keyframes pack-rip-bottom {
+  0%   { transform: translateY(0) rotate(0deg);   opacity: 1; }
+  100% { transform: translateY(120vh) rotate(16deg); opacity: 0; }
+}
+
+@keyframes pack-rip-flash {
+  0%   { opacity: 0; }
+  25%  { opacity: 1; }
+  100% { opacity: 0; }
 }

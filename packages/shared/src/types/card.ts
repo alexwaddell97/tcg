@@ -1,27 +1,49 @@
-export type CardType = 'creature' | 'spell' | 'artifact' | 'enchantment'
+export type Keyword = 'fleeting' | 'elusive' | 'overwhelm' | 'challenger' | 'resilient' | 'commander' | 'scorch'
+
 export type Rarity = 'common' | 'uncommon' | 'rare' | 'legendary'
 
-export interface CardEffect {
-  type: 'damage' | 'heal' | 'draw' | 'buff' | 'debuff' | 'summon'
-  value: number
-  target?: 'self' | 'opponent' | 'creature' | 'all_creatures'
+export type CardType = 'unit' | 'spell'
+
+// Defines how a quest card levels up. Checked by the engine after each game event.
+export interface QuestDefinition {
+  description: string
+  trigger: 'on_unit_played' | 'on_spell_played' | 'on_round_start' | 'on_location_filled'
+  threshold: number
+  transformsToId: string // definitionId of the card this becomes when complete
 }
 
-export interface Card {
-  id: string
+// Spell-specific immediate effect triggered on play (no targeting UI needed)
+export type SpellEffectType = 'draw' | 'power_boost' | 'power_drain'
+export interface SpellEffect {
+  type: SpellEffectType
+  value: number // draw N cards | boost/drain by N power
+}
+
+// The static definition of a card — stored in CARD_DATABASE
+export interface CardDefinition {
   definitionId: string
   name: string
   type: CardType
   rarity: Rarity
   cost: number
-  power?: number
-  toughness?: number
-  effects: CardEffect[]
+  power: number
+  keywords: Keyword[]
+  // Location affinity — which locations allow this card in a deck.
+  // Empty array means neutral: any deck can include it.
+  affinity: string[] // location definitionIds
+  quest?: QuestDefinition
+  spellEffect?: SpellEffect // only used when type === 'spell'
   description: string
+  flavourText?: string
   imageUrl: string
-  keywords: string[]
+  /** True for cards that only exist as quest transform results — hidden from deck builder and pack pools */
+  isTransformTarget?: boolean
 }
 
-export interface CardDefinition extends Omit<Card, 'id'> {
-  definitionId: string
+// A runtime instance of a card — one per copy in a player's deck/hand/board
+export interface Card extends CardDefinition {
+  instanceId: string
+  questProgress: number
+  isTransformed: boolean
+  powerBonus: number // temporary power granted by spells/effects this round
 }
