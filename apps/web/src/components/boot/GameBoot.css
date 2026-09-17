@@ -1,0 +1,21 @@
+.game-boot { position:fixed; z-index:10000; inset:0; overflow:hidden; background:#080d12; color:#d7c7a6; transition:opacity .9s cubic-bezier(.4,0,.2,1); font-family:Manrope,system-ui,sans-serif; cursor:default; }
+.game-boot.is-leaving { opacity:0; pointer-events:none; }
+.game-boot-studio { will-change:opacity; position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; transition:opacity .75s ease-in-out; }
+.game-boot-studio img { width:min(320px,65vw); height:auto; object-fit:contain; filter:saturate(.65) brightness(.9); }
+.game-boot-studio p { margin:0; font:500 clamp(20px,3vw,30px)/1.2 'Cormorant Garamond',Georgia,serif; letter-spacing:.14em; }
+.game-boot-studio span { color:#77858a; text-transform:uppercase; letter-spacing:.3em; font-size:9px; }
+.game-boot:not(.is-studio) .game-boot-studio { opacity:0; }
+.game-boot-loading { position:absolute; inset:0; opacity:1; transition:opacity 1s ease-in-out; will-change:opacity; }
+.game-boot:is(.is-studio,.is-studio-out) .game-boot-loading { opacity:0; pointer-events:none; }
+.game-boot-art { position:absolute; inset:0; background:#101b23 url('/ui/arena-menu-background.jpg') center/cover no-repeat; }
+.game-boot-shade { position:absolute; inset:0; background:linear-gradient(180deg,#050a1070,transparent 32%,#060b1240 60%,#060b12ee),radial-gradient(ellipse at center,transparent 25%,#04091099); }
+.game-boot-logo { position:absolute; width:clamp(220px,32vw,430px); max-width:76vw; height:auto; top:42%; left:50%; transform:translate(-50%,-50%); filter:drop-shadow(0 6px 24px #000); }
+.game-boot-footer { position:absolute; bottom:max(9%,env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); width:min(440px,76vw); }
+.game-boot-label { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; text-transform:uppercase; letter-spacing:.18em; font-size:9px; color:#b5b5ab; font-variant-numeric:tabular-nums; }
+.game-boot-track { height:4px; background:#d6c19418; box-shadow:0 1px #000; }
+.game-boot-track>div { height:100%; background:linear-gradient(90deg,#66553c,#b69d69,#e1cf9e); box-shadow:0 0 12px #b69d6933; transition:width .28s ease-out; }
+.game-boot-footer button { color:#e4d4b4; background:#17252d; border:1px solid #88724d; padding:10px 24px; cursor:pointer; }
+
+@media(prefers-reduced-motion:reduce) { .game-boot,.game-boot * { animation:none!important; transition:none!important; } }
+
+.game-boot-footer .game-boot-music { display:block; margin:0 auto 24px; padding:6px 12px; background:transparent; border-color:#88724d55; font-size:11px; }

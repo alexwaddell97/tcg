@@ -26,6 +26,7 @@ interface PlayerHandProps {
 
 export default function PlayerHand({ cards, canAct, onSelectCard }: PlayerHandProps) {
   const setDragging = useGameStore((s) => s.setDragging)
+  const selectedCardId = useGameStore((s) => s.selectedCardId)
   const [draggingId, setDraggingId] = useState<string | null>(null)
   const [viewingCard, setViewingCard] = useState<Card | null>(null)
   // Hold a ref to the ghost clone so we can remove it on dragend (Safari
@@ -186,34 +187,62 @@ export default function PlayerHand({ cards, canAct, onSelectCard }: PlayerHandPr
 
   return (
     <>
-      {/* Centered scrollable hand row */}
-      <div className="flex justify-center overflow-x-auto pb-2 pt-4 px-2 min-h-26" style={{ touchAction: 'pan-x' }}>
-        <div className="inline-flex items-end gap-2">
-        {cards.length === 0 ? (
-          <div className="flex items-center justify-center text-stone-600 text-sm px-8">
-            No cards in hand
-          </div>
-        ) : (
-          cards.map((card) => {
-            const isPlayable = canAct
-            return (
-              <div
-                key={card.instanceId}
-                className="shrink-0 w-16 md:w-20 lg:w-24"
-                draggable={isPlayable}
-                onDragStart={(e) => handleDragStart(e, card)}
-                onDragEnd={handleDragEnd}
-                style={{ opacity: draggingId === card.instanceId ? 0.4 : 1, cursor: isPlayable ? 'grab' : undefined }}
-              >
-                <HandCard
-                  card={card}
-                  isPlayable={isPlayable}
-                  onInspect={() => setViewingCard(card)}
-                />
+      {/* Triple Triad hand rail */}
+
+      <div
+        className="w-full rounded-2xl border border-stone-800/70 px-2 py-2 sm:px-3 sm:py-2.5 bg-gradient-to-b from-[#18100b/90] to-[#090807/96]"
+      >
+        <div className="flex items-center justify-between px-1 sm:px-1.5 pb-1.5">
+          <p className="text-[10px] uppercase tracking-[0.18em] font-bold text-stone-500">Hand</p>
+          <p className="text-[10px] tabular-nums font-semibold text-stone-600">{cards.length} cards</p>
+        </div>
+
+        {/* Mobile-optimized horizontal scroll hand rail */}
+        <div
+          className="flex justify-center overflow-x-auto pb-1 pt-1 px-0.5 min-h-28 sm:min-h-27"
+          style={{ touchAction: 'pan-x', WebkitOverflowScrolling: 'touch' }}
+        >
+          <div
+            className="inline-flex items-end gap-1 sm:gap-1 px-1 w-full"
+            style={{ scrollSnapType: 'x mandatory', minWidth: 0 }}
+          >
+            {cards.length === 0 ? (
+              <div className="flex items-center justify-center text-stone-600 text-sm px-8">
+                No cards in hand
               </div>
-            )
-          })
-        )}
+            ) : (
+              cards.map((card) => {
+                const isPlayable = canAct
+                return (
+                  <div
+                    key={card.instanceId}
+                    className="shrink-0 w-16 h-24 sm:w-14 sm:h-20 md:w-16 md:h-24 lg:w-16 lg:h-24 rounded-xl"
+                    style={{
+                      scrollSnapAlign: 'center',
+                      opacity: draggingId === card.instanceId ? 0.4 : 1,
+                      cursor: isPlayable ? 'grab' : undefined,
+                      touchAction: 'manipulation',
+                    }}
+                    draggable={isPlayable}
+                    onDragStart={(e) => handleDragStart(e, card)}
+                    onDragEnd={handleDragEnd}
+                    onClick={() => {
+                      if (!isPlayable) return
+                      onSelectCard(selectedCardId === card.instanceId ? null : card.instanceId)
+                    }}
+                  >
+                    <HandCard
+                      card={card}
+                      isPlayable={isPlayable}
+                      isSelected={selectedCardId === card.instanceId}
+                      onInspect={() => setViewingCard(card)}
+                      mobile
+                    />
+                  </div>
+                )
+              })
+            )}
+          </div>
         </div>
       </div>
 

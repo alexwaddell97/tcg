@@ -1,31 +1,36 @@
+import PackTear from '../components/shop/PackTear.tsx'
+import MusicControls from '../components/audio/MusicControls.tsx'
+import PackArt, { packName } from '../components/shop/PackArt.tsx'
+import { useReducedMotion } from 'framer-motion'
+import SeasonPass from '../components/shop/SeasonPass.tsx'
+import ShopVariants from '../components/shop/ShopVariants.tsx'
+import { useSearchParams } from 'react-router-dom'
+import ArenaMenuHeader from '../components/ui/ArenaMenuHeader.tsx'
+import { UI_ASSETS } from '../lib/uiAssets.ts'
 import { useState, useCallback, useRef, useEffect, type CSSProperties } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Sparkle, ArrowLeft, LockKey, FastForward, Lightning, Info } from '@phosphor-icons/react'
+import { Sparkle, ArrowLeft, FastForward, Info } from '@phosphor-icons/react'
 import Button from '../components/ui/Button.tsx'
 import Modal from '../components/ui/Modal.tsx'
 import CardComponent from '../components/game/Card.tsx'
 import CardViewer from '../components/game/CardViewer.tsx'
 import { cn } from '../lib/cn.ts'
-import { CARD_DATABASE } from '@tcg/shared'
+import { PACK_PRICES, eligiblePackCards, eligiblePackVariants, hasPackRewards } from '../lib/packRewards.ts'
+import { useSeasonTime } from '../hooks/useSeasonTime.ts'
+import { getCardVariant } from '@tcg/shared'
 import type { CardDefinition, Card, Rarity } from '@tcg/shared'
 import {
   useCollectionStore,
   msUntilNextToken,
   MAX_PACK_TOKENS,
   PACK_TOKEN_INTERVAL_MS,
-  GEM_SPEEDUP_COST,
 } from '../stores/useCollectionStore.ts'
-import { useQuestStore } from '../stores/useQuestStore.ts'
 
 // ─── Responsive card size hook ──────────────────────────────────────────────
 
 function useCardSize() {
   const getSize = () => {
-    const w = window.innerWidth
-    if (w < 400) return { w: 88,  h: 132 }
-    if (w < 520) return { w: 104, h: 156 }
-    if (w < 768) return { w: 120, h: 180 }
-    return              { w: 152, h: 228 }
+    const w = Math.max(90, Math.min(280, window.innerWidth * .58, (window.innerHeight - 220) / 1.5))
+    return { w, h: w * 1.5 }
   }
   const [size, setSize] = useState(getSize)
   useEffect(() => {
@@ -40,36 +45,33 @@ function useCardSize() {
 
 const PACK_TYPES = [
   {
-    id: 'standard',
-    name: 'Standard Pack',
-    description: '5 cards — guaranteed 1 Rare or higher',
-    cost: 1,
+    id: 'core',
+    name: 'Core Pack',
+    description: '1 unowned Core Set card',
+    cost: PACK_PRICES.core.cost,
     currency: 'token' as const,
-    costLabel: '1 🎴',
     bg: 'from-stone-800 to-stone-900',
     border: 'border-stone-600/50',
     glow: '',
     available: true,
   },
   {
-    id: 'premium',
-    name: 'Premium Pack',
-    description: '5 cards — guaranteed 1 Legendary',
-    cost: 150,
+    id: 'eternal',
+    name: 'Eternal Pack',
+    description: '1 unowned Eternal Set card',
+    cost: PACK_PRICES.eternal.cost,
     currency: 'gem' as const,
-    costLabel: '150 💎',
     bg: 'from-amber-950 to-stone-950',
     border: 'border-amber-600/50',
     glow: 'shadow-amber-900/30',
     available: true,
   },
   {
-    id: 'faction',
-    name: 'Faction Pack',
-    description: '5 cards from a single faction of your choice',
-    cost: 100,
+    id: 'expanded',
+    name: 'Expanded Pack',
+    description: '1 unowned Expanded Set card',
+    cost: PACK_PRICES.expanded.cost,
     currency: 'gem' as const,
-    costLabel: '100 💎',
     bg: 'from-blue-950 to-stone-950',
     border: 'border-blue-600/50',
     glow: 'shadow-blue-900/30',
@@ -77,118 +79,18 @@ const PACK_TYPES = [
   },
 ]
 
-// ─── Factions ──────────────────────────────────────────────────────────────────
-
-const FACTIONS = [
-  { id: 'the_forge',     name: 'The Forge',     emoji: '🔥' },
-  { id: 'the_summit',    name: 'The Summit',    emoji: '❄️' },
-  { id: 'the_rift',      name: 'The Rift',      emoji: '🌀' },
-  { id: 'the_graveyard', name: 'The Graveyard', emoji: '💀' },
-  { id: 'the_sanctum',   name: 'The Sanctum',   emoji: '✨' },
-]
+PACK_TYPES.sort((a, b) => a.cost - b.cost)
 
 // ─── Drop-rate info shown in the odds popover ─────────────────────────────────
 
 const PACK_ODDS = [
-  {
-    id: 'standard',
-    name: 'Standard Pack',
-    slots: [
-      '2 × Common',
-      '1 × Uncommon',
-      '1 × Rare (80%) or Legendary (20%)',
-      '1 × Wild — Common 60% · Uncommon 25% · Rare 12% · Legendary 3%',
-    ],
-  },
-  {
-    id: 'premium',
-    name: 'Premium Pack',
-    slots: [
-      '1 × Uncommon',
-      '1 × Rare',
-      '1 × guaranteed Legendary',
-      '2 × Wild — Common 42% · Uncommon 30% · Rare 20% · Legendary 8%',
-    ],
-  },
-  {
-    id: 'faction',
-    name: 'Faction Pack',
-    slots: [
-      '2 × Common (chosen faction)',
-      '1 × Uncommon (chosen faction)',
-      '1 × Rare (75%) or Legendary (25%)',
-      '1 × Wild — Common 52% · Uncommon 28% · Rare 15% · Legendary 5%',
-    ],
-  },
+  { id: 'core', name: 'Core Pack', slots: ['Core Set: 1% alternate art when eligible. Otherwise Common 60 : Uncommon 25 : Rare 12 : Legendary 3 rarity weights.'] },
+  { id: 'eternal', name: 'Eternal Pack', slots: ['Eternal Set: 1% alternate art when eligible. Otherwise one unowned legendary.'] },
+  { id: 'expanded', name: 'Expanded Pack', slots: ['Expanded Set: 1% alternate art when eligible. Otherwise Common 60 : Uncommon 25 : Rare 12 : Legendary 3 rarity weights.'] },
 ]
 
-// ─── Loot table ───────────────────────────────────────────────────────────────
-
-function pickByRarity(pool: CardDefinition[], rarity: Rarity): CardDefinition {
-  const filtered = pool.filter(c => c.rarity === rarity)
-  if (filtered.length === 0) return pool[Math.floor(Math.random() * pool.length)]
-  return filtered[Math.floor(Math.random() * filtered.length)]
-}
-
-function pickWild(
-  pool: CardDefinition[],
-  weights: { common: number; uncommon: number; rare: number; legendary: number },
-): CardDefinition {
-  const roll = Math.random() * 100
-  if (roll < weights.legendary) return pickByRarity(pool, 'legendary')
-  if (roll < weights.legendary + weights.rare) return pickByRarity(pool, 'rare')
-  if (roll < weights.legendary + weights.rare + weights.uncommon) return pickByRarity(pool, 'uncommon')
-  return pickByRarity(pool, 'common')
-}
-
-function generatePackCards(packId: string, faction?: string): CardDefinition[] {
-  const basePool = CARD_DATABASE.filter(c => !c.isTransformTarget)
-
-  if (packId === 'premium') {
-    const pool = basePool
-    const guaranteed = pickByRarity(pool, 'legendary')
-    return [
-      pickByRarity(pool, 'uncommon'),
-      pickByRarity(pool, 'rare'),
-      pickWild(pool, { legendary: 8, rare: 20, uncommon: 30, common: 42 }),
-      pickWild(pool, { legendary: 8, rare: 20, uncommon: 30, common: 42 }),
-      guaranteed,
-    ].sort(() => Math.random() - 0.5)
-  }
-
-  if (packId === 'faction' && faction) {
-    const pool = basePool.filter(c => c.affinity.includes(faction as any))
-    const fallback = basePool
-    const safePool = pool.length >= 4 ? pool : fallback
-    const guaranteed = Math.random() < 0.25
-      ? pickByRarity(safePool, 'legendary')
-      : pickByRarity(safePool, 'rare')
-    return [
-      pickByRarity(safePool, 'common'),
-      pickByRarity(safePool, 'common'),
-      pickByRarity(safePool, 'uncommon'),
-      guaranteed,
-      pickWild(safePool, { legendary: 5, rare: 15, uncommon: 28, common: 52 }),
-    ].sort(() => Math.random() - 0.5)
-  }
-
-  // standard
-  const pool = basePool
-  const guaranteed = Math.random() < 0.2
-    ? pickByRarity(pool, 'legendary')
-    : pickByRarity(pool, 'rare')
-  const wild = pickWild(pool, { legendary: 3, rare: 12, uncommon: 25, common: 60 })
-  return [
-    pickByRarity(pool, 'common'),
-    pickByRarity(pool, 'common'),
-    pickByRarity(pool, 'uncommon'),
-    guaranteed,
-    wild,
-  ].sort(() => Math.random() - 0.5)
-}
-
 function toCardInstance(def: CardDefinition, idx: number): Card {
-  return { ...def, instanceId: `pack-${idx}`, questProgress: 0, isTransformed: false, powerBonus: 0 }
+  return { ...def, instanceId: `pack-${idx}`, questProgress: 0, isTransformed: false, powerBonus: 0, cosmeticBorder: 'bronze' }
 }
 
 // ─── Legendary reveal particles ──────────────────────────────────────────────
@@ -323,11 +225,10 @@ function CardBack({ rarity, idle, charging }: { rarity: Rarity; idle: boolean; c
       )}
     >
       <img
-        src="/card-back.png"
+        src={UI_ASSETS.cardBack}
         alt=""
         draggable={false}
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ transform: 'scale(1.2)' }}
       />
     </div>
   )
@@ -336,6 +237,7 @@ function CardBack({ rarity, idle, charging }: { rarity: Rarity; idle: boolean; c
 // ─── Single pack card with flip ───────────────────────────────────────────────
 
 interface PackCardProps {
+  variantId?: string
   card: CardDefinition
   index: number
   revealed: boolean
@@ -344,14 +246,20 @@ interface PackCardProps {
   onCardClick: (i: number, cx: number, cy: number) => void
   onViewCard: (card: CardDefinition) => void
   cardSize: { w: number; h: number }
+  disabled?: boolean
 }
 
-function PackCard({ card, index, revealed, flashed, charging, onCardClick, onViewCard, cardSize }: PackCardProps) {
-  const containerRef = useRef<HTMLDivElement>(null)
+function PackCard({ card, index, revealed, flashed, charging, onCardClick, onViewCard, cardSize, disabled, variantId }: PackCardProps) {
+  const alternate = getCardVariant(variantId, card.definitionId)
+  const revealRarity = alternate ? 'legendary' : card.rarity
+  const containerRef = useRef<HTMLButtonElement>(null)
   const cardInstance = toCardInstance(card, index)
+  useEffect(() => {
+    if (!disabled && !charging) containerRef.current?.focus({ preventScroll: true })
+  }, [disabled, charging])
 
   const handleClick = () => {
-    if (charging) return
+    if (disabled || charging) return
     if (revealed) { onViewCard(card); return }
     const rect = containerRef.current?.getBoundingClientRect()
     const cx = rect ? rect.left + rect.width / 2 : window.innerWidth / 2
@@ -364,45 +272,50 @@ function PackCard({ card, index, revealed, flashed, charging, onCardClick, onVie
       className="pack-card-enter flex flex-col items-center gap-2"
       style={{ animationDelay: `${index * 120}ms` }}
     >
-      <div
+      <button
+        type="button"
+        disabled={disabled || charging}
+        aria-label={revealed ? `Inspect ${card.name}` : "Flip card"}
+        aria-describedby={!disabled && !revealed && !charging ? 'pack-flip-hint' : undefined}
         ref={containerRef}
         className={cn(
           'pack-flip-container',
-          !charging && 'cursor-pointer hover:scale-105 transition-transform duration-150',
+          !disabled && !charging && 'cursor-pointer hover:scale-105 transition-transform duration-150',
         )}
         style={{ width: cardSize.w, height: cardSize.h }}
         onClick={handleClick}
       >
         <div className={cn('pack-flip-inner', revealed && 'flipped')}>
           {/* back */}
-          <div className="pack-flip-back" style={{ width: cardSize.w, height: cardSize.h }}>
-            <CardBack rarity={card.rarity} idle={!revealed && !charging} charging={charging} />
+          <div className="pack-flip-back" aria-hidden="true" style={{ width: cardSize.w, height: cardSize.h }}>
+            <CardBack rarity={revealRarity} idle={!revealed && !charging} charging={charging} />
           </div>
           {/* front */}
-          <div className="pack-flip-face relative" style={{ width: cardSize.w, height: cardSize.h }}>
+          <div className="pack-flip-face relative" aria-hidden={!revealed} style={{ width: cardSize.w, height: cardSize.h }}>
             <CardComponent card={cardInstance} size="sm" />
             {flashed && (
               <div
                 className={cn(
                   'absolute inset-0 rounded-xs pointer-events-none',
-                  RARITY_FLASH_COLOR[card.rarity],
+                  RARITY_FLASH_COLOR[revealRarity],
                 )}
                 style={{ animation: 'reveal-flash 0.5s ease-out forwards' }}
               />
             )}
           </div>
         </div>
-      </div>
+      </button>
 
       {/* rarity label */}
       <div
+        aria-hidden={!revealed}
         className={cn(
           'text-[0.6rem] sm:text-xs font-semibold uppercase tracking-widest transition-all duration-300',
           revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2',
-          RARITY_LABEL[card.rarity].cls,
+          RARITY_LABEL[revealRarity].cls,
         )}
       >
-        {RARITY_LABEL[card.rarity].text}
+        {alternate ? `${alternate.name} · Variant` : RARITY_LABEL[card.rarity].text}
       </div>
     </div>
   )
@@ -411,108 +324,16 @@ function PackCard({ card, index, revealed, flashed, charging, onCardClick, onVie
 // ─── Reveal screen ────────────────────────────────────────────────────────────
 
 interface RevealScreenProps {
+  variantId?: string
   cards: CardDefinition[]
   packId: string
-  selectedFaction?: string | null
   onDone: () => void
   onOpenAnother?: () => void
 }
 
-// ─── Pack rip animation ───────────────────────────────────────────────────────────
-
-function PackRipAnimation({
-  packId,
-  selectedFaction,
-  onComplete,
-}: {
-  packId: string
-  selectedFaction?: string | null
-  onComplete: () => void
-}) {
-  const [phase, setPhase] = useState<'shake' | 'rip'>('shake')
-  const pack = PACK_TYPES.find(p => p.id === packId) ?? PACK_TYPES[0]
-  const faction = FACTIONS.find(f => f.id === selectedFaction)
-
-  useEffect(() => {
-    const t1 = setTimeout(() => setPhase('rip'), 750)
-    const t2 = setTimeout(onComplete, 1350)
-    return () => { clearTimeout(t1); clearTimeout(t2) }
-  }, [onComplete])
-
-  const W = 160, H = 240
-  const iconColor =
-    pack.id === 'premium' ? 'text-amber-400' :
-    pack.id === 'faction'  ? 'text-blue-400'  : 'text-stone-400'
-
-  // The same visual is rendered in both clipped halves
-  const packFace = (
-    <div
-      className={cn('absolute inset-0 rounded-2xl border-2 overflow-hidden bg-linear-to-b', pack.bg, pack.border)}
-    >
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-3">
-        <Sparkle size={38} className={iconColor} weight="duotone" />
-        <p className="font-bold text-stone-100 text-sm text-center leading-tight">{pack.name}</p>
-        {faction && (
-          <p className="text-blue-300 text-xs font-medium">{faction.emoji} {faction.name}</p>
-        )}
-      </div>
-      {/* subtle sheen lines */}
-      <div className="absolute left-4 right-4 h-px bg-white/10 top-8" />
-      <div className="absolute left-8 right-8 h-px bg-white/06 top-11" />
-      <div className="absolute left-4 right-4 h-px bg-white/08 bottom-10" />
-      {/* tear guide — shows only during shake */}
-      <div
-        className="absolute left-0 right-0 border-t border-dashed border-white/30 pointer-events-none"
-        style={{ top: '50%', opacity: phase === 'rip' ? 0 : 1, transition: 'opacity 0.1s' }}
-      />
-    </div>
-  )
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950">
-      <div className="relative" style={{ width: W, height: H }}>
-        {/* top half */}
-        <div
-          className="absolute inset-0"
-          style={{
-            clipPath: 'inset(0 0 50% 0)',
-            animation: phase === 'rip'
-              ? 'pack-rip-top 0.55s cubic-bezier(0.4, 0, 0.8, 1) forwards'
-              : 'pack-rip-shake 0.6s ease-in-out infinite',
-          }}
-        >
-          {packFace}
-        </div>
-        {/* bottom half */}
-        <div
-          className="absolute inset-0"
-          style={{
-            clipPath: 'inset(50% 0 0 0)',
-            animation: phase === 'rip'
-              ? 'pack-rip-bottom 0.55s cubic-bezier(0.4, 0, 0.8, 1) forwards'
-              : 'pack-rip-shake 0.6s ease-in-out infinite',
-          }}
-        >
-          {packFace}
-        </div>
-      </div>
-      {/* white flash on rip */}
-      {phase === 'rip' && (
-        <div
-          className="absolute inset-0 bg-white pointer-events-none"
-          style={{ animation: 'pack-rip-flash 0.55s ease-out forwards' }}
-        />
-      )}
-    </div>
-  )
-}
-
-function legendaryBackdropUrl(definitionId: string) {
-  return `./cards/full/${definitionId.replace(/_/g, '-')}.png`
-}
-
-function RevealScreen({ cards, packId, selectedFaction, onDone, onOpenAnother }: RevealScreenProps) {
+export function PackRevealScreen({ cards, packId, onDone, onOpenAnother, preview = false, variantId }: RevealScreenProps & { preview?: boolean }) {
   const [ripped, setRipped] = useState(false)
+  const [released, setReleased] = useState(false)
   const [revealed, setRevealed] = useState<Set<number>>(new Set())
   const [flashed, setFlashed] = useState<Set<number>>(new Set())
   const [chargingIdx, setChargingIdx] = useState<number | null>(null)
@@ -520,158 +341,91 @@ function RevealScreen({ cards, packId, selectedFaction, onDone, onOpenAnother }:
   const [activeBackdrop, setActiveBackdrop] = useState<string | null>(null)
   const [viewingCard, setViewingCard] = useState<Card | null>(null)
   const cardSize = useCardSize()
+  const reducedMotion = useReducedMotion()
+  const timers = useRef(new Set<ReturnType<typeof setTimeout>>())
+  const revealing = useRef(new Set<number>())
+  const later = useCallback((callback: () => void, delay: number) => {
+    const timer = setTimeout(() => { timers.current.delete(timer); callback() }, delay)
+    timers.current.add(timer)
+  }, [])
+  const clearTimers = useCallback(() => {
+    timers.current.forEach(clearTimeout)
+    timers.current.clear()
+  }, [])
+  useEffect(() => clearTimers, [clearTimers])
 
   const fireReveal = useCallback((i: number, cx: number, cy: number) => {
     setRevealed(prev => new Set(prev).add(i))
-    setFlashed(prev => new Set(prev).add(i))
-    if (cards[i].rarity === 'legendary') {
-      setActiveBackdrop(legendaryBackdropUrl(cards[i].definitionId))
-      setBurstPos({ x: cx, y: cy })
-      setTimeout(() => setBurstPos(null), 2600)
-    }
-    setTimeout(() => {
-      setFlashed(prev => {
+    if (!reducedMotion) {
+      setFlashed(prev => new Set(prev).add(i))
+      if (cards[i].rarity === 'legendary' || variantId) {
+        setActiveBackdrop(cards[i].imageUrl)
+        setBurstPos({ x: cx, y: cy })
+        later(() => setBurstPos(null), 2600)
+      }
+      later(() => setFlashed(prev => {
         const next = new Set(prev)
         next.delete(i)
         return next
-      })
-    }, 600)
-  }, [cards])
+      }), 600)
+    }
+  }, [cards, later, reducedMotion, variantId])
 
   const handleCardClick = useCallback((i: number, cx: number, cy: number) => {
-    if (cards[i].rarity === 'legendary') {
+    if (revealing.current.has(i)) return
+    revealing.current.add(i)
+    if ((cards[i].rarity === 'legendary' || variantId) && !reducedMotion) {
       setChargingIdx(i)
-      setTimeout(() => {
-        setChargingIdx(null)
-        fireReveal(i, cx, cy)
-      }, 700)
-    } else {
-      fireReveal(i, cx, cy)
-    }
-  }, [cards, fireReveal])
+      later(() => { setChargingIdx(null); fireReveal(i, cx, cy) }, 550)
+    } else fireReveal(i, cx, cy)
+  }, [cards, fireReveal, later, reducedMotion, variantId])
 
-  const skipAll = useCallback(() => {
-    // Skip bypasses the charge delay
-    cards.forEach((_, i) => {
-      setTimeout(() => {
-        setRevealed(prev => new Set(prev).add(i))
-      }, i * 90)
-    })
-  }, [cards])
-
+  const finishTear = () => {
+    setRipped(true)
+  }
+  const skipOpening = () => {
+    setRipped(true)
+    setReleased(true)
+  }
   const allRevealed = revealed.size === cards.length
 
-  if (!ripped) {
-    return (
-      <PackRipAnimation
-        packId={packId}
-        selectedFaction={selectedFaction}
-        onComplete={() => setRipped(true)}
-      />
-    )
-  }
-
-  return (
-    <div
-      className="min-h-screen flex flex-col relative overflow-hidden"
-      style={activeBackdrop
-        ? { backgroundColor: '#080508' }
-        : { background: 'radial-gradient(ellipse at 50% 20%, #1a1020 0%, #080508 100%)' }}
-    >
-      {/* Legendary wide-art backdrop */}
-      {activeBackdrop && (
-        <>
-          <img
-            key={activeBackdrop}
-            src={activeBackdrop}
-            className="absolute inset-0 w-full h-full object-cover z-0"
-            style={{ animation: 'legendary-bg-fade-in 0.8s ease-out forwards' }}
-          />
-          <div className="absolute inset-0 bg-black/55 z-0" />
-        </>
-      )}
-      {/* dim overlay during legendary charge */}
-      {chargingIdx !== null && (
-        <div
-          className="fixed inset-0 z-30 pointer-events-none"
-          style={{ background: 'rgba(0,0,0,0.55)', animation: 'legendary-dim-in 0.35s ease-out forwards' }}
-        />
-      )}
-      {burstPos && <LegendaryRevealEffect x={burstPos.x} y={burstPos.y} />}
-      {/* top bar */}
-      <div className="relative z-10 flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-stone-900/60">
-        <div className="flex items-center gap-2">
-          <Sparkle size={16} className="text-amber-400" weight="duotone" />
-          <span className="text-stone-300 font-semibold text-sm">Pack Opening</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="text-stone-500 text-xs">
-            {revealed.size} / {cards.length} revealed
-          </span>
-          {!allRevealed && (
-            <button
-              onClick={skipAll}
-              className="flex items-center gap-1.5 text-stone-400 hover:text-stone-100 transition-colors text-xs border border-stone-700 hover:border-stone-500 px-3 py-1.5 rounded-lg"
-            >
-              <FastForward size={14} weight="bold" />
-              Skip
-            </button>
-          )}
-        </div>
+  return <div className="pack-reveal-screen" data-pack={packId} style={{ '--card-width': `${cardSize.w}px` } as CSSProperties}>
+    {activeBackdrop && <img src={activeBackdrop} alt="" className="pack-reveal-backdrop"/>}
+    {burstPos && <LegendaryRevealEffect x={burstPos.x} y={burstPos.y}/>}
+    <header className="pack-reveal-header">
+      <h1>{packName(packId)} Pack</h1>
+      <div className="pack-reveal-header-actions"><MusicControls compact/>{!ripped && <button type="button" className="pack-reveal-skip" onClick={skipOpening}><FastForward size={14}/> Skip opening</button>}</div>
+    </header>
+    <div className="pack-reveal-stage">
+      <div className={cn('pack-reveal-card', released && 'is-released')}>
+        {cards.map((card, i) => <PackCard key={i} card={card} variantId={variantId} index={i} revealed={revealed.has(i)} flashed={flashed.has(i)}
+          charging={chargingIdx === i} disabled={!ripped} onCardClick={handleCardClick}
+          onViewCard={def => setViewingCard(toCardInstance(def, i))} cardSize={cardSize}/>)}
       </div>
-
-      {/* hint — always rendered to avoid layout shift */}
-      <p className={cn('relative z-10 text-center text-stone-600 text-xs mt-4 tracking-wide transition-opacity duration-300', allRevealed ? 'invisible' : '')}>
-        Tap a card to reveal it
-      </p>
-
-      {/* cards */}
-      <div className="relative z-10 flex-1 flex items-center justify-center px-3 sm:px-6 py-4 sm:py-8">
-        <div className="flex flex-wrap justify-center gap-3 sm:gap-6">
-          {cards.map((card, i) => (
-            <PackCard
-              key={i}
-              card={card}
-              index={i}
-              revealed={revealed.has(i)}
-              flashed={flashed.has(i)}
-              charging={chargingIdx === i}
-              onCardClick={handleCardClick}
-              onViewCard={(def) => setViewingCard(toCardInstance(def, i))}
-              cardSize={cardSize}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Done / Open Another buttons — fixed so they never affect card layout */}
-      <div
-        className={cn(
-          'fixed bottom-6 sm:bottom-8 left-0 right-0 flex justify-center gap-3 transition-all duration-500 z-40',
-          allRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 pointer-events-none',
-        )}
-      >
-        <Button variant="secondary" onClick={onDone}>
-          <ArrowLeft size={16} weight="bold" />
-          Done
-        </Button>
-        {onOpenAnother && (
-          <Button variant="primary" onClick={onOpenAnother}>
-            <Sparkle size={16} weight="duotone" />
-            Open Another
-          </Button>
-        )}
-      </div>
-
-      <CardViewer card={viewingCard} onClose={() => setViewingCard(null)} />
+      {!ripped && <PackTear packId={packId} onBurst={() => setReleased(true)} onComplete={finishTear}/>}
     </div>
-  )
+    <footer className="pack-reveal-footer" aria-live="polite">
+      {ripped && !allRevealed && chargingIdx === null && <p id="pack-flip-hint">Click or tap the card to flip</p>}
+      {allRevealed && <>
+        <p>{preview ? 'Preview · Your collection is unchanged' : variantId ? 'Alternate artwork unlocked · Equip it in your collection' : 'Added to your collection'}</p>
+        <div className="pack-reveal-actions">
+          <Button className="ae-button" variant="secondary" onClick={onDone}><ArrowLeft size={16} weight="bold"/>{preview ? 'Back' : 'Done'}</Button>
+          {onOpenAnother && <Button className="ae-button ae-button-primary" variant="primary" onClick={onOpenAnother}>
+            <Sparkle size={16} weight="duotone"/>{preview ? 'Replay' : 'Open Another'}
+          </Button>}
+        </div>
+      </>}
+      {released && !ripped && <span className="sr-only">Opening your pack</span>}
+      {chargingIdx !== null && <span className="sr-only">Revealing your card</span>}
+    </footer>
+    <CardViewer arena card={viewingCard} onClose={() => setViewingCard(null)}/>
+  </div>
 }
 
 // ─── Pack token hook ──────────────────────────────────────────────────────────
 
 function usePackTokens() {
-  const { tokens, nextTokenAt, tickTokens, spendToken, gems, speedUpPack } = useCollectionStore()
+  const { tokens, nextTokenAt, tickTokens } = useCollectionStore()
   const [msLeft, setMsLeft] = useState(() => msUntilNextToken(nextTokenAt))
 
   useEffect(() => {
@@ -694,11 +448,11 @@ function usePackTokens() {
 
   const hh = String(Math.floor(msLeft / 3_600_000)).padStart(2, '0')
   const mm = String(Math.floor((msLeft % 3_600_000) / 60_000)).padStart(2, '0')
-  const countdown = `${hh}h ${mm}m`
+  const days = Math.floor(msLeft / 86_400_000)
+  const countdown = days ? `${days}d ${Number(hh) % 24}h` : `${hh}h ${mm}m`
 
-  const canSpeedUp = gems >= GEM_SPEEDUP_COST && nextTokenAt !== null && tokens < MAX_PACK_TOKENS
+  return { tokens, nextTokenAt, progress, countdown }
 
-  return { tokens, nextTokenAt, progress, countdown, gems, canSpeedUp, speedUpPack, spendToken }
 }
 
 // ─── Visual pack slot ─────────────────────────────────────────────────────────
@@ -716,23 +470,13 @@ function PackSlot({ ready, charging, progress, countdown }: {
   return (
     <div className="flex flex-col items-center gap-1.5">
       <div className={cn(
-        'relative w-14 h-20 rounded-xl border-2 flex items-center justify-center overflow-hidden transition-all duration-300',
+        'relative w-12 h-20 rounded-sm border flex items-center justify-center overflow-hidden transition-all duration-300',
         ready
           ? 'border-amber-400/80 bg-stone-900 shadow-lg shadow-amber-900/50'
           : 'border-stone-700/40 bg-stone-950',
       )}>
         {ready ? (
-          <>
-            <div className="absolute inset-0 bg-linear-to-b from-amber-900/30 to-transparent" />
-            <div className="relative flex flex-col items-center gap-1.5">
-              <span className="text-amber-400 text-xl leading-none">✦</span>
-              <div className="flex flex-col items-center gap-px opacity-25">
-                <div className="w-6 h-px bg-amber-300" />
-                <div className="w-4 h-px bg-amber-300" />
-              </div>
-            </div>
-            <div className="absolute inset-0 rounded-xl border border-amber-400/30 animate-pulse" />
-          </>
+          <PackArt packId="core"/>
         ) : charging ? (
           <svg width="44" height="44" viewBox="0 0 44 44" className="-rotate-90">
             <circle cx="22" cy="22" r={r} fill="none" stroke="rgb(68,64,60)" strokeWidth="3" />
@@ -763,7 +507,7 @@ function PackSlot({ ready, charging, progress, countdown }: {
 // ─── Pack dock ────────────────────────────────────────────────────────────────
 
 function PackDock() {
-  const { tokens, nextTokenAt, progress, countdown, gems, canSpeedUp, speedUpPack } = usePackTokens()
+  const { tokens, nextTokenAt, progress, countdown } = usePackTokens()
   const isCharging = nextTokenAt !== null && tokens < MAX_PACK_TOKENS
 
   return (
@@ -790,24 +534,13 @@ function PackDock() {
         {isCharging ? (
           <>
             <span className="text-stone-500 text-xs">
-              Next pack in{' '}
+              Next free Core pack in{' '}
               <span className="text-stone-300 tabular-nums font-mono">{countdown}</span>
             </span>
-            {canSpeedUp && (
-              <button
-                onClick={speedUpPack}
-                className="flex items-center gap-1 bg-violet-950/70 hover:bg-violet-900/70 border border-violet-700/50 hover:border-violet-500 rounded-full px-2.5 py-0.5 text-violet-300 text-xs font-semibold transition-colors"
-              >
-                <Lightning size={11} weight="fill" />
-                Speed up ({GEM_SPEEDUP_COST} 💎)
-              </button>
-            )}
-            {!canSpeedUp && gems < GEM_SPEEDUP_COST && (
-              <span className="text-stone-700 text-xs">{gems} / {GEM_SPEEDUP_COST} 💎 to speed up</span>
-            )}
+
           </>
         ) : tokens >= MAX_PACK_TOKENS ? (
-          <span className="text-amber-400/60 text-xs">All packs ready — open one to start the timer</span>
+          <span className="text-amber-400/60 text-xs">2 free Core packs ready · refills every 3½ days</span>
         ) : null}
       </div>
     </div>
@@ -817,67 +550,55 @@ function PackDock() {
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 export default function PackOpening() {
-  const navigate = useNavigate()
+  const now = useSeasonTime()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const shopTab = searchParams.get('tab') === 'pass' ? 'pass' : 'packs'
+  const setShopTab = (tab: 'packs' | 'pass') => setSearchParams(previous => {
+    const next = new URLSearchParams(previous)
+    if (tab === 'pass') next.set('tab', 'pass')
+    else next.delete('tab')
+    return next
+  })
   const [selected, setSelected] = useState<string | null>(null)
-  const [selectedFaction, setSelectedFaction] = useState<string | null>(null)
-  const [showFactionModal, setShowFactionModal] = useState(false)
   const [showOdds, setShowOdds] = useState(false)
   const [packCards, setPackCards] = useState<CardDefinition[] | null>(null)
   const [packKey, setPackKey] = useState(0)
+  const [packVariant, setPackVariant] = useState<string>()
 
-  const addCards = useCollectionStore(s => s.addCards)
+  const ownedCards = useCollectionStore(s => s.cards)
+  const ownedVariants = useCollectionStore(s => s.variants)
   const tokens = useCollectionStore(s => s.tokens)
   const gems = useCollectionStore(s => s.gems)
-  const spendToken = useCollectionStore(s => s.spendToken)
-  const spendGems = useCollectionStore(s => s.spendGems)
-  const completeQuest = useQuestStore(s => s.completeQuest)
 
-  const handleOpen = () => {
-    if (!selected) return
-    const pack = PACK_TYPES.find(p => p.id === selected)!
-    if (pack.currency === 'gem') {
-      if (gems < pack.cost) return
-      if (selected === 'faction' && !selectedFaction) return
-      spendGems(pack.cost)
-    } else {
-      if (tokens < 1) return
-      spendToken()
-    }
-    completeQuest('open_pack')
+  const handleOpen = (packId = selected) => {
+    if (!packId) return
+    const store = useCollectionStore.getState()
+    const reward = store.openPack(packId)
+    if (!reward) return
+    setSelected(packId)
     setPackKey(k => k + 1)
-    setPackCards(generatePackCards(selected, selectedFaction ?? undefined))
+    setPackVariant(reward.variantId)
+    setPackCards([reward.card])
   }
+  const selectedHasCards = Boolean(selected && hasPackRewards(selected, ownedCards, ownedVariants, now))
 
   if (packCards) {
     return (
-      <RevealScreen
+      <PackRevealScreen
         key={packKey}
         cards={packCards}
+        variantId={packVariant}
         packId={selected!}
-        selectedFaction={selectedFaction}
         onDone={() => {
-          addCards(packCards)
           setPackCards(null)
           setSelected(null)
-          setSelectedFaction(null)
-          setShowFactionModal(false)
         }}
         onOpenAnother={(() => {
           if (!selected) return undefined
           const pack = PACK_TYPES.find(p => p.id === selected)!
           const canAfford = pack.currency === 'gem' ? gems >= pack.cost : tokens >= 1
-          if (!canAfford) return undefined
-          return () => {
-            addCards(packCards)
-            if (pack.currency === 'gem') {
-              spendGems(pack.cost)
-            } else {
-              spendToken()
-            }
-            completeQuest('open_pack')
-            setPackKey(k => k + 1)
-            setPackCards(generatePackCards(selected, selectedFaction ?? undefined))
-          }
+          if (!canAfford || !selectedHasCards) return undefined
+          return () => handleOpen()
         })()}
       />
     )
@@ -885,146 +606,28 @@ export default function PackOpening() {
 
   return (
     <div
-      className="h-screen overflow-hidden flex flex-col"
-      style={{ background: 'radial-gradient(ellipse at 50% 30%, #1e1408 0%, #0a0806 100%)' }}
+      className="arena-library-screen h-screen overflow-y-auto flex flex-col"
     >
-      {/* Header */}
-      <div className="flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 border-b border-stone-900/60">
-        <button
-          onClick={() => navigate('/')}
-          className="flex items-center gap-1.5 text-stone-500 hover:text-stone-300 transition-colors text-sm shrink-0"
-        >
-          <ArrowLeft size={16} weight="bold" />
-          <span className="hidden sm:inline">Menu</span>
-        </button>
-        <div className="w-px h-4 bg-stone-800" />
-        <Sparkle size={16} className="text-blue-400 shrink-0" weight="duotone" />
-        <h1 className="text-stone-200 font-semibold text-sm sm:text-base">Pack Opening</h1>
-        <div className="ml-auto flex items-center gap-2">
-          {/* Gem balance */}
-          <div className="flex items-center gap-1.5 bg-stone-900/80 border border-stone-700/60 rounded-full px-2.5 sm:px-3 py-1">
-            <span className="text-sm leading-none">💎</span>
-            <span className="text-violet-300 font-semibold text-sm">{gems}</span>
-            <span className="hidden sm:inline text-stone-500 text-xs">gems</span>
-          </div>
-        </div>
-      </div>
+      <ArenaMenuHeader title="Shop" balance={gems} currency="gems"/>
 
-      {/* Content */}
-      <div className="flex-1 flex flex-col items-center justify-center gap-4 sm:gap-6 px-4 sm:px-8 py-4 sm:py-6">
-
-        {/* Pack dock — visual token slots */}
-        <PackDock />
-
-        <div className="flex items-center gap-3">
-          <div className="text-center flex flex-col gap-1">
-            <h2 className="text-xl sm:text-2xl font-bold text-stone-100">Choose a Pack</h2>
-            <p className="text-stone-500 text-sm">
-              {tokens < 1
-                ? 'No packs available — wait for the timer or speed up with gems'
-                : `${tokens} pack${tokens !== 1 ? 's' : ''} available`}
-            </p>
-          </div>
-          <button
-            onClick={() => setShowOdds(true)}
-            className="shrink-0 text-stone-600 hover:text-stone-300 transition-colors mt-0.5"
-            title="Drop rates"
-          >
-            <Info size={18} />
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-5 w-full max-w-xs sm:max-w-2xl">
-          {PACK_TYPES.map(pack => {
-            const canAfford = pack.currency === 'gem' ? gems >= pack.cost : tokens >= pack.cost
-            const isSelected = selected === pack.id
-
-            return (
-              <button
-                key={pack.id}
-                onClick={() => {
-                    if (!pack.available || !canAfford) return
-                    if (pack.id === 'faction') {
-                      setSelected('faction')
-                      setShowFactionModal(true)
-                    } else {
-                      setSelected(pack.id)
-                    }
-                  }}
-                disabled={!pack.available || !canAfford}
-                className={cn(
-                  'relative flex sm:flex-col items-center gap-4 p-4 sm:p-6 rounded-2xl border bg-linear-to-b transition-all duration-200 text-left',
-                  pack.border,
-                  pack.bg,
-                  pack.glow && `shadow-lg ${pack.glow}`,
-                  isSelected && 'ring-2 ring-amber-400 ring-offset-2 ring-offset-stone-950 sm:scale-[1.03]',
-                  pack.available && canAfford
-                    ? 'cursor-pointer hover:brightness-110'
-                    : 'opacity-50 cursor-not-allowed',
-                )}
-              >
-                {!pack.available && (
-                  <div className="absolute top-3 right-3">
-                    <LockKey size={14} className="text-stone-600" weight="duotone" />
-                  </div>
-                )}
-                <div className="w-14 h-20 sm:w-20 sm:h-28 shrink-0 rounded-xl bg-stone-950/60 border border-stone-700/50 flex items-center justify-center">
-                  <Sparkle
-                    size={28}
-                    className={
-                      pack.id === 'premium'
-                        ? 'text-amber-400'
-                        : pack.id === 'faction'
-                          ? 'text-blue-400'
-                          : 'text-stone-400'
-                    }
-                    weight="duotone"
-                  />
-                </div>
-                <div className="flex flex-col gap-1 sm:text-center flex-1">
-                  <p className="font-bold text-stone-100 text-sm">{pack.name}</p>
-                  {pack.id === 'faction' && selectedFaction && (
-                    <p className="text-blue-300 text-xs font-semibold mt-0.5">
-                      {FACTIONS.find(f => f.id === selectedFaction)?.emoji}{' '}
-                      {FACTIONS.find(f => f.id === selectedFaction)?.name}
-                    </p>
-                  )}
-                  <p className={cn('text-sm font-semibold mt-1', canAfford ? (pack.currency === 'gem' ? 'text-violet-300' : 'text-amber-400') : 'text-stone-600')}>
-                    {pack.costLabel}
-                  </p>
-                </div>
-              </button>
-            )
-          })}
-        </div>
-
-        <Button variant="primary" size="lg" disabled={!selected || (PACK_TYPES.find(p => p.id === selected)?.currency === 'gem' ? gems < (PACK_TYPES.find(p => p.id === selected)?.cost ?? 0) : tokens < 1) || (selected === 'faction' && !selectedFaction)} onClick={handleOpen}>
-          Open Pack
-        </Button>
-
-        {/* Faction picker modal */}
-        {showFactionModal && (
-          <Modal title="Choose a Faction" onClose={() => { setShowFactionModal(false); setSelected(null); setSelectedFaction(null) }}>
-            <div className="flex flex-col gap-3">
-              <p className="text-stone-400 text-sm">Your pack will contain 5 cards from the chosen faction.</p>
-              <div className="grid grid-cols-1 gap-2 mt-1">
-                {FACTIONS.map(f => (
-                  <button
-                    key={f.id}
-                    onClick={() => { setSelectedFaction(f.id); setShowFactionModal(false) }}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl border border-stone-700 bg-stone-800/60 hover:border-blue-500/60 hover:bg-blue-950/40 transition-all text-left group"
-                  >
-                    <span className="text-2xl">{f.emoji}</span>
-                    <span className="font-semibold text-stone-200 group-hover:text-blue-200 transition-colors">{f.name}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </Modal>
-        )}
-
-      </div>
-
+      <nav className="shop-navigation" aria-label="Shop sections"><button aria-pressed={shopTab === 'packs'} onClick={() => setShopTab('packs')}>Featured shop</button><button aria-pressed={shopTab === 'pass'} onClick={() => setShopTab('pass')}>Season pass</button></nav>
+      {shopTab === 'pass' ? <SeasonPass/> : <main className="shop-storefront">
+        <section className="shop-products" aria-label="Card packs">
+          <div className="shop-section-heading"><div><h2>Card packs</h2></div><button className="shop-rates" onClick={() => setShowOdds(true)}><Info size={16}/> Drop rates</button></div>
+          <div className="shop-product-grid">{PACK_TYPES.map(pack => {
+            const canAfford = pack.currency === 'gem' ? gems >= pack.cost : tokens >= 1
+            const remaining = eligiblePackCards(pack.id, ownedCards, now).length
+            const alternateCount = eligiblePackVariants(pack.id, ownedCards, ownedVariants, now).length
+            const available = remaining + alternateCount > 0
+            return <article key={pack.id} className={`shop-product shop-product-${pack.id}`}>
+              <div className="shop-product-art">{pack.id === 'core' && <span className="shop-product-tag">Free · Twice weekly</span>}<div className="shop-pack-wrapper"><PackArt packId={pack.id}/></div></div>
+              <div className="shop-product-details"><h3>{pack.name}</h3><span className="shop-product-contents">{remaining ? `1 card · ${remaining} missing${alternateCount ? ' · 1% alternate art' : ''}` : alternateCount ? `Guaranteed alternate art · ${alternateCount} remaining` : 'All available cards and pack variants owned'}</span><button className="shop-buy" disabled={!canAfford || !available} onClick={() => handleOpen(pack.id)}><span>{!available ? 'No rewards available' : pack.id === 'core' ? tokens ? 'Open free pack' : 'Replenishing' : 'Open pack'}</span><strong>{pack.id === 'core' ? `${tokens} ready` : `◇ ${pack.cost}`}</strong></button>{pack.currency === 'gem' && !canAfford && available && <small className="shop-product-shortfall">{pack.cost - gems} more gems needed</small>}</div>
+            </article>
+          })}</div>
+        </section>
+        <ShopVariants/>
+          <div className="shop-free-restock"><div><h3>Free Core packs</h3><p>One pack every 3½ days · Up to 2 stored</p></div><PackDock/></div>
+      </main>}
       {/* Odds modal */}
       {showOdds && (
         <Modal title="Drop Rates" onClose={() => setShowOdds(false)}>
@@ -1043,7 +646,7 @@ export default function PackOpening() {
               </div>
             ))}
             <p className="text-stone-600 text-xs border-t border-stone-800 pt-3">
-              All cards are added to your collection permanently.
+              One reward per pack. Base cards never repeat. Alternate art requires its base card and never repeats artwork you own. When all available base cards in a set are owned, remaining pack variants are guaranteed; when both pools are empty, opening is disabled. Season-pass cards and their pack variants unlock in Eternal packs after their season ends. Season-exclusive and featured-shop artwork never drop from packs. Base rarity weights are redistributed among available rarities.
             </p>
           </div>
         </Modal>

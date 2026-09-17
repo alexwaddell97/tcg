@@ -1,0 +1,51 @@
+/* The score ceremony changes emphasis, never the board's layout or card sizes. */
+.clash-location.verdict-won,.clash-finale-marks .verdict-won { --verdict-color:#a6f4df; --verdict-glow:#55cfc95c; }
+.clash-location.verdict-lost,.clash-finale-marks .verdict-lost { --verdict-color:#ffc297; --verdict-glow:#de89544d; }
+.clash-location.verdict-tied,.clash-finale-marks .verdict-tied { --verdict-color:#d2d3df; --verdict-glow:#9ca8c342; }
+.clash-side,.clash-site-info,.clash-header,.clash-footer { transition:opacity 260ms ease,filter 260ms ease; }
+.clash-screen.is-finale .clash-header,.clash-screen.is-finale .clash-footer { opacity:.22; }
+.clash-screen.is-finale .clash-side { opacity:.3; filter:saturate(.65); }
+.clash-screen.is-finale .clash-location:not(.is-score-focus) .clash-site-info { opacity:.36; }
+.clash-screen.is-finale .clash-location.is-score-marked .clash-site-info { opacity:.66; }
+.clash-screen.is-finale .clash-location.is-score-focus .clash-site-info,
+.clash-screen.is-score-summary .clash-location .clash-site-info { opacity:1; }
+.clash-location.is-score-focus .clash-site-info { z-index:25; }
+.clash-location.is-score-marked .clash-site-tile { box-shadow:0 0 24px var(--verdict-glow); }
+.clash-location.is-score-marked .clash-site-copy { justify-content:flex-start; padding-top:12px; }
+.clash-location.is-score-marked .clash-site-copy > span { visibility:hidden; }
+.clash-location.is-score-focus .clash-site-score { animation:clash-final-score var(--reveal-duration) cubic-bezier(.2,.85,.3,1) both; z-index:5; }
+.clash-location.is-score-focus .their-score { transform-origin:center bottom; }
+.clash-location.is-score-focus .your-score { transform-origin:center top; }
+.clash-location.is-score-marked .clash-site-score.is-leading { filter:drop-shadow(0 0 12px var(--verdict-glow)); }
+.clash-location.is-score-focus .clash-site-tile::after { content:''; position:absolute; inset:-12px; border-radius:16px; box-shadow:0 0 36px var(--verdict-glow); border:1px solid var(--verdict-color); animation:clash-score-halo var(--reveal-duration) ease-out both; pointer-events:none; }
+.clash-score-verdict { position:absolute; inset:50% 0 auto; text-align:center; font-size:clamp(11px,1.6vw,15px); font-weight:750; letter-spacing:.02em; color:var(--verdict-color); text-shadow:0 2px 5px #000; animation:clash-verdict-in 420ms ease-out both; }
+.clash-score-summary { position:absolute; left:50%; top:50%; translate:-50% -50%; width:min(320px,90vw); text-align:center; animation:clash-verdict-in 400ms ease-out both; }
+.clash-finale-marks { display:flex; justify-content:center; align-items:center; gap:20px; }
+.clash-finale-marks > span { display:grid; place-items:center; width:35px; height:35px; border:1px solid var(--verdict-color); color:var(--verdict-color); background:#081622ef; box-shadow:0 0 16px var(--verdict-glow); border-radius:10px 2px; font-weight:700; font-size:23px; }
+.clash-power-tiebreak { margin-top:12px; }
+.clash-power-tiebreak > p { margin:0 0 6px; color:#c8ced2; font-size:9px; text-transform:uppercase; letter-spacing:.16em; }
+.clash-power-tiebreak > div { display:flex; justify-content:center; align-items:center; gap:25px; }
+.clash-power-tiebreak span { display:flex; flex-direction:column; min-width:45px; }
+.clash-power-tiebreak b { color:#a6f4df; font-size:29px; font-weight:800; line-height:1; font-variant-numeric:tabular-nums; }
+.clash-power-tiebreak span:last-child b { color:#ffc297; }
+.clash-power-tiebreak small { margin-top:5px; font-size:9px; color:#c8ced2; }
+.clash-power-tiebreak i { font-style:normal; color:#77848a; font-size:16px; }
+@keyframes clash-final-score { 0% { transform:scale(1); } 28% { transform:scale(1.72); } 55%,85% { transform:scale(1.52); } 100% { transform:scale(1.2); } }
+@keyframes clash-score-halo { 0% { opacity:0; transform:scale(.93); } 35% { opacity:.65; } 100% { opacity:0; transform:scale(1.13); } }
+@keyframes clash-verdict-in { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+@media (max-width:480px) {
+  .clash-location.is-score-marked .clash-site-copy { padding-top:10px; }
+  .clash-score-verdict { font-size:12px; }
+}
+@media (max-height:650px) and (min-aspect-ratio:4/3) {
+  .clash-finale-marks { gap:12px; }
+  .clash-score-summary { width:100%; }
+  .clash-location.is-score-marked .clash-site-copy { padding-top:8px; }
+  .clash-score-verdict { font-size:11px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .clash-side,.clash-site-info,.clash-header,.clash-footer { transition:none; }
+  .clash-location.is-score-focus .clash-site-score,.clash-score-verdict,.clash-score-summary { animation:none; }
+  .clash-location.is-score-focus .clash-site-score { outline:2px solid var(--verdict-color); }
+  .clash-location.is-score-focus .clash-site-tile::after { animation:none; opacity:.5; }
+}

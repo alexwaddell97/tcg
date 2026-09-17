@@ -5,6 +5,7 @@ import { CARD_DATABASE } from '@tcg/shared'
 import { cn } from '../../lib/cn.ts'
 import { CardMedia } from './CardMedia.tsx'
 import { useTilt } from '../../hooks/useTilt.ts'
+import ArenaCardDialog from './ArenaCardDialog.tsx'
 
 // ─── Keyword glossary ──────────────────────────────────────────────────────
 
@@ -78,14 +79,15 @@ interface CardViewerProps {
   card: Card | null
   onClose: () => void
   isPreview?: boolean
+  arena?: boolean
   onPrev?: () => void
   onNext?: () => void
 }
 
-export default function CardViewer({ card, onClose, isPreview, onPrev, onNext }: CardViewerProps) {
+export default function CardViewer({ card, onClose, isPreview, onPrev, onNext, arena = false }: CardViewerProps) {
   // Close on Escape, navigate on arrow keys
   useEffect(() => {
-    if (!card) return
+    if (!card || arena) return
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
       if (e.key === 'ArrowLeft' && onPrev) { e.preventDefault(); onPrev() }
@@ -93,7 +95,7 @@ export default function CardViewer({ card, onClose, isPreview, onPrev, onNext }:
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [card, onClose, onPrev, onNext])
+  }, [card, onClose, onPrev, onNext, arena])
 
   const [previewCard, setPreviewCard] = useState<Card | null>(null)
 
@@ -101,6 +103,7 @@ export default function CardViewer({ card, onClose, isPreview, onPrev, onNext }:
   const tilt = useTilt(8, 1.02)
 
   if (!card) return null
+  if (arena) return <ArenaCardDialog card={card} onClose={onClose} onPrev={onPrev} onNext={onNext} />
 
   const totalPower = card.power + (card.powerBonus ?? 0)
   const hasPowerBonus = (card.powerBonus ?? 0) !== 0

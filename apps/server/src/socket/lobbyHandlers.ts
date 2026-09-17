@@ -1,6 +1,7 @@
 import type { Server, Socket } from 'socket.io'
 import type { ClientToServerEvents, ServerToClientEvents, SocketData, LobbyPlayer } from '@tcg/shared'
 import { roomManager } from '../game/RoomManager.js'
+import { ARENA_STARTER_DECK, getArenaDeckError, sanitizeCardBorders, sanitizeCardVariants, sanitizePlayerCosmetics } from '@tcg/shared'
 
 type IoServer = Server<ClientToServerEvents, ServerToClientEvents, Record<string, never>, SocketData>
 type IoSocket = Socket<ClientToServerEvents, ServerToClientEvents, Record<string, never>, SocketData>
@@ -41,7 +42,19 @@ function tryMatch(io: IoServer) {
 }
 
 export function registerMatchmakingHandlers(io: IoServer, socket: IoSocket) {
-  socket.on('matchmaking:join', ({ displayName, avatarEmoji, rank, deckId, deckDefinitionIds }) => {
+  socket.on('matchmaking:join', ({ displayName, avatarEmoji, avatarId, titleId, rank, deckId, deckDefinitionIds, cardBorders, cardVariants }) => {
+    const deckError = getArenaDeckError(deckDefinitionIds)
+    if (deckError) {
+      socket.emit('matchmaking:error', { message: deckError })
+      return
+    }
+    const current = socket.data.roomId && roomManager.getEngine(socket.data.roomId)
+    if (current && !current.isGameOver().over) {
+      socket.emit('matchmaking:error', { message: 'Finish your current match before queuing again.' })
+      return
+    }
+    if (socket.data.roomId) socket.leave(socket.data.roomId)
+    socket.data.roomId = undefined
     socket.data.displayName = displayName
 
     if (queue.has(socket.id)) {
@@ -52,11 +65,13 @@ export function registerMatchmakingHandlers(io: IoServer, socket: IoSocket) {
     const player: LobbyPlayer = {
       id: socket.data.playerId,
       displayName,
-      avatarEmoji: avatarEmoji ?? '🧙',
+      ...sanitizePlayerCosmetics({ avatarId, titleId, avatarEmoji }),
       rank: rank ?? 'Initiate',
       isReady: true,
       deckId,
       deckDefinitionIds,
+      cardVariants: sanitizeCardVariants(cardVariants, deckDefinitionIds ?? ARENA_STARTER_DECK),
+      cardBorders: sanitizeCardBorders(cardBorders, deckDefinitionIds ?? ARENA_STARTER_DECK),
     }
 
     queue.set(socket.id, player)

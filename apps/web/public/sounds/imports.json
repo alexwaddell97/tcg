@@ -1,0 +1,58 @@
+{
+  "card-draw.wav": {
+    "source": "card-draw.mp3",
+    "start": 0.05,
+    "duration": 0.36
+  },
+  "card-place.wav": {
+    "source": "card-draw-2.mp3",
+    "start": 0.16,
+    "duration": 0.18
+  },
+  "card-reveal.wav": {
+    "source": "card-draw-2.mp3",
+    "start": 0.1,
+    "duration": 0.28
+  },
+  "spell-cast.wav": {
+    "source": "elemental_spell.mp3",
+    "start": 0,
+    "duration": 0.68
+  },
+  "power-rise.wav": {
+    "source": "holy_healing_spell.mp3",
+    "start": 0.45,
+    "duration": 0.65
+  },
+  "curse.wav": {
+    "source": "necro_spell_1.mp3",
+    "start": 0.1,
+    "duration": 0.68
+  },
+  "transmute.wav": {
+    "source": "pour_sound.mp3",
+    "start": 0.05,
+    "duration": 0.63
+  },
+  "turn-start.wav": {
+    "source": "draw-sword.mp3",
+    "start": 0.04,
+    "duration": 0.95
+  },
+  "victory.wav": {
+    "source": "victory-chime.mp3",
+    "start": 0,
+    "duration": 7.2
+  },
+  "defeat.wav": {
+    "source": "defeat-chime.mp3",
+    "start": 0.37,
+    "duration": 11.3
+  },
+  "match-draw.wav": {
+    "source": "draw.mp3",
+    "start": 1.6,
+    "duration": 10,
+    "fadeOut": 2
+  }
+}

@@ -1,0 +1,3 @@
+.ae-artwork-control { display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; padding:10px 12px; margin:10px 0; border:1px solid #8cabc13d; border-radius:7px; color:#c9d9e1; font:12px var(--ae-font-ui); }
+.ae-artwork-control select { min-width:0; max-width:72%; padding:8px; border:1px solid #8cabc144; border-radius:4px; background:#12202c; color:#e5edf0; font:inherit; cursor:pointer; }
+.ae-artwork-control select:focus-visible { outline:2px solid #e0c396; outline-offset:3px; }

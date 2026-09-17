@@ -1,0 +1,4841 @@
+{
+  "description": "Development diagnostics for the September 2026 balance pass. These are bot results, not human win rates; neither seed is a blind holdout.",
+  "original": {
+    "method": "Public-information two-branch beam, real engine, sampled own draws, opponent passes in previews; directional only.",
+    "seed": 7319,
+    "samples": 20,
+    "results": [
+      {
+        "id": "balanced",
+        "games": 160,
+        "wins": 144,
+        "draws": 0,
+        "energy": [
+          0.51,
+          1.75,
+          2.83,
+          3.89,
+          4.88,
+          5.69
+        ],
+        "passes": [
+          48.8,
+          5,
+          2.5,
+          0,
+          0,
+          0
+        ],
+        "power": 34,
+        "plays": 7.1,
+        "winRate": 90
+      },
+      {
+        "id": "transmutation",
+        "games": 160,
+        "wins": 92,
+        "draws": 0,
+        "energy": [
+          0.36,
+          1.56,
+          2.51,
+          3.26,
+          3.5,
+          4.38
+        ],
+        "passes": [
+          63.7,
+          13.8,
+          0,
+          0,
+          0,
+          0
+        ],
+        "power": 29.6,
+        "plays": 8.8,
+        "winRate": 57.5
+      },
+      {
+        "id": "sabotage",
+        "games": 160,
+        "wins": 34,
+        "draws": 1,
+        "energy": [
+          0,
+          1.32,
+          2.76,
+          3.5,
+          4.92,
+          5.22
+        ],
+        "passes": [
+          100,
+          33.8,
+          3.8,
+          3.1,
+          0,
+          0
+        ],
+        "power": 11.9,
+        "plays": 5.6,
+        "winRate": 21.6
+      },
+      {
+        "id": "affliction",
+        "games": 160,
+        "wins": 76,
+        "draws": 2,
+        "energy": [
+          0,
+          1.91,
+          2.76,
+          3.91,
+          4.67,
+          5.92
+        ],
+        "passes": [
+          100,
+          3.8,
+          0,
+          0,
+          0,
+          0
+        ],
+        "power": 18.9,
+        "plays": 6.8,
+        "winRate": 48.1
+      },
+      {
+        "id": "conduits",
+        "games": 160,
+        "wins": 52,
+        "draws": 1,
+        "energy": [
+          0.39,
+          1.62,
+          2.85,
+          3.79,
+          4.66,
+          5.76
+        ],
+        "passes": [
+          61.3,
+          13.8,
+          0,
+          0,
+          0,
+          0
+        ],
+        "power": 23.1,
+        "plays": 7,
+        "winRate": 32.8
+      }
+    ],
+    "matchups": [
+      {
+        "a": "balanced",
+        "b": "transmutation",
+        "winsA": 31,
+        "draws": 0,
+        "games": 40
+      },
+      {
+        "a": "balanced",
+        "b": "sabotage",
+        "winsA": 40,
+        "draws": 0,
+        "games": 40
+      },
+      {
+        "a": "balanced",
+        "b": "affliction",
+        "winsA": 37,
+        "draws": 0,
+        "games": 40
+      },
+      {
+        "a": "balanced",
+        "b": "conduits",
+        "winsA": 36,
+        "draws": 0,
+        "games": 40
+      },
+      {
+        "a": "transmutation",
+        "b": "sabotage",
+        "winsA": 27,
+        "draws": 0,
+        "games": 40
+      },
+      {
+        "a": "transmutation",
+        "b": "affliction",
+        "winsA": 22,
+        "draws": 0,
+        "games": 40
+      },
+      {
+        "a": "transmutation",
+        "b": "conduits",
+        "winsA": 34,
+        "draws": 0,
+        "games": 40
+      },
+      {
+        "a": "sabotage",
+        "b": "affliction",
+        "winsA": 11,
+        "draws": 1,
+        "games": 40
+      },
+      {
+        "a": "sabotage",
+        "b": "conduits",
+        "winsA": 10,
+        "draws": 0,
+        "games": 40
+      },
+      {
+        "a": "affliction",
+        "b": "conduits",
+        "winsA": 27,
+        "draws": 1,
+        "games": 40
+      }
+    ],
+    "traces": [
+      {
+        "pairing": [
+          "balanced",
+          "transmutation"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "balanced",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 1,
+            "deck": "transmutation",
+            "energy": 1,
+            "plays": [
+              "Chalk Apprentice → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "balanced",
+            "energy": 2,
+            "plays": [
+              "Mountain Hermit → 2"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "transmutation",
+            "energy": 1,
+            "plays": [
+              "Crucible Seer → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "balanced",
+            "energy": 3,
+            "plays": [
+              "Frost Sage → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "transmutation",
+            "energy": 1,
+            "plays": [
+              "Mercury Scholar → 3"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "balanced",
+            "energy": 3,
+            "plays": [
+              "Wandering Blade → 3",
+              "Temper → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "transmutation",
+            "energy": 2,
+            "plays": [
+              "Paradox Regent → 2",
+              "Glass Familiar → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "balanced",
+            "energy": 5,
+            "plays": [
+              "Ancient Guardian → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "transmutation",
+            "energy": 1,
+            "plays": [
+              "Lead to Gold → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "balanced",
+            "energy": 6,
+            "plays": [
+              "The Unbroken → 3"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "transmutation",
+            "energy": 6,
+            "plays": [
+              "Prism Titan → 3"
+            ]
+          }
+        ],
+        "winner": "balanced"
+      },
+      {
+        "pairing": [
+          "balanced",
+          "sabotage"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "balanced",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 1,
+            "deck": "sabotage",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "balanced",
+            "energy": 2,
+            "plays": [
+              "Wandering Blade → 2"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "sabotage",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 3,
+            "deck": "balanced",
+            "energy": 3,
+            "plays": [
+              "Frost Sage → 3"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "sabotage",
+            "energy": 3,
+            "plays": [
+              "Masked Ferryman → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "balanced",
+            "energy": 4,
+            "plays": [
+              "Chaos Drake → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "sabotage",
+            "energy": 4,
+            "plays": [
+              "Debt Collector → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "balanced",
+            "energy": 5,
+            "plays": [
+              "Ancient Guardian → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "sabotage",
+            "energy": 5,
+            "plays": [
+              "Court of Thorns → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "balanced",
+            "energy": 6,
+            "plays": [
+              "Thunder Hawk → 2",
+              "Temper → 3",
+              "Spark Sprite → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "sabotage",
+            "energy": 5,
+            "plays": [
+              "Oathbreaker Duke → 3"
+            ]
+          }
+        ],
+        "winner": "balanced"
+      },
+      {
+        "pairing": [
+          "balanced",
+          "affliction"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "balanced",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 1,
+            "deck": "affliction",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "balanced",
+            "energy": 2,
+            "plays": [
+              "Forge Apprentice → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "affliction",
+            "energy": 2,
+            "plays": [
+              "Pale Physician → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "balanced",
+            "energy": 3,
+            "plays": [
+              "Wandering Blade → 2",
+              "Temper → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "affliction",
+            "energy": 3,
+            "plays": [
+              "Hollow Choir → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "balanced",
+            "energy": 4,
+            "plays": [
+              "Iron Golem → 1",
+              "Spark Sprite → 3"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Plague Cartographer → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "balanced",
+            "energy": 5,
+            "plays": [
+              "Ancient Guardian → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "affliction",
+            "energy": 5,
+            "plays": [
+              "Unmaking → 1",
+              "Salt Hex → 1",
+              "Cleansing Flame → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "balanced",
+            "energy": 6,
+            "plays": [
+              "Chaos Drake → 1",
+              "Mountain Hermit → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "affliction",
+            "energy": 6,
+            "plays": [
+              "Famine Sovereign → 3"
+            ]
+          }
+        ],
+        "winner": "affliction"
+      },
+      {
+        "pairing": [
+          "balanced",
+          "conduits"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "balanced",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 1,
+            "deck": "conduits",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "balanced",
+            "energy": 2,
+            "plays": [
+              "Spark Sprite → 2",
+              "Temper → 2"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "conduits",
+            "energy": 2,
+            "plays": [
+              "Prism Initiate → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "balanced",
+            "energy": 3,
+            "plays": [
+              "Frost Sage → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "conduits",
+            "energy": 3,
+            "plays": [
+              "Ember Conduit → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "balanced",
+            "energy": 4,
+            "plays": [
+              "Chaos Drake → 3"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "conduits",
+            "energy": 4,
+            "plays": [
+              "Temper → 2",
+              "Marrow Engine → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "balanced",
+            "energy": 5,
+            "plays": [
+              "Thunder Hawk → 2",
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "conduits",
+            "energy": 5,
+            "plays": [
+              "Sunwell Keeper → 3",
+              "Cleansing Flame → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "balanced",
+            "energy": 5,
+            "plays": [
+              "Ancient Guardian → 3"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "conduits",
+            "energy": 5,
+            "plays": [
+              "Vessel of Echoes → 2",
+              "Mirror Squire → 3"
+            ]
+          }
+        ],
+        "winner": "balanced"
+      },
+      {
+        "pairing": [
+          "transmutation",
+          "sabotage"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "transmutation",
+            "energy": 1,
+            "plays": [
+              "Chalk Apprentice → 1"
+            ]
+          },
+          {
+            "turn": 1,
+            "deck": "sabotage",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "transmutation",
+            "energy": 1,
+            "plays": [
+              "Gilded Oracle → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "sabotage",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 3,
+            "deck": "transmutation",
+            "energy": 3,
+            "plays": [
+              "Crucible Seer → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "sabotage",
+            "energy": 3,
+            "plays": [
+              "Ashen Envoy → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "transmutation",
+            "energy": 3,
+            "plays": [
+              "Silver Equation → 1",
+              "Vessel of Echoes → 3",
+              "Lead to Gold → 3"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "sabotage",
+            "energy": 4,
+            "plays": [
+              "Debt Collector → 2"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "transmutation",
+            "energy": 4,
+            "plays": [
+              "Philosopher Engine → 2",
+              "Alloy Guardian → 2",
+              "Glass Familiar → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "sabotage",
+            "energy": 5,
+            "plays": [
+              "Oathbreaker Duke → 3"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "transmutation",
+            "energy": 6,
+            "plays": [
+              "Prism Titan → 3"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "sabotage",
+            "energy": 5,
+            "plays": [
+              "Court of Thorns → 2"
+            ]
+          }
+        ],
+        "winner": "transmutation"
+      },
+      {
+        "pairing": [
+          "transmutation",
+          "affliction"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "transmutation",
+            "energy": 1,
+            "plays": [
+              "Chalk Apprentice → 1"
+            ]
+          },
+          {
+            "turn": 1,
+            "deck": "affliction",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "transmutation",
+            "energy": 1,
+            "plays": [
+              "Gilded Oracle → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "affliction",
+            "energy": 1,
+            "plays": [
+              "Salt Hex → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "transmutation",
+            "energy": 3,
+            "plays": [
+              "Crucible Seer → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "affliction",
+            "energy": 3,
+            "plays": [
+              "Hollow Choir → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "transmutation",
+            "energy": 3,
+            "plays": [
+              "Prism Titan → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Plague Cartographer → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "transmutation",
+            "energy": 4,
+            "plays": [
+              "Philosopher Engine → 3",
+              "Mercury Scholar → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "affliction",
+            "energy": 5,
+            "plays": [
+              "Unmaking → 1",
+              "Pale Physician → 3"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "transmutation",
+            "energy": 6,
+            "plays": [
+              "Vessel of Echoes → 3",
+              "Paradox Regent → 3",
+              "Silver Equation → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "affliction",
+            "energy": 6,
+            "plays": [
+              "Famine Sovereign → 3"
+            ]
+          }
+        ],
+        "winner": "transmutation"
+      },
+      {
+        "pairing": [
+          "transmutation",
+          "conduits"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "transmutation",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 1,
+            "deck": "conduits",
+            "energy": 1,
+            "plays": [
+              "Candle Tender → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "transmutation",
+            "energy": 1,
+            "plays": [
+              "Chalk Apprentice → 2"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "conduits",
+            "energy": 2,
+            "plays": [
+              "Mirror Squire → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "transmutation",
+            "energy": 3,
+            "plays": [
+              "Crucible Seer → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "conduits",
+            "energy": 2,
+            "plays": [
+              "Prism Initiate → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "transmutation",
+            "energy": 3,
+            "plays": [
+              "Prism Titan → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "conduits",
+            "energy": 4,
+            "plays": [
+              "Sunwell Keeper → 2"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "transmutation",
+            "energy": 4,
+            "plays": [
+              "Mercury Scholar → 2",
+              "Vessel of Echoes → 2"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "conduits",
+            "energy": 5,
+            "plays": [
+              "Last Light Beacon → 3"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "transmutation",
+            "energy": 5,
+            "plays": [
+              "Alloy Guardian → 3",
+              "Glass Familiar → 3",
+              "Lead to Gold → 3",
+              "Silver Equation → 3"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "conduits",
+            "energy": 6,
+            "plays": [
+              "Vessel of Echoes → 3",
+              "Marrow Engine → 2"
+            ]
+          }
+        ],
+        "winner": "transmutation"
+      },
+      {
+        "pairing": [
+          "sabotage",
+          "affliction"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "sabotage",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 1,
+            "deck": "affliction",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "sabotage",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "affliction",
+            "energy": 2,
+            "plays": [
+              "Blight Acolyte → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "sabotage",
+            "energy": 3,
+            "plays": [
+              "Splinter Agent → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "affliction",
+            "energy": 2,
+            "plays": [
+              "Pale Physician → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "sabotage",
+            "energy": 4,
+            "plays": [
+              "Debt Collector → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Plague Cartographer → 2"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "sabotage",
+            "energy": 5,
+            "plays": [
+              "Oathbreaker Duke → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Unmaking → 1",
+              "Salt Hex → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "sabotage",
+            "energy": 5,
+            "plays": [
+              "Masked Ferryman → 1",
+              "Counterfeit Courier → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "affliction",
+            "energy": 6,
+            "plays": [
+              "Famine Sovereign → 3"
+            ]
+          }
+        ],
+        "winner": "sabotage"
+      },
+      {
+        "pairing": [
+          "sabotage",
+          "conduits"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "sabotage",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 1,
+            "deck": "conduits",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "sabotage",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "conduits",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 3,
+            "deck": "sabotage",
+            "energy": 3,
+            "plays": [
+              "Masked Ferryman → 3"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "conduits",
+            "energy": 3,
+            "plays": [
+              "Candle Tender → 3",
+              "Mirror Squire → 3"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "sabotage",
+            "energy": 4,
+            "plays": [
+              "Debt Collector → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "conduits",
+            "energy": 2,
+            "plays": [
+              "Current Runner → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "sabotage",
+            "energy": 5,
+            "plays": [
+              "Oathbreaker Duke → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "conduits",
+            "energy": 5,
+            "plays": [
+              "Last Light Beacon → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "sabotage",
+            "energy": 5,
+            "plays": [
+              "Court of Thorns → 3"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "conduits",
+            "energy": 6,
+            "plays": [
+              "Vessel of Echoes → 1",
+              "Prism Initiate → 2",
+              "Temper → 1"
+            ]
+          }
+        ],
+        "winner": "sabotage"
+      },
+      {
+        "pairing": [
+          "affliction",
+          "conduits"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "affliction",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 1,
+            "deck": "conduits",
+            "energy": 1,
+            "plays": [
+              "Candle Tender → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "affliction",
+            "energy": 2,
+            "plays": [
+              "Blight Acolyte → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "conduits",
+            "energy": 2,
+            "plays": [
+              "Current Runner → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "affliction",
+            "energy": 3,
+            "plays": [
+              "Rot Scribe → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "conduits",
+            "energy": 3,
+            "plays": [
+              "Marrow Engine → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Plague Cartographer → 3"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "conduits",
+            "energy": 4,
+            "plays": [
+              "Sunwell Keeper → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "affliction",
+            "energy": 5,
+            "plays": [
+              "Debt Collector → 1",
+              "Salt Hex → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "conduits",
+            "energy": 5,
+            "plays": [
+              "Last Light Beacon → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "affliction",
+            "energy": 6,
+            "plays": [
+              "Famine Sovereign → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "conduits",
+            "energy": 6,
+            "plays": [
+              "Vessel of Echoes → 2",
+              "Cleansing Flame → 1",
+              "Prism Initiate → 3"
+            ]
+          }
+        ],
+        "winner": "affliction"
+      }
+    ]
+  },
+  "revised": {
+    "method": "Public-information two-branch beam, real engine, sampled own draws, opponent passes in previews; directional only.",
+    "seed": 7319,
+    "samples": 20,
+    "results": [
+      {
+        "id": "balanced",
+        "games": 160,
+        "wins": 87,
+        "draws": 1,
+        "energy": [
+          0.51,
+          1.76,
+          2.83,
+          3.86,
+          4.93,
+          5.76
+        ],
+        "passes": [
+          48.8,
+          5,
+          2.5,
+          0,
+          0,
+          0
+        ],
+        "power": 34,
+        "plays": 6.8,
+        "winRate": 54.7
+      },
+      {
+        "id": "transmutation",
+        "games": 160,
+        "wins": 82,
+        "draws": 2,
+        "energy": [
+          0.56,
+          1.66,
+          2.59,
+          3.78,
+          4.65,
+          5.83
+        ],
+        "passes": [
+          43.8,
+          7.5,
+          0,
+          0,
+          0,
+          0
+        ],
+        "power": 34,
+        "plays": 7.5,
+        "winRate": 51.9
+      },
+      {
+        "id": "sabotage",
+        "games": 160,
+        "wins": 66,
+        "draws": 0,
+        "energy": [
+          0.66,
+          1.5,
+          2.69,
+          3.86,
+          4.78,
+          4.92
+        ],
+        "passes": [
+          33.8,
+          16.3,
+          1.3,
+          0,
+          0,
+          0
+        ],
+        "power": 20.8,
+        "plays": 7.5,
+        "winRate": 41.3
+      },
+      {
+        "id": "affliction",
+        "games": 160,
+        "wins": 69,
+        "draws": 5,
+        "energy": [
+          0.46,
+          1.68,
+          2.83,
+          3.91,
+          4.46,
+          5.51
+        ],
+        "passes": [
+          53.8,
+          10,
+          0,
+          0,
+          0,
+          0
+        ],
+        "power": 21.8,
+        "plays": 7.6,
+        "winRate": 44.7
+      },
+      {
+        "id": "conduits",
+        "games": 160,
+        "wins": 90,
+        "draws": 4,
+        "energy": [
+          0.63,
+          1.84,
+          2.74,
+          3.71,
+          4.7,
+          5.59
+        ],
+        "passes": [
+          37.5,
+          1.3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "power": 32.6,
+        "plays": 7.3,
+        "winRate": 57.5
+      }
+    ],
+    "matchups": [
+      {
+        "a": "balanced",
+        "b": "transmutation",
+        "winsA": 21,
+        "draws": 0,
+        "games": 40
+      },
+      {
+        "a": "balanced",
+        "b": "sabotage",
+        "winsA": 25,
+        "draws": 0,
+        "games": 40
+      },
+      {
+        "a": "balanced",
+        "b": "affliction",
+        "winsA": 20,
+        "draws": 1,
+        "games": 40
+      },
+      {
+        "a": "balanced",
+        "b": "conduits",
+        "winsA": 21,
+        "draws": 0,
+        "games": 40
+      },
+      {
+        "a": "transmutation",
+        "b": "sabotage",
+        "winsA": 27,
+        "draws": 0,
+        "games": 40
+      },
+      {
+        "a": "transmutation",
+        "b": "affliction",
+        "winsA": 18,
+        "draws": 1,
+        "games": 40
+      },
+      {
+        "a": "transmutation",
+        "b": "conduits",
+        "winsA": 18,
+        "draws": 1,
+        "games": 40
+      },
+      {
+        "a": "sabotage",
+        "b": "affliction",
+        "winsA": 31,
+        "draws": 0,
+        "games": 40
+      },
+      {
+        "a": "sabotage",
+        "b": "conduits",
+        "winsA": 7,
+        "draws": 0,
+        "games": 40
+      },
+      {
+        "a": "affliction",
+        "b": "conduits",
+        "winsA": 20,
+        "draws": 3,
+        "games": 40
+      }
+    ],
+    "traces": [
+      {
+        "pairing": [
+          "balanced",
+          "transmutation"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "balanced",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 1,
+            "deck": "transmutation",
+            "energy": 1,
+            "plays": [
+              "Chalk Apprentice → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "balanced",
+            "energy": 1,
+            "plays": [
+              "Temper → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "transmutation",
+            "energy": 2,
+            "plays": [
+              "Wandering Blade → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "balanced",
+            "energy": 3,
+            "plays": [
+              "Frost Sage → 3"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "transmutation",
+            "energy": 3,
+            "plays": [
+              "Alloy Guardian → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "balanced",
+            "energy": 4,
+            "plays": [
+              "Wandering Blade → 1",
+              "Mountain Hermit → 3"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "transmutation",
+            "energy": 4,
+            "plays": [
+              "Paradox Regent → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "balanced",
+            "energy": 5,
+            "plays": [
+              "Ancient Guardian → 2"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "transmutation",
+            "energy": 4,
+            "plays": [
+              "Censer Warden → 3",
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "balanced",
+            "energy": 6,
+            "plays": [
+              "The Unbroken → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "transmutation",
+            "energy": 6,
+            "plays": [
+              "Prism Titan → 3"
+            ]
+          }
+        ],
+        "winner": "balanced"
+      },
+      {
+        "pairing": [
+          "balanced",
+          "sabotage"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "balanced",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 1,
+            "deck": "sabotage",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "balanced",
+            "energy": 2,
+            "plays": [
+              "Wandering Blade → 2"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "sabotage",
+            "energy": 1,
+            "plays": [
+              "Spark Sprite → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "balanced",
+            "energy": 3,
+            "plays": [
+              "Frost Sage → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "sabotage",
+            "energy": 3,
+            "plays": [
+              "Splinter Agent → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "balanced",
+            "energy": 2,
+            "plays": [
+              "Temper → 2",
+              "Spark Sprite → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "sabotage",
+            "energy": 4,
+            "plays": [
+              "Oathbreaker Duke → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "balanced",
+            "energy": 5,
+            "plays": [
+              "Ancient Guardian → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "sabotage",
+            "energy": 5,
+            "plays": [
+              "Court of Thorns → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "balanced",
+            "energy": 6,
+            "plays": [
+              "Chaos Drake → 1",
+              "Mountain Hermit → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "sabotage",
+            "energy": 6,
+            "plays": [
+              "Thorn Seeder → 2",
+              "Debt Collector → 3"
+            ]
+          }
+        ],
+        "winner": "sabotage"
+      },
+      {
+        "pairing": [
+          "balanced",
+          "affliction"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "balanced",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 1,
+            "deck": "affliction",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "balanced",
+            "energy": 2,
+            "plays": [
+              "Forge Apprentice → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "affliction",
+            "energy": 2,
+            "plays": [
+              "Unmaking → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "balanced",
+            "energy": 3,
+            "plays": [
+              "Iron Golem → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "affliction",
+            "energy": 3,
+            "plays": [
+              "Rot Scribe → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "balanced",
+            "energy": 4,
+            "plays": [
+              "Wandering Blade → 1",
+              "Temper → 1",
+              "Spark Sprite → 3"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Plague Cartographer → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "balanced",
+            "energy": 5,
+            "plays": [
+              "Ancient Guardian → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "affliction",
+            "energy": 5,
+            "plays": [
+              "Hollow Choir → 1",
+              "Blight Acolyte → 2",
+              "Cleansing Flame → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "balanced",
+            "energy": 6,
+            "plays": [
+              "Chaos Drake → 1",
+              "Mountain Hermit → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "affliction",
+            "energy": 6,
+            "plays": [
+              "Debt Collector → 3",
+              "Miasma Lantern → 2"
+            ]
+          }
+        ],
+        "winner": "affliction"
+      },
+      {
+        "pairing": [
+          "balanced",
+          "conduits"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "balanced",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 1,
+            "deck": "conduits",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "balanced",
+            "energy": 2,
+            "plays": [
+              "Spark Sprite → 2",
+              "Temper → 2"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "conduits",
+            "energy": 2,
+            "plays": [
+              "Prism Initiate → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "balanced",
+            "energy": 3,
+            "plays": [
+              "Frost Sage → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "conduits",
+            "energy": 3,
+            "plays": [
+              "Ember Conduit → 2",
+              "Temper → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "balanced",
+            "energy": 4,
+            "plays": [
+              "Chaos Drake → 3"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "conduits",
+            "energy": 3,
+            "plays": [
+              "Vessel of Echoes → 2"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "balanced",
+            "energy": 5,
+            "plays": [
+              "Thunder Hawk → 1",
+              "Village Scout → 2"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "conduits",
+            "energy": 5,
+            "plays": [
+              "Last Light Beacon → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "balanced",
+            "energy": 5,
+            "plays": [
+              "Ancient Guardian → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "conduits",
+            "energy": 6,
+            "plays": [
+              "Prism Titan → 3"
+            ]
+          }
+        ],
+        "winner": "conduits"
+      },
+      {
+        "pairing": [
+          "transmutation",
+          "sabotage"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "transmutation",
+            "energy": 1,
+            "plays": [
+              "Chalk Apprentice → 1"
+            ]
+          },
+          {
+            "turn": 1,
+            "deck": "sabotage",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "transmutation",
+            "energy": 2,
+            "plays": [
+              "Wandering Blade → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "sabotage",
+            "energy": 2,
+            "plays": [
+              "Thorn Seeder → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "transmutation",
+            "energy": 3,
+            "plays": [
+              "Glass Familiar → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "sabotage",
+            "energy": 2,
+            "plays": [
+              "Spark Sprite → 3",
+              "Exile Ritual → 3"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "transmutation",
+            "energy": 4,
+            "plays": [
+              "Gilded Oracle → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "sabotage",
+            "energy": 4,
+            "plays": [
+              "Debt Collector → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "transmutation",
+            "energy": 5,
+            "plays": [
+              "Silver Equation → 1",
+              "Alloy Guardian → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "sabotage",
+            "energy": 4,
+            "plays": [
+              "Splinter Agent → 2",
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "transmutation",
+            "energy": 6,
+            "plays": [
+              "Prism Titan → 2",
+              "Philosopher Engine → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "sabotage",
+            "energy": 5,
+            "plays": [
+              "Court of Thorns → 1"
+            ]
+          }
+        ],
+        "winner": "transmutation"
+      },
+      {
+        "pairing": [
+          "transmutation",
+          "affliction"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "transmutation",
+            "energy": 1,
+            "plays": [
+              "Chalk Apprentice → 1"
+            ]
+          },
+          {
+            "turn": 1,
+            "deck": "affliction",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "transmutation",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "affliction",
+            "energy": 2,
+            "plays": [
+              "Miasma Lantern → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "transmutation",
+            "energy": 3,
+            "plays": [
+              "Censer Warden → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "affliction",
+            "energy": 3,
+            "plays": [
+              "Hollow Choir → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "transmutation",
+            "energy": 3,
+            "plays": [
+              "Alloy Guardian → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Plague Cartographer → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "transmutation",
+            "energy": 4,
+            "plays": [
+              "Mercury Scholar → 1",
+              "Wandering Blade → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "affliction",
+            "energy": 5,
+            "plays": [
+              "Rot Scribe → 1",
+              "Unmaking → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "transmutation",
+            "energy": 6,
+            "plays": [
+              "Prism Titan → 3"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "affliction",
+            "energy": 6,
+            "plays": [
+              "Debt Collector → 2",
+              "Blight Acolyte → 3",
+              "Salt Hex → 2"
+            ]
+          }
+        ],
+        "winner": "affliction"
+      },
+      {
+        "pairing": [
+          "transmutation",
+          "conduits"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "transmutation",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 1,
+            "deck": "conduits",
+            "energy": 1,
+            "plays": [
+              "Candle Tender → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "transmutation",
+            "energy": 2,
+            "plays": [
+              "Wandering Blade → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "conduits",
+            "energy": 1,
+            "plays": [
+              "Temper → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "transmutation",
+            "energy": 3,
+            "plays": [
+              "Chalk Apprentice → 2",
+              "Silver Equation → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "conduits",
+            "energy": 3,
+            "plays": [
+              "Marrow Engine → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "transmutation",
+            "energy": 4,
+            "plays": [
+              "Prism Titan → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "conduits",
+            "energy": 4,
+            "plays": [
+              "Vessel of Echoes → 1",
+              "Village Scout → 2"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "transmutation",
+            "energy": 5,
+            "plays": [
+              "Philosopher Engine → 1",
+              "Gilded Oracle → 3",
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "conduits",
+            "energy": 5,
+            "plays": [
+              "Last Light Beacon → 3"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "transmutation",
+            "energy": 6,
+            "plays": [
+              "Censer Warden → 1",
+              "Alloy Guardian → 3"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "conduits",
+            "energy": 6,
+            "plays": [
+              "Prism Titan → 2"
+            ]
+          }
+        ],
+        "winner": "transmutation"
+      },
+      {
+        "pairing": [
+          "sabotage",
+          "affliction"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "sabotage",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 1,
+            "deck": "affliction",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "sabotage",
+            "energy": 2,
+            "plays": [
+              "Thorn Seeder → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "affliction",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 3,
+            "deck": "sabotage",
+            "energy": 3,
+            "plays": [
+              "Ashen Envoy → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "affliction",
+            "energy": 3,
+            "plays": [
+              "Salt Hex → 1",
+              "Unmaking → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "sabotage",
+            "energy": 4,
+            "plays": [
+              "Oathbreaker Duke → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Debt Collector → 2"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "sabotage",
+            "energy": 5,
+            "plays": [
+              "Court of Thorns → 2"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Hollow Choir → 1",
+              "Blight Acolyte → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "sabotage",
+            "energy": 6,
+            "plays": [
+              "Debt Collector → 1",
+              "False Standard → 3"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "affliction",
+            "energy": 6,
+            "plays": [
+              "Famine Sovereign → 2"
+            ]
+          }
+        ],
+        "winner": "sabotage"
+      },
+      {
+        "pairing": [
+          "sabotage",
+          "conduits"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "sabotage",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 1,
+            "deck": "conduits",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "sabotage",
+            "energy": 2,
+            "plays": [
+              "False Standard → 2"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "conduits",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 3,
+            "deck": "sabotage",
+            "energy": 2,
+            "plays": [
+              "Spark Sprite → 3",
+              "Burden → 2",
+              "Exile Ritual → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "conduits",
+            "energy": 3,
+            "plays": [
+              "Marrow Engine → 3"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "sabotage",
+            "energy": 4,
+            "plays": [
+              "Oathbreaker Duke → 3"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "conduits",
+            "energy": 4,
+            "plays": [
+              "Sunwell Keeper → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "sabotage",
+            "energy": 5,
+            "plays": [
+              "Court of Thorns → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "conduits",
+            "energy": 5,
+            "plays": [
+              "Current Runner → 1",
+              "Temper → 1",
+              "Candle Tender → 1",
+              "Village Scout → 3"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "sabotage",
+            "energy": 3,
+            "plays": [
+              "Splinter Agent → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "conduits",
+            "energy": 6,
+            "plays": [
+              "Prism Titan → 2"
+            ]
+          }
+        ],
+        "winner": "conduits"
+      },
+      {
+        "pairing": [
+          "affliction",
+          "conduits"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "affliction",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 1,
+            "deck": "conduits",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "affliction",
+            "energy": 2,
+            "plays": [
+              "Miasma Lantern → 2"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "conduits",
+            "energy": 2,
+            "plays": [
+              "Current Runner → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "affliction",
+            "energy": 3,
+            "plays": [
+              "Unmaking → 2",
+              "Salt Hex → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "conduits",
+            "energy": 1,
+            "plays": [
+              "Candle Tender → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Plague Cartographer → 3"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "conduits",
+            "energy": 2,
+            "plays": [
+              "Arcane Echo → 2"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "affliction",
+            "energy": 5,
+            "plays": [
+              "Debt Collector → 2",
+              "Blight Acolyte → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "conduits",
+            "energy": 5,
+            "plays": [
+              "Last Light Beacon → 3"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Hollow Choir → 1",
+              "Village Scout → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "conduits",
+            "energy": 6,
+            "plays": [
+              "Prism Titan → 3"
+            ]
+          }
+        ],
+        "winner": "affliction"
+      }
+    ]
+  },
+  "revisedSecondSeed": {
+    "method": "Public-information two-branch beam, real engine, sampled own draws, opponent passes in previews; directional only.",
+    "seed": 314159,
+    "samples": 10,
+    "results": [
+      {
+        "id": "balanced",
+        "games": 80,
+        "wins": 44,
+        "draws": 0,
+        "energy": [
+          0.53,
+          1.8,
+          2.79,
+          3.91,
+          4.74,
+          5.83
+        ],
+        "passes": [
+          47.5,
+          2.5,
+          0,
+          0,
+          0,
+          0
+        ],
+        "power": 34.9,
+        "plays": 6.8,
+        "winRate": 55
+      },
+      {
+        "id": "transmutation",
+        "games": 80,
+        "wins": 49,
+        "draws": 1,
+        "energy": [
+          0.53,
+          1.7,
+          2.71,
+          3.83,
+          4.54,
+          5.86
+        ],
+        "passes": [
+          47.5,
+          10,
+          0,
+          0,
+          0,
+          0
+        ],
+        "power": 33.8,
+        "plays": 7.5,
+        "winRate": 61.9
+      },
+      {
+        "id": "sabotage",
+        "games": 80,
+        "wins": 35,
+        "draws": 0,
+        "energy": [
+          0.47,
+          1.6,
+          2.7,
+          3.7,
+          4.83,
+          5.44
+        ],
+        "passes": [
+          52.5,
+          12.5,
+          0,
+          0,
+          0,
+          0
+        ],
+        "power": 21.2,
+        "plays": 7.5,
+        "winRate": 43.8
+      },
+      {
+        "id": "affliction",
+        "games": 80,
+        "wins": 30,
+        "draws": 1,
+        "energy": [
+          0.78,
+          1.7,
+          2.77,
+          3.85,
+          4.56,
+          5.45
+        ],
+        "passes": [
+          22.5,
+          5,
+          0,
+          0,
+          0,
+          0
+        ],
+        "power": 22.3,
+        "plays": 7.6,
+        "winRate": 38.1
+      },
+      {
+        "id": "conduits",
+        "games": 80,
+        "wins": 41,
+        "draws": 0,
+        "energy": [
+          0.7,
+          1.73,
+          2.7,
+          3.73,
+          4.76,
+          5.6
+        ],
+        "passes": [
+          30,
+          7.5,
+          0,
+          0,
+          0,
+          0
+        ],
+        "power": 33.5,
+        "plays": 7.4,
+        "winRate": 51.2
+      }
+    ],
+    "matchups": [
+      {
+        "a": "balanced",
+        "b": "transmutation",
+        "winsA": 10,
+        "draws": 0,
+        "games": 20
+      },
+      {
+        "a": "balanced",
+        "b": "sabotage",
+        "winsA": 14,
+        "draws": 0,
+        "games": 20
+      },
+      {
+        "a": "balanced",
+        "b": "affliction",
+        "winsA": 12,
+        "draws": 0,
+        "games": 20
+      },
+      {
+        "a": "balanced",
+        "b": "conduits",
+        "winsA": 8,
+        "draws": 0,
+        "games": 20
+      },
+      {
+        "a": "transmutation",
+        "b": "sabotage",
+        "winsA": 15,
+        "draws": 0,
+        "games": 20
+      },
+      {
+        "a": "transmutation",
+        "b": "affliction",
+        "winsA": 11,
+        "draws": 1,
+        "games": 20
+      },
+      {
+        "a": "transmutation",
+        "b": "conduits",
+        "winsA": 13,
+        "draws": 0,
+        "games": 20
+      },
+      {
+        "a": "sabotage",
+        "b": "affliction",
+        "winsA": 12,
+        "draws": 0,
+        "games": 20
+      },
+      {
+        "a": "sabotage",
+        "b": "conduits",
+        "winsA": 12,
+        "draws": 0,
+        "games": 20
+      },
+      {
+        "a": "affliction",
+        "b": "conduits",
+        "winsA": 6,
+        "draws": 0,
+        "games": 20
+      }
+    ],
+    "traces": [
+      {
+        "pairing": [
+          "balanced",
+          "transmutation"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "balanced",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 1,
+            "deck": "transmutation",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "balanced",
+            "energy": 2,
+            "plays": [
+              "Forge Apprentice → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "transmutation",
+            "energy": 2,
+            "plays": [
+              "Wandering Blade → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "balanced",
+            "energy": 3,
+            "plays": [
+              "Iron Golem → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "transmutation",
+            "energy": 3,
+            "plays": [
+              "Censer Warden → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "balanced",
+            "energy": 4,
+            "plays": [
+              "Chaos Drake → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "transmutation",
+            "energy": 4,
+            "plays": [
+              "Paradox Regent → 2"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "balanced",
+            "energy": 5,
+            "plays": [
+              "Ancient Guardian → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "transmutation",
+            "energy": 5,
+            "plays": [
+              "Philosopher Engine → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "balanced",
+            "energy": 6,
+            "plays": [
+              "Frost Sage → 2",
+              "Spark Sprite → 2",
+              "Wandering Blade → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "transmutation",
+            "energy": 5,
+            "plays": [
+              "Alloy Guardian → 1",
+              "Village Scout → 2",
+              "Mercury Scholar → 1"
+            ]
+          }
+        ],
+        "winner": "transmutation"
+      },
+      {
+        "pairing": [
+          "balanced",
+          "sabotage"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "balanced",
+            "energy": 1,
+            "plays": [
+              "Spark Sprite → 1"
+            ]
+          },
+          {
+            "turn": 1,
+            "deck": "sabotage",
+            "energy": 1,
+            "plays": [
+              "Spark Sprite → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "balanced",
+            "energy": 2,
+            "plays": [
+              "Temper → 1",
+              "Village Scout → 2"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "sabotage",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 3,
+            "deck": "balanced",
+            "energy": 3,
+            "plays": [
+              "Frost Sage → 3"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "sabotage",
+            "energy": 3,
+            "plays": [
+              "Splinter Agent → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "balanced",
+            "energy": 4,
+            "plays": [
+              "Wandering Blade → 2",
+              "Forge Apprentice → 3"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "sabotage",
+            "energy": 4,
+            "plays": [
+              "Debt Collector → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "balanced",
+            "energy": 4,
+            "plays": [
+              "Chaos Drake → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "sabotage",
+            "energy": 5,
+            "plays": [
+              "Court of Thorns → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "balanced",
+            "energy": 5,
+            "plays": [
+              "Iron Golem → 1",
+              "Mountain Hermit → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "sabotage",
+            "energy": 6,
+            "plays": [
+              "Ashen Envoy → 1",
+              "Village Scout → 2",
+              "False Standard → 3"
+            ]
+          }
+        ],
+        "winner": "balanced"
+      },
+      {
+        "pairing": [
+          "balanced",
+          "affliction"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "balanced",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 1,
+            "deck": "affliction",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "balanced",
+            "energy": 2,
+            "plays": [
+              "Forge Apprentice → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "affliction",
+            "energy": 2,
+            "plays": [
+              "Dusk Leech → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "balanced",
+            "energy": 1,
+            "plays": [
+              "Temper → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "affliction",
+            "energy": 3,
+            "plays": [
+              "Miasma Lantern → 1",
+              "Salt Hex → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "balanced",
+            "energy": 4,
+            "plays": [
+              "Chaos Drake → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Plague Cartographer → 2"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "balanced",
+            "energy": 5,
+            "plays": [
+              "Ancient Guardian → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "affliction",
+            "energy": 5,
+            "plays": [
+              "Rot Scribe → 2",
+              "Unmaking → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "balanced",
+            "energy": 6,
+            "plays": [
+              "The Unbroken → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "affliction",
+            "energy": 5,
+            "plays": [
+              "Hollow Choir → 1",
+              "Village Scout → 3",
+              "Cleansing Flame → 1"
+            ]
+          }
+        ],
+        "winner": "affliction"
+      },
+      {
+        "pairing": [
+          "balanced",
+          "conduits"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "balanced",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 1,
+            "deck": "conduits",
+            "energy": 1,
+            "plays": [
+              "Candle Tender → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "balanced",
+            "energy": 2,
+            "plays": [
+              "Wandering Blade → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "conduits",
+            "energy": 2,
+            "plays": [
+              "Current Runner → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "balanced",
+            "energy": 2,
+            "plays": [
+              "Mountain Hermit → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "conduits",
+            "energy": 3,
+            "plays": [
+              "Marrow Engine → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "balanced",
+            "energy": 4,
+            "plays": [
+              "Chaos Drake → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "conduits",
+            "energy": 4,
+            "plays": [
+              "Vessel of Echoes → 1",
+              "Village Scout → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "balanced",
+            "energy": 5,
+            "plays": [
+              "Ancient Guardian → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "conduits",
+            "energy": 4,
+            "plays": [
+              "Sunwell Keeper → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "balanced",
+            "energy": 6,
+            "plays": [
+              "The Unbroken → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "conduits",
+            "energy": 6,
+            "plays": [
+              "Prism Titan → 1"
+            ]
+          }
+        ],
+        "winner": "conduits"
+      },
+      {
+        "pairing": [
+          "transmutation",
+          "sabotage"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "transmutation",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 1,
+            "deck": "sabotage",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "transmutation",
+            "energy": 2,
+            "plays": [
+              "Mercury Scholar → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "sabotage",
+            "energy": 2,
+            "plays": [
+              "Thorn Seeder → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "transmutation",
+            "energy": 3,
+            "plays": [
+              "Philosopher Engine → 1",
+              "Village Scout → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "sabotage",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "transmutation",
+            "energy": 4,
+            "plays": [
+              "Paradox Regent → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "sabotage",
+            "energy": 4,
+            "plays": [
+              "Debt Collector → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "transmutation",
+            "energy": 4,
+            "plays": [
+              "Wandering Blade → 1",
+              "Gilded Oracle → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "sabotage",
+            "energy": 5,
+            "plays": [
+              "Court of Thorns → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "transmutation",
+            "energy": 6,
+            "plays": [
+              "Prism Titan → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "sabotage",
+            "energy": 4,
+            "plays": [
+              "Oathbreaker Duke → 3"
+            ]
+          }
+        ],
+        "winner": "transmutation"
+      },
+      {
+        "pairing": [
+          "transmutation",
+          "affliction"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "transmutation",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 1,
+            "deck": "affliction",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "transmutation",
+            "energy": 2,
+            "plays": [
+              "Mercury Scholar → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "affliction",
+            "energy": 2,
+            "plays": [
+              "Dusk Leech → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "transmutation",
+            "energy": 2,
+            "plays": [
+              "Gilded Oracle → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "affliction",
+            "energy": 3,
+            "plays": [
+              "Rot Scribe → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "transmutation",
+            "energy": 3,
+            "plays": [
+              "Censer Warden → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Plague Cartographer → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "transmutation",
+            "energy": 5,
+            "plays": [
+              "Paradox Regent → 3",
+              "Chalk Apprentice → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "affliction",
+            "energy": 5,
+            "plays": [
+              "Hollow Choir → 1",
+              "Miasma Lantern → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "transmutation",
+            "energy": 6,
+            "plays": [
+              "Prism Titan → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "affliction",
+            "energy": 6,
+            "plays": [
+              "Debt Collector → 3",
+              "Unmaking → 1"
+            ]
+          }
+        ],
+        "winner": "affliction"
+      },
+      {
+        "pairing": [
+          "transmutation",
+          "conduits"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "transmutation",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 1,
+            "deck": "conduits",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "transmutation",
+            "energy": 2,
+            "plays": [
+              "Mercury Scholar → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "conduits",
+            "energy": 1,
+            "plays": [
+              "Temper → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "transmutation",
+            "energy": 3,
+            "plays": [
+              "Philosopher Engine → 1",
+              "Village Scout → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "conduits",
+            "energy": 2,
+            "plays": [
+              "Current Runner → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "transmutation",
+            "energy": 4,
+            "plays": [
+              "Paradox Regent → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "conduits",
+            "energy": 4,
+            "plays": [
+              "Ember Conduit → 1",
+              "Arcane Echo → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "transmutation",
+            "energy": 5,
+            "plays": [
+              "Gilded Oracle → 1",
+              "Alloy Guardian → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "conduits",
+            "energy": 5,
+            "plays": [
+              "Last Light Beacon → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "transmutation",
+            "energy": 6,
+            "plays": [
+              "Prism Titan → 3",
+              "Glass Familiar → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "conduits",
+            "energy": 6,
+            "plays": [
+              "Prism Titan → 2"
+            ]
+          }
+        ],
+        "winner": "transmutation"
+      },
+      {
+        "pairing": [
+          "sabotage",
+          "affliction"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "sabotage",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 1,
+            "deck": "affliction",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "sabotage",
+            "energy": 1,
+            "plays": [
+              "Exile Ritual → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "affliction",
+            "energy": 2,
+            "plays": [
+              "Miasma Lantern → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "sabotage",
+            "energy": 3,
+            "plays": [
+              "Splinter Agent → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "affliction",
+            "energy": 3,
+            "plays": [
+              "Unmaking → 1",
+              "Cleansing Flame → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "sabotage",
+            "energy": 4,
+            "plays": [
+              "Oathbreaker Duke → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Plague Cartographer → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "sabotage",
+            "energy": 5,
+            "plays": [
+              "Court of Thorns → 3"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Debt Collector → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "sabotage",
+            "energy": 6,
+            "plays": [
+              "Debt Collector → 2",
+              "Inversion Rite → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "affliction",
+            "energy": 6,
+            "plays": [
+              "Famine Sovereign → 3"
+            ]
+          }
+        ],
+        "winner": "sabotage"
+      },
+      {
+        "pairing": [
+          "sabotage",
+          "conduits"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "sabotage",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 1,
+            "deck": "conduits",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "sabotage",
+            "energy": 2,
+            "plays": [
+              "Thorn Seeder → 2"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "conduits",
+            "energy": 2,
+            "plays": [
+              "Ember Conduit → 2"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "sabotage",
+            "energy": 3,
+            "plays": [
+              "Ashen Envoy → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "conduits",
+            "energy": 3,
+            "plays": [
+              "Marrow Engine → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "sabotage",
+            "energy": 3,
+            "plays": [
+              "Splinter Agent → 2"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "conduits",
+            "energy": 3,
+            "plays": [
+              "Temper → 1",
+              "Current Runner → 2"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "sabotage",
+            "energy": 5,
+            "plays": [
+              "Court of Thorns → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "conduits",
+            "energy": 5,
+            "plays": [
+              "Last Light Beacon → 3"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "sabotage",
+            "energy": 6,
+            "plays": [
+              "Debt Collector → 2",
+              "False Standard → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "conduits",
+            "energy": 3,
+            "plays": [
+              "Arcane Echo → 3",
+              "Candle Tender → 3"
+            ]
+          }
+        ],
+        "winner": "sabotage"
+      },
+      {
+        "pairing": [
+          "affliction",
+          "conduits"
+        ],
+        "turns": [
+          {
+            "turn": 1,
+            "deck": "affliction",
+            "energy": 1,
+            "plays": [
+              "Village Scout → 1"
+            ]
+          },
+          {
+            "turn": 1,
+            "deck": "conduits",
+            "energy": 1,
+            "plays": [
+              "Candle Tender → 1"
+            ]
+          },
+          {
+            "turn": 2,
+            "deck": "affliction",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 2,
+            "deck": "conduits",
+            "energy": 0,
+            "plays": []
+          },
+          {
+            "turn": 3,
+            "deck": "affliction",
+            "energy": 3,
+            "plays": [
+              "Rot Scribe → 1"
+            ]
+          },
+          {
+            "turn": 3,
+            "deck": "conduits",
+            "energy": 3,
+            "plays": [
+              "Vessel of Echoes → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Hollow Choir → 2",
+              "Blight Acolyte → 1"
+            ]
+          },
+          {
+            "turn": 4,
+            "deck": "conduits",
+            "energy": 4,
+            "plays": [
+              "Sunwell Keeper → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "affliction",
+            "energy": 4,
+            "plays": [
+              "Debt Collector → 1"
+            ]
+          },
+          {
+            "turn": 5,
+            "deck": "conduits",
+            "energy": 5,
+            "plays": [
+              "Last Light Beacon → 2"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "affliction",
+            "energy": 3,
+            "plays": [
+              "Unmaking → 1",
+              "Salt Hex → 1"
+            ]
+          },
+          {
+            "turn": 6,
+            "deck": "conduits",
+            "energy": 6,
+            "plays": [
+              "Prism Titan → 2"
+            ]
+          }
+        ],
+        "winner": "conduits"
+      }
+    ]
+  },
+  "revisedDecks": [
+    {
+      "id": "balanced",
+      "cards": [
+        "village_scout",
+        "spark_sprite",
+        "wandering_blade",
+        "forge_apprentice",
+        "mountain_hermit",
+        "temper",
+        "iron_golem",
+        "frost_sage",
+        "thunder_hawk",
+        "chaos_drake",
+        "ancient_guardian",
+        "the_unbroken"
+      ]
+    },
+    {
+      "id": "transmutation",
+      "name": "Transmutation",
+      "cards": [
+        "chalk_apprentice",
+        "village_scout",
+        "silver_equation",
+        "mercury_scholar",
+        "wandering_blade",
+        "glass_familiar",
+        "alloy_guardian",
+        "censer_warden",
+        "gilded_oracle",
+        "paradox_regent",
+        "philosopher_engine",
+        "prism_titan"
+      ]
+    },
+    {
+      "id": "sabotage",
+      "name": "Sabotage",
+      "cards": [
+        "village_scout",
+        "tainted_idol",
+        "inversion_rite",
+        "exile_ritual",
+        "false_standard",
+        "thorn_seeder",
+        "oathbreaker_duke",
+        "ashen_envoy",
+        "splinter_agent",
+        "debt_collector",
+        "court_of_thorns",
+        "spark_sprite"
+      ]
+    },
+    {
+      "id": "affliction",
+      "name": "Affliction",
+      "cards": [
+        "blight_acolyte",
+        "village_scout",
+        "salt_hex",
+        "dusk_leech",
+        "miasma_lantern",
+        "rot_scribe",
+        "hollow_choir",
+        "unmaking",
+        "plague_cartographer",
+        "debt_collector",
+        "famine_sovereign",
+        "cleansing_flame"
+      ]
+    },
+    {
+      "id": "conduits",
+      "name": "Conduits",
+      "cards": [
+        "candle_tender",
+        "village_scout",
+        "temper",
+        "prism_initiate",
+        "current_runner",
+        "ember_conduit",
+        "marrow_engine",
+        "vessel_of_echoes",
+        "arcane_echo",
+        "sunwell_keeper",
+        "last_light_beacon",
+        "prism_titan"
+      ]
+    }
+  ],
+  "revisedCards": [
+    {
+      "definitionId": "village_scout",
+      "name": "Village Scout",
+      "cost": 1,
+      "power": 2
+    },
+    {
+      "definitionId": "wandering_blade",
+      "name": "Wandering Blade",
+      "cost": 2,
+      "power": 2,
+      "arenaAbility": {
+        "type": "rally",
+        "value": 2
+      }
+    },
+    {
+      "definitionId": "shield_warden",
+      "name": "Shield Warden",
+      "cost": 3,
+      "power": 2,
+      "arenaAbility": {
+        "type": "grow",
+        "value": 1
+      }
+    },
+    {
+      "definitionId": "thunder_hawk",
+      "name": "Thunder Hawk",
+      "cost": 4,
+      "power": 5,
+      "arenaAbility": {
+        "type": "pressure",
+        "value": 2
+      }
+    },
+    {
+      "definitionId": "iron_golem",
+      "name": "Iron Golem",
+      "cost": 3,
+      "power": 5
+    },
+    {
+      "definitionId": "forge_apprentice",
+      "name": "Forge Apprentice",
+      "cost": 2,
+      "power": 2,
+      "arenaAbility": {
+        "type": "pressure",
+        "value": 2
+      }
+    },
+    {
+      "definitionId": "temper",
+      "name": "Temper",
+      "cost": 1,
+      "power": 0,
+      "arenaAbility": {
+        "type": "boost",
+        "value": 3
+      }
+    },
+    {
+      "definitionId": "igna_eternal_flame",
+      "name": "Igna, Eternal Flame",
+      "cost": 6,
+      "power": 7,
+      "arenaAbility": {
+        "type": "aura",
+        "value": 2
+      }
+    },
+    {
+      "definitionId": "ironclad_colossus",
+      "name": "Ironclad Colossus",
+      "cost": 6,
+      "power": 12
+    },
+    {
+      "definitionId": "forge_wraith",
+      "name": "Forge Wraith",
+      "cost": 5,
+      "power": 6,
+      "arenaAbility": {
+        "type": "drain",
+        "value": 3
+      }
+    },
+    {
+      "definitionId": "mountain_hermit",
+      "name": "Mountain Hermit",
+      "cost": 2,
+      "power": 1,
+      "arenaAbility": {
+        "type": "grow",
+        "value": 1
+      }
+    },
+    {
+      "definitionId": "ancient_guardian",
+      "name": "Ancient Guardian",
+      "cost": 5,
+      "power": 8,
+      "arenaAbility": {
+        "type": "ward",
+        "value": 0
+      }
+    },
+    {
+      "definitionId": "frost_sage",
+      "name": "Frost Sage",
+      "cost": 3,
+      "power": 3,
+      "arenaAbility": {
+        "type": "rally",
+        "value": 3
+      }
+    },
+    {
+      "definitionId": "the_unbroken",
+      "name": "The Unbroken",
+      "cost": 6,
+      "power": 8,
+      "arenaAbility": {
+        "type": "rally",
+        "value": 5
+      }
+    },
+    {
+      "definitionId": "glacier_sovereign",
+      "name": "Glacier Sovereign",
+      "cost": 6,
+      "power": 9,
+      "arenaAbility": {
+        "type": "pressure",
+        "value": 4
+      }
+    },
+    {
+      "definitionId": "summit_prophet",
+      "name": "Summit Prophet",
+      "cost": 4,
+      "power": 4,
+      "arenaAbility": {
+        "type": "draw",
+        "value": 1
+      }
+    },
+    {
+      "definitionId": "spark_sprite",
+      "name": "Spark Sprite",
+      "cost": 1,
+      "power": 1,
+      "arenaAbility": {
+        "type": "parity",
+        "value": 2
+      }
+    },
+    {
+      "definitionId": "chaos_drake",
+      "name": "Chaos Drake",
+      "cost": 4,
+      "power": 5,
+      "arenaAbility": {
+        "type": "alone",
+        "value": 3
+      }
+    },
+    {
+      "definitionId": "phase_walk",
+      "name": "Phase Walk",
+      "cost": 1,
+      "power": 0,
+      "arenaAbility": {
+        "type": "move",
+        "value": 0
+      }
+    },
+    {
+      "definitionId": "rift_caller",
+      "name": "Rift Caller",
+      "cost": 3,
+      "power": 3,
+      "arenaAbility": {
+        "type": "draw",
+        "value": 1
+      }
+    },
+    {
+      "definitionId": "void_leviathan",
+      "name": "Void Leviathan",
+      "cost": 6,
+      "power": 8,
+      "arenaAbility": {
+        "type": "rally",
+        "value": 5
+      }
+    },
+    {
+      "definitionId": "rift_sovereign",
+      "name": "Rift Sovereign",
+      "cost": 5,
+      "power": 6,
+      "arenaAbility": {
+        "type": "aura",
+        "value": 1
+      }
+    },
+    {
+      "definitionId": "entropic_maw",
+      "name": "Entropic Maw",
+      "cost": 5,
+      "power": 8,
+      "arenaAbility": {
+        "type": "pressure",
+        "value": 3
+      }
+    },
+    {
+      "definitionId": "bone_knight",
+      "name": "Bone Knight",
+      "cost": 2,
+      "power": 3
+    },
+    {
+      "definitionId": "revenant",
+      "name": "Revenant",
+      "cost": 3,
+      "power": 3,
+      "arenaAbility": {
+        "type": "rally",
+        "value": 3
+      }
+    },
+    {
+      "definitionId": "soul_collector",
+      "name": "Soul Collector",
+      "cost": 4,
+      "power": 4,
+      "arenaAbility": {
+        "type": "drain",
+        "value": 2
+      }
+    },
+    {
+      "definitionId": "lord_of_bones",
+      "name": "Lord of Bones",
+      "cost": 6,
+      "power": 7,
+      "arenaAbility": {
+        "type": "aura",
+        "value": 2
+      }
+    },
+    {
+      "definitionId": "the_undying",
+      "name": "The Undying",
+      "cost": 5,
+      "power": 6,
+      "arenaAbility": {
+        "type": "grow",
+        "value": 1
+      }
+    },
+    {
+      "definitionId": "banshee_queen",
+      "name": "Banshee Queen",
+      "cost": 5,
+      "power": 5,
+      "arenaAbility": {
+        "type": "drain",
+        "value": 3
+      }
+    },
+    {
+      "definitionId": "ritual_caster",
+      "name": "Ritual Caster",
+      "cost": 2,
+      "power": 3
+    },
+    {
+      "definitionId": "mana_surge",
+      "name": "Mana Surge",
+      "cost": 1,
+      "power": 0,
+      "arenaAbility": {
+        "type": "draw",
+        "value": 2
+      }
+    },
+    {
+      "definitionId": "apprentice_mage",
+      "name": "Apprentice Mage",
+      "cost": 2,
+      "power": 1,
+      "arenaAbility": {
+        "type": "aura",
+        "value": 1
+      }
+    },
+    {
+      "definitionId": "arcane_echo",
+      "name": "Arcane Echo",
+      "cost": 2,
+      "power": 0,
+      "arenaAbility": {
+        "type": "boost_all",
+        "value": 2
+      }
+    },
+    {
+      "definitionId": "the_archon",
+      "name": "The Archon",
+      "cost": 6,
+      "power": 6,
+      "arenaAbility": {
+        "type": "aura",
+        "value": 2
+      }
+    },
+    {
+      "definitionId": "living_codex",
+      "name": "Living Codex",
+      "cost": 5,
+      "power": 5,
+      "arenaAbility": {
+        "type": "draw",
+        "value": 2
+      }
+    },
+    {
+      "definitionId": "grand_invocation",
+      "name": "Grand Invocation",
+      "cost": 3,
+      "power": 0,
+      "arenaAbility": {
+        "type": "draw",
+        "value": 3
+      }
+    },
+    {
+      "definitionId": "chalk_apprentice",
+      "name": "Chalk Apprentice",
+      "cost": 1,
+      "power": 2,
+      "arenaAbility": {
+        "type": "transmute_draw",
+        "value": 1
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "lead_to_gold",
+      "name": "Lead to Gold",
+      "cost": 1,
+      "power": 0,
+      "arenaAbility": {
+        "type": "hand_weaken",
+        "value": 2
+      },
+      "arenaEffects": [
+        {
+          "type": "draw",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "mercury_scholar",
+      "name": "Mercury Scholar",
+      "cost": 2,
+      "power": 2,
+      "arenaAbility": {
+        "type": "transmute_hand",
+        "value": 1
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "prism_initiate",
+      "name": "Prism Initiate",
+      "cost": 2,
+      "power": 2,
+      "arenaAbility": {
+        "type": "hand_boost",
+        "value": 2,
+        "target": "strongest"
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "glass_familiar",
+      "name": "Glass Familiar",
+      "cost": 3,
+      "power": 2,
+      "arenaAbility": {
+        "type": "transmuted_power",
+        "value": 2
+      },
+      "arenaEffects": [
+        {
+          "type": "grow",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "alloy_guardian",
+      "name": "Alloy Guardian",
+      "cost": 3,
+      "power": 2,
+      "arenaAbility": {
+        "type": "ward",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "rally",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "crucible_seer",
+      "name": "Crucible Seer",
+      "cost": 3,
+      "power": 3,
+      "arenaAbility": {
+        "type": "transmute_draw",
+        "value": 2
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "silver_equation",
+      "name": "Silver Equation",
+      "cost": 2,
+      "power": 0,
+      "arenaAbility": {
+        "type": "transmute_hand",
+        "value": 2
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "gilded_oracle",
+      "name": "Gilded Oracle",
+      "cost": 4,
+      "power": 2,
+      "arenaAbility": {
+        "type": "draw",
+        "value": 1
+      },
+      "arenaEffects": [
+        {
+          "type": "draw",
+          "value": 1,
+          "condition": "transmuted"
+        },
+        {
+          "type": "rally",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "quicksilver_archivist",
+      "name": "Quicksilver Archivist",
+      "cost": 4,
+      "power": 3,
+      "arenaAbility": {
+        "type": "transmute_hand",
+        "value": 2
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "paradox_regent",
+      "name": "Paradox Regent",
+      "cost": 4,
+      "power": 3,
+      "arenaAbility": {
+        "type": "transmute_deck",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "draw",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "philosopher_engine",
+      "name": "Philosopher Engine",
+      "cost": 5,
+      "power": 2,
+      "arenaAbility": {
+        "type": "aura",
+        "value": 1
+      },
+      "arenaEffects": [
+        {
+          "type": "rally",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "definitionId": "hollow_gift",
+      "name": "Hollow Gift",
+      "cost": 1,
+      "power": 0,
+      "arenaAbility": {
+        "type": "burden",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "draw",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "counterfeit_courier",
+      "name": "Counterfeit Courier",
+      "cost": 2,
+      "power": 3,
+      "arenaAbility": {
+        "type": "burden",
+        "value": 0
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "ashen_envoy",
+      "name": "Ashen Envoy",
+      "cost": 3,
+      "power": -5,
+      "arenaAbility": {
+        "type": "defect",
+        "value": 0
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "thorn_seeder",
+      "name": "Thorn Seeder",
+      "cost": 2,
+      "power": 3,
+      "arenaAbility": {
+        "type": "plant",
+        "value": 0
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "debt_broker",
+      "name": "Debt Broker",
+      "cost": 3,
+      "power": 3,
+      "arenaAbility": {
+        "type": "burden",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "harvest",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "masked_ferryman",
+      "name": "Masked Ferryman",
+      "cost": 3,
+      "power": 4,
+      "arenaAbility": {
+        "type": "send",
+        "value": 0
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "tainted_idol",
+      "name": "Tainted Idol",
+      "cost": 1,
+      "power": -2,
+      "arenaAbility": {
+        "type": "draw",
+        "value": 2
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "splinter_agent",
+      "name": "Splinter Agent",
+      "cost": 3,
+      "power": 4,
+      "arenaAbility": {
+        "type": "plant",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "drain",
+          "value": 1,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "false_standard",
+      "name": "False Standard",
+      "cost": 2,
+      "power": 3,
+      "arenaAbility": {
+        "type": "token_aura",
+        "value": 2
+      },
+      "arenaEffects": [
+        {
+          "type": "burden",
+          "value": 1,
+          "target": "self"
+        }
+      ]
+    },
+    {
+      "definitionId": "exile_ritual",
+      "name": "Exile Ritual",
+      "cost": 1,
+      "power": 0,
+      "arenaAbility": {
+        "type": "send",
+        "value": 0
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "court_of_thorns",
+      "name": "Court of Thorns",
+      "cost": 5,
+      "power": 6,
+      "arenaAbility": {
+        "type": "plant",
+        "value": 0,
+        "target": "other_arenas",
+        "token": "burden_token"
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "oathbreaker_duke",
+      "name": "Oathbreaker Duke",
+      "cost": 4,
+      "power": -7,
+      "arenaAbility": {
+        "type": "defect",
+        "value": 0
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "salt_hex",
+      "name": "Salt Hex",
+      "cost": 1,
+      "power": 0,
+      "arenaAbility": {
+        "type": "drain",
+        "value": 3,
+        "target": "weakest"
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "blight_acolyte",
+      "name": "Blight Acolyte",
+      "cost": 1,
+      "power": 1,
+      "arenaAbility": {
+        "type": "drain",
+        "value": 2,
+        "target": "weakest"
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "dusk_leech",
+      "name": "Dusk Leech",
+      "cost": 2,
+      "power": 2,
+      "arenaAbility": {
+        "type": "siphon",
+        "value": 1
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "rot_scribe",
+      "name": "Rot Scribe",
+      "cost": 3,
+      "power": 3,
+      "arenaAbility": {
+        "type": "wither",
+        "value": 2,
+        "target": "weakest"
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "hollow_choir",
+      "name": "Hollow Choir",
+      "cost": 3,
+      "power": 3,
+      "arenaAbility": {
+        "type": "afflict_all",
+        "value": 1
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "plague_cartographer",
+      "name": "Plague Cartographer",
+      "cost": 4,
+      "power": 4,
+      "arenaAbility": {
+        "type": "drain",
+        "value": 2,
+        "target": "other_arenas"
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "debt_collector",
+      "name": "Debt Collector",
+      "cost": 4,
+      "power": 4,
+      "arenaAbility": {
+        "type": "harvest",
+        "value": 2,
+        "target": "afflicted"
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "miasma_lantern",
+      "name": "Miasma Lantern",
+      "cost": 2,
+      "power": 2,
+      "arenaAbility": {
+        "type": "siphon",
+        "value": 1,
+        "timing": "spell",
+        "oncePerTurn": true
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "unmaking",
+      "name": "Unmaking",
+      "cost": 2,
+      "power": 0,
+      "arenaAbility": {
+        "type": "afflict_all",
+        "value": 2
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "pale_physician",
+      "name": "Pale Physician",
+      "cost": 2,
+      "power": 3,
+      "arenaAbility": {
+        "type": "cleanse",
+        "value": 0,
+        "target": "weakest"
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "censer_warden",
+      "name": "Censer Warden",
+      "cost": 3,
+      "power": 3,
+      "arenaAbility": {
+        "type": "ward",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "cleanse",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "famine_sovereign",
+      "name": "Famine Sovereign",
+      "cost": 6,
+      "power": 5,
+      "arenaAbility": {
+        "type": "siphon",
+        "value": 1,
+        "target": "all"
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "candle_tender",
+      "name": "Candle Tender",
+      "cost": 1,
+      "power": 2,
+      "arenaAbility": {
+        "type": "boost",
+        "value": 1,
+        "target": "weakest"
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "mirror_squire",
+      "name": "Mirror Squire",
+      "cost": 2,
+      "power": 2,
+      "arenaAbility": {
+        "type": "copy_power",
+        "value": 0,
+        "target": "weakest"
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "current_runner",
+      "name": "Current Runner",
+      "cost": 2,
+      "power": 3,
+      "arenaAbility": {
+        "type": "transfer",
+        "value": 2
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "ember_conduit",
+      "name": "Ember Conduit",
+      "cost": 2,
+      "power": 2,
+      "arenaAbility": {
+        "type": "boost",
+        "value": 2,
+        "target": "self",
+        "timing": "spell",
+        "oncePerTurn": true
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "vessel_of_echoes",
+      "name": "Vessel of Echoes",
+      "cost": 3,
+      "power": 0,
+      "arenaAbility": {
+        "type": "copy_power",
+        "value": 0
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "marrow_engine",
+      "name": "Marrow Engine",
+      "cost": 3,
+      "power": 4,
+      "arenaAbility": {
+        "type": "consume",
+        "value": 0
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "inversion_rite",
+      "name": "Inversion Rite",
+      "cost": 2,
+      "power": 0,
+      "arenaAbility": {
+        "type": "purify",
+        "value": 0
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "cleansing_flame",
+      "name": "Cleansing Flame",
+      "cost": 1,
+      "power": 0,
+      "arenaAbility": {
+        "type": "purge",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "cleanse",
+          "value": 0,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "equal_measure",
+      "name": "Equal Measure",
+      "cost": 4,
+      "power": 0,
+      "arenaAbility": {
+        "type": "equalize",
+        "value": 3
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "sunwell_keeper",
+      "name": "Sunwell Keeper",
+      "cost": 4,
+      "power": 3,
+      "arenaAbility": {
+        "type": "echo_power",
+        "value": 0
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "last_light_beacon",
+      "name": "Last Light Beacon",
+      "cost": 5,
+      "power": 7,
+      "arenaAbility": {
+        "type": "distribute",
+        "value": 0,
+        "timing": "final"
+      },
+      "arenaEffects": []
+    },
+    {
+      "definitionId": "prism_titan",
+      "name": "Prism Titan",
+      "cost": 6,
+      "power": 4,
+      "arenaAbility": {
+        "type": "double",
+        "value": 0
+      },
+      "arenaEffects": []
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "draw": "recorded/card-draw.wav",
+  "place": "recorded/card-place.wav",
+  "reveal": "recorded/card-reveal.wav",
+  "spell": "recorded/spell-cast.wav",
+  "power": "recorded/power-rise.wav",
+  "curse": "recorded/curse.wav",
+  "transmute": "recorded/transmute.wav",
+  "score": "score-reveal.wav",
+  "turn": "recorded/turn-start.wav",
+  "victory": "recorded/victory.wav",
+  "defeat": "recorded/defeat.wav",
+  "tie": "recorded/match-draw.wav",
+  "arenaReveal": "/SE/crash-sound.mp3",
+  "ui": "ui-click.wav"
+}

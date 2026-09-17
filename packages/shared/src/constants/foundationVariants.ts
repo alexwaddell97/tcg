@@ -1,0 +1,32 @@
+import type { ShopCardVariant } from './cardVariants.ts'
+
+/** Pack illustrations can also appear in the daily shop after their base card releases. */
+export const FOUNDATION_VARIANTS: readonly ShopCardVariant[] = [
+  {"id":"village-scout-lanternwood","definitionId":"village_scout","name":"Lanternwood","style":"Layered paper","imageUrl":"/cards/variants/village-scout-lanternwood.webp","gemCost":1800,"source":"pack"},
+  {"id":"wandering-blade-moonlit-ronin","definitionId":"wandering_blade","name":"Moonlit Ronin","style":"Brush & ink","imageUrl":"/cards/variants/wandering-blade-moonlit-ronin.webp","gemCost":1800,"source":"pack"},
+  {"id":"shield-warden-brass-saint","definitionId":"shield_warden","name":"Brass Saint","style":"Stained glass","imageUrl":"/cards/variants/shield-warden-brass-saint.webp","gemCost":1800,"source":"pack"},
+  {"id":"thunder-hawk-storm-scroll","definitionId":"thunder_hawk","name":"Storm Scroll","style":"Woodblock","imageUrl":"/cards/variants/thunder-hawk-storm-scroll.webp","gemCost":1800,"source":"pack"},
+  {"id":"iron-golem-porcelain-giant","definitionId":"iron_golem","name":"Porcelain Giant","style":"Painted porcelain","imageUrl":"/cards/variants/iron-golem-porcelain-giant.webp","gemCost":1800,"source":"pack"},
+  {"id":"forge-apprentice-ember-tapestry","definitionId":"forge_apprentice","name":"Ember Tapestry","style":"Woven tapestry","imageUrl":"/cards/variants/forge-apprentice-ember-tapestry.webp","gemCost":1800,"source":"pack"},
+  {"id":"temper-goldsmiths-dream","definitionId":"temper","name":"Goldsmith’s Dream","style":"Illuminated miniature","imageUrl":"/cards/variants/temper-goldsmiths-dream.webp","gemCost":1800,"source":"pack"},
+  {"id":"igna-eternal-flame-ash-queen","definitionId":"igna_eternal_flame","name":"Ash Queen","style":"Charcoal & oil","imageUrl":"/cards/variants/igna-eternal-flame-ash-queen.webp","gemCost":1800,"source":"pack"},
+  {"id":"ironclad-colossus-mossbound","definitionId":"ironclad_colossus","name":"Mossbound","style":"Dark folklore","imageUrl":"/cards/variants/ironclad-colossus-mossbound.webp","gemCost":1800,"source":"pack"},
+  {"id":"mountain-hermit-winter-pilgrim","definitionId":"mountain_hermit","name":"Winter Pilgrim","style":"Ink on silk","imageUrl":"/cards/variants/mountain-hermit-winter-pilgrim.webp","gemCost":1800,"source":"pack"},
+  {"id":"spark-sprite-bottled-starlight","definitionId":"spark_sprite","name":"Bottled Starlight","style":"Storybook gouache","imageUrl":"/cards/variants/spark-sprite-bottled-starlight.webp","gemCost":1800,"source":"pack"},
+  {"id":"phase-walk-paper-door","definitionId":"phase_walk","name":"Paper Door","style":"Paper collage","imageUrl":"/cards/variants/phase-walk-paper-door.webp","gemCost":1800,"source":"pack"},
+  {"id":"bone-knight-marionette","definitionId":"bone_knight","name":"Marionette","style":"Carved theatre","imageUrl":"/cards/variants/bone-knight-marionette.webp","gemCost":1800,"source":"pack"},
+  {"id":"revenant-mourning-porcelain","definitionId":"revenant","name":"Mourning Porcelain","style":"Gothic porcelain","imageUrl":"/cards/variants/revenant-mourning-porcelain.webp","gemCost":1800,"source":"pack"},
+  {"id":"mana-surge-celestial-map","definitionId":"mana_surge","name":"Celestial Map","style":"Celestial engraving","imageUrl":"/cards/variants/mana-surge-celestial-map.webp","gemCost":1800,"source":"pack"},
+  {"id":"arcane-echo-prism-nocturne","definitionId":"arcane_echo","name":"Prism Nocturne","style":"Art deco","imageUrl":"/cards/variants/arcane-echo-prism-nocturne.webp","gemCost":1800,"source":"pack"},
+  {"id":"chalk-apprentice-chalk-dream","definitionId":"chalk_apprentice","name":"Chalk Dream","style":"Pastel & chalk","imageUrl":"/cards/variants/chalk-apprentice-chalk-dream.webp","gemCost":1800,"source":"pack"},
+  {"id":"mercury-scholar-quicksilver-mask","definitionId":"mercury_scholar","name":"Quicksilver Mask","style":"Surreal oil","imageUrl":"/cards/variants/mercury-scholar-quicksilver-mask.webp","gemCost":1800,"source":"pack"},
+  {"id":"glass-familiar-paper-menagerie","definitionId":"glass_familiar","name":"Paper Menagerie","style":"Origami","imageUrl":"/cards/variants/glass-familiar-paper-menagerie.webp","gemCost":1800,"source":"pack"},
+  {"id":"ashen-envoy-court-of-ashes","definitionId":"ashen_envoy","name":"Court of Ashes","style":"Gothic etching","imageUrl":"/cards/variants/ashen-envoy-court-of-ashes.webp","gemCost":1800,"source":"pack"},
+  {"id":"thorn-seeder-briar-doll","definitionId":"thorn_seeder","name":"Briar Doll","style":"Needle-felt folklore","imageUrl":"/cards/variants/thorn-seeder-briar-doll.webp","gemCost":1800,"source":"pack"},
+  {"id":"tainted-idol-festival-mask","definitionId":"tainted_idol","name":"Festival Mask","style":"Painted folk wood","imageUrl":"/cards/variants/tainted-idol-festival-mask.webp","gemCost":1800,"source":"pack"},
+  {"id":"blight-acolyte-mushroom-court","definitionId":"blight_acolyte","name":"Mushroom Court","style":"Botanical watercolour","imageUrl":"/cards/variants/blight-acolyte-mushroom-court.webp","gemCost":1800,"source":"pack"},
+  {"id":"dusk-leech-abyssal-jewel","definitionId":"dusk_leech","name":"Abyssal Jewel","style":"Bioluminescent fantasy","imageUrl":"/cards/variants/dusk-leech-abyssal-jewel.webp","gemCost":1800,"source":"pack"},
+  {"id":"war-standard-fallen-banner","definitionId":"war_standard","name":"Fallen Banner","style":"Woven tapestry","imageUrl":"/cards/variants/war-standard-fallen-banner.webp","gemCost":1800,"source":"pack"},
+  {"id":"spellfont-moonwell","definitionId":"spellfont","name":"Moonwell","style":"Glazed ceramic","imageUrl":"/cards/variants/spellfont-moonwell.webp","gemCost":1800,"source":"pack"},
+  {"id":"prism-titan-cathedral-giant","definitionId":"prism_titan","name":"Cathedral Giant","style":"Stained glass","imageUrl":"/cards/variants/prism-titan-cathedral-giant.webp","gemCost":1800,"source":"pack"},
+]

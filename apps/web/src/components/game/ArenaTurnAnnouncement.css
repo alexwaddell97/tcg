@@ -1,0 +1,19 @@
+/* A timed layer over the board: no layout space, no card or hand resizing. */
+.clash-turn-announcement { --turn-light:#e5c88c; position:absolute; inset:0; z-index:70; display:grid; place-items:center; overflow:hidden; background:linear-gradient(transparent 5%,#041019b8 30%,#041019e8 50%,#041019b8 70%,transparent 95%); animation:arena-turn-veil 2.5s both; cursor:default; }
+.clash-turn-announcement.is-last { --turn-light:#f5b47b; }
+.clash-turn-announcement-content { width:min(480px,85%); text-align:center; color:var(--turn-light); animation:arena-turn-entrance 2.5s both; }
+.clash-turn-announcement-rule { display:flex; align-items:center; justify-content:center; gap:22px; font-size:12px; font-weight:600; letter-spacing:.32em; text-transform:uppercase; }
+.clash-turn-announcement-rule i { height:1px; flex:1; background:linear-gradient(90deg,transparent,var(--turn-light)); position:relative; }
+.clash-turn-announcement-rule i:last-child { rotate:180deg; }
+.clash-turn-announcement-rule i::after { content:''; position:absolute; right:0; top:-2px; width:5px; height:5px; background:var(--turn-light); rotate:45deg; }
+.clash-turn-announcement-content > strong { display:block; font-family:var(--ae-font-ui); font-size:clamp(80px,13dvh,112px); font-weight:700; font-variant-numeric:lining-nums tabular-nums; letter-spacing:-.04em; line-height:1; color:#fff1d2; text-shadow:0 2px 8px #0008; margin:24px 0 30px; }
+.clash-turn-announcement-pips { display:flex; justify-content:center; gap:14px; }
+.clash-turn-announcement-pips i { width:5px; height:5px; rotate:45deg; background:#62778166; }
+.clash-turn-announcement-pips i.complete { background:#a9c5ca; }
+.clash-turn-announcement-pips i.current { background:var(--turn-light); box-shadow:0 0 12px var(--turn-light); scale:1.5; }
+.clash-turn-announcement-content p { margin:30px 0 0; color:#d1e0e5; font-size:13px; letter-spacing:.06em; }
+.clash-turn-announcement-content small { display:block; margin-top:8px; font-size:11px; color:var(--turn-light); }
+@keyframes arena-turn-veil { 0%,100% { opacity:0; } 14%,82% { opacity:1; } }
+@keyframes arena-turn-entrance { 0% { opacity:0; transform:translateY(6px); } 18%,78% { opacity:1; transform:translateY(0); } 100% { opacity:0; transform:translateY(-4px); } }
+@media (max-height:450px) { .clash-turn-announcement-content > strong { font-size:64px; margin:16px 0 22px; } .clash-turn-announcement-content p { margin-top:22px; } }
+@media (prefers-reduced-motion:reduce) { .clash-turn-announcement-content { animation:none; } .clash-turn-announcement { animation:none; } }

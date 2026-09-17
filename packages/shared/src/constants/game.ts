@@ -12,9 +12,9 @@ export const MAX_HAND_SIZE = 5
 // Cards per location per player
 export const MAX_LOCATION_SLOTS = 6
 
-export const DECK_SIZE = 20
-export const MAX_COPIES_PER_CARD = 4
-export const MAX_COPIES_LEGENDARY = 2
+export const DECK_SIZE = 12
+export const MAX_COPIES_PER_CARD = 1
+export const MAX_COPIES_LEGENDARY = 1
 
 // Location pool: one primary per player, no neutral — 2 total.
 export const LOCATIONS_PER_PLAYER = 1

@@ -1,0 +1,246 @@
+/* The board owns the remaining viewport. Card width is constrained by BOTH axes;
+   every board/hand card uses the same 2:3 portrait ratio at every breakpoint. */
+.clash-screen { position:relative; height:100dvh; display:flex; flex-direction:column; gap:4px; overflow:hidden; padding:8px clamp(8px,2vw,30px); color:#e8dfcd; background:radial-gradient(ellipse at 50% 45%,#05111ac9,#06121a88 65%,#07101955),url('/ui/arena-menu-background.jpg') center/cover; font-family:var(--ae-font-ui); }
+.practice-screen .clash-screen { height:calc(100dvh - 32px); }
+.clash-header,.clash-hand-area,.clash-footer,.clash-error { width:100%; max-width:1250px; margin-inline:auto; flex:none; }
+.clash-header { display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); align-items:center; gap:16px; position:relative; height:46px; }
+.clash-player-profile { --avatar-size:38px; display:flex; align-items:center; gap:10px; min-width:0; width:100%; max-width:240px; justify-self:start; }
+.clash-player-profile.is-opponent { flex-direction:row-reverse; justify-self:end; text-align:right; }
+.clash-player-avatar { position:relative; flex:none; display:grid; place-items:center; width:var(--avatar-size); height:var(--avatar-size); border:1px solid #8a8e8b88; border-radius:9px 3px; background:radial-gradient(ellipse at 40% 15%,#435258,#14242e 75%); box-shadow:inset 0 0 0 2px #08151d99,0 3px 9px #0006; transition:border-color .25s,box-shadow .25s; }
+.clash-player-avatar > span { font-size:calc(var(--avatar-size) * .67); line-height:1; }
+.clash-player-copy { display:flex; flex-direction:column; gap:3px; min-width:0; }
+.clash-player-copy strong { color:#e3e2d9; font-size:13px; line-height:1.2; font-weight:600; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; }
+.clash-player-copy small { color:#aebec5; font-size:9px; line-height:1.2; white-space:nowrap; }
+.clash-player-title { color:#c9b589; font-size:9px; line-height:1.1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.clash-priority-mark { position:absolute; right:-3px; bottom:-3px; width:7px; height:7px; rotate:45deg; border:1px solid #fff1c5; background:#e3b55e; box-shadow:0 0 6px #efc87999; opacity:0; transition:opacity .25s; }
+.clash-player-profile.has-priority .clash-player-avatar { border-color:#f1d49c; box-shadow:inset 0 0 0 2px #a6864740,0 0 0 1px #e1b96855,0 0 18px #e9ba645c; }
+.clash-player-profile.has-priority .clash-player-copy strong { color:#ffe5b3; text-shadow:0 0 12px #edbd5f33; }
+.clash-player-profile.has-priority .clash-player-copy small { color:#e9c484; }
+.clash-player-profile.has-priority .clash-priority-mark { opacity:1; }
+.clash-turn-track { text-align:center; font-family:var(--ae-font-ui); font-weight:500; font-size:15px; color:#ebd0a0; background:linear-gradient(90deg,transparent,#0a1720d9 20%,#0a1720d9 80%,transparent); padding:4px 26px; border-block:1px solid #bfa06585; white-space:nowrap; }
+.clash-turn-track b { font-size:19px; font-weight:700; font-variant-numeric:tabular-nums; }
+.clash-turn-track > div { display:flex; gap:4px; justify-content:center; margin-top:4px; }
+.clash-turn-track i { width:12px; height:2px; background:#5c5949; }
+.clash-turn-track i.current { background:#efd49a; box-shadow:0 0 8px #cda45088; }
+.clash-turn-track i.complete { background:#83a6b0; }
+.clash-turn-track.is-final-turn { color:#ffe3a7; border-color:#e3bd73aa; text-shadow:0 0 14px #c6984940; }
+.clash-button { min-height:34px; font-size:10px; padding:8px 16px; }
+.clash-lock-button { min-width:140px; min-height:40px; font-size:13px; padding:9px 17px; }
+.clash-screen button:disabled { cursor:default; }
+.clash-screen button:focus-visible { outline:2px solid #eccb86; outline-offset:3px; }
+/* Position order stays 1–4; the connecting track folds on portrait screens. */
+.clash-locations { flex:1 1 0; min-height:0; width:100%; container-type:size; display:grid; place-items:center; }
+.clash-lanes { --site-height:104px; --slot-gap:clamp(8px,.8vw,12px); --formation-gap:12px; --side-gap:6px; --lane-gap:18px; --board-columns:2; --board-rows:2; --card-max:116px; --card-width:min(var(--card-max),calc((100cqw - var(--lane-gap) * 2 - var(--slot-gap) * 3 * (var(--board-columns) - 1)) / (var(--board-columns) * 3)),calc((100cqh - var(--site-height) - var(--side-gap) * 2 - var(--formation-gap) * 2 * (var(--board-rows) - 1)) / (var(--board-rows) * 3))); display:grid; grid-template-columns:repeat(3,calc(var(--card-width) * var(--board-columns) + var(--slot-gap) * (var(--board-columns) - 1))); gap:var(--lane-gap); }
+.clash-location { position:relative; display:grid; grid-template-rows:auto var(--site-height) auto; gap:var(--side-gap); min-width:0; }
+.clash-side { min-width:0; }
+.clash-slots { display:grid; grid-template-columns:repeat(var(--board-columns),var(--card-width)); grid-template-rows:repeat(var(--board-rows),calc(var(--card-width) * 1.5)); gap:var(--slot-gap); }
+.clash-board-card,.clash-empty-slot { position:relative; display:block; width:var(--card-width); height:auto; aspect-ratio:2/3; min-width:0; min-height:0; padding:0; background:transparent; border:0; align-self:start; }
+.clash-board-card { cursor:pointer; filter:drop-shadow(0 4px 4px #0008); transition:filter .15s; }
+.clash-board-card:hover { filter:drop-shadow(0 0 5px #edca8588); z-index:2; }
+.clash-mirror-score { position:absolute; top:23%; right:1px; z-index:4; padding:2px 3px; border-radius:3px; background:#231a35ee; color:#e6d9ff; font-size:9px; font-weight:700; line-height:1.2; pointer-events:none; }
+.clash-location-effect-label { position:absolute; z-index:8; left:50%; top:50%; translate:-50% -50%; padding:7px 12px; width:max-content; max-width:160%; border:1px solid #d0ba8977; border-radius:4px; background:#111d29ee; color:#f1d9ac; font-size:12px; font-weight:700; box-shadow:0 2px 16px #0008; pointer-events:none; }
+.clash-empty-slot { border:1px solid #99b3c013; border-radius:5px; background:#09172312; display:grid; place-items:center; color:transparent; transition:border-color .2s,background .2s; }
+.clash-empty-slot span { font-size:22px; font-family:var(--ae-font-ui); font-weight:300; }
+.clash-board-card .ae-card-art { object-fit:contain; }
+.clash-board-card.is-queued { filter:drop-shadow(0 0 5px #efd597); touch-action:none; cursor:grab; -webkit-touch-callout:none; user-select:none; }
+.clash-board-card.is-queued:not([data-can-drag]) { cursor:pointer; }
+.clash-queue-marker { position:absolute; left:3px; bottom:22%; background:#101c27ef; color:#efd197; border:1px solid #b49d63; font-size:9px; padding:2px 4px; z-index:3; }
+/* Scores sit toward their owner; the location art no longer consumes card space. */
+.clash-site-info { position:relative; height:var(--site-height); width:min(100%,158px); justify-self:center; }
+.clash-site-tile { position:absolute; inset:11px 0; display:block; width:100%; border:0; padding:0; color:#e8d5a9; background:#101f2b; cursor:pointer; }
+.clash-site-tile:focus-visible { outline-offset:5px; }
+.clash-location.can-place .clash-site-tile { filter:drop-shadow(0 0 9px #8cdcca88); }
+.clash-location.can-place .clash-site-tile .ae-frame-light { stroke:#b5eedb; }
+.clash-location.cannot-place .clash-site-tile { opacity:.55; }
+.clash-location.is-drop-target::after { content:''; position:absolute; inset:-5px; border:1px solid #abf1dccc; border-radius:8px; box-shadow:0 0 18px #7ee8ca26,inset 0 0 18px #7ee8ca0d; pointer-events:none; }
+.clash-location.is-drop-target.cannot-place::after { border-color:#efa187; box-shadow:0 0 18px #e6875e26; }
+.clash-location-art { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.clash-location-art-shade { position:absolute; inset:0; background:linear-gradient(#08111a55,#08121ae8); }
+.clash-uncharted-symbol { position:absolute; inset:0; display:grid; place-items:center; font-size:56px; color:#ae99634d; }
+.clash-site-copy { position:absolute; inset:0; padding:12px 7px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; }
+.clash-site-copy h2 { font-family:var(--ae-font-ui); font-size:12px; line-height:1.2; font-weight:700; letter-spacing:-.015em; text-shadow:0 1px 3px #000; margin:0; }
+.clash-site-copy > span { font-family:var(--ae-font-ui); font-size:10px; line-height:1.35; color:#e3ded0; }
+.clash-site-score { position:absolute; z-index:2; left:50%; translate:-50% 0; display:grid; place-items:center; width:31px; height:28px; font-family:var(--ae-font-ui); font-variant-numeric:tabular-nums; font-size:19px; font-weight:600; line-height:1; color:#b8c0c5; background:linear-gradient(130deg,#79858e,#45515c); clip-path:polygon(50% 0,100% 15%,100% 68%,50% 100%,0 68%,0 15%); text-shadow:0 2px 3px #0009; isolation:isolate; pointer-events:none; }
+.clash-site-score::before { content:''; position:absolute; z-index:-1; inset:2px; clip-path:inherit; background:linear-gradient(130deg,#303e4b,#121b24); }
+.clash-site-score.their-score { top:0; }
+.clash-site-score.your-score { bottom:0; }
+.clash-site-score.is-leading { font-weight:800; text-shadow:0 0 6px #fff6,0 2px 3px #0009; }
+.clash-site-score.their-score.is-leading { color:#fff3df; background:linear-gradient(130deg,#ffe2a9,#f09656); filter:drop-shadow(0 0 5px #ed944a99); }
+.clash-site-score.their-score.is-leading::before { background:linear-gradient(130deg,#b65c30,#6b231e); }
+.clash-site-score.your-score.is-leading { color:#efffff; background:linear-gradient(130deg,#d1fff1,#62d6e5); filter:drop-shadow(0 0 5px #69d9e099); }
+.clash-site-score.your-score.is-leading::before { background:linear-gradient(130deg,#368d9b,#154f65); }
+/* A responsive hand fan keeps even seven cards in view without horizontal scrolling. */
+.clash-hand-area { --hand-card-width:clamp(58px,8.8dvh,86px); --hand-heading-height:13px; --detail-height:30px; position:relative; display:flex; flex-direction:column; height:calc(var(--hand-card-width) * 1.5 + 8px + var(--hand-heading-height) + var(--detail-height)); }
+.clash-hand-content { display:contents; }
+/* Inactive controls retain their dimensions so the board cannot grow at game over. */
+.clash-hand-content[inert],.clash-footer > [inert] { visibility:hidden; }
+.clash-hand-heading { display:flex; flex:none; height:var(--hand-heading-height); justify-content:space-between; align-items:center; color:#d4c8aa; font-size:9px; line-height:13px; }
+.clash-hand-count { text-transform:uppercase; letter-spacing:.16em; font-size:8px; }
+.clash-hand { display:flex; flex:1; min-height:0; justify-content:center; align-items:flex-end; container-type:size; padding:8px 6px 0; isolation:isolate; }
+.clash-hand-card { --display-width:min(var(--hand-card-width),calc(100cqh / 1.5)); flex:0 0 var(--display-width); position:relative; width:var(--display-width); height:auto; aspect-ratio:2/3; min-width:0; padding:0; background:transparent; border:0; transition:translate .15s,filter .15s; cursor:grab; touch-action:none; -webkit-touch-callout:none; user-select:none; }
+.clash-hand-card + .clash-hand-card { margin-left:min(7px,calc((100cqw - 12px - var(--hand-count) * var(--display-width)) / max(1,var(--hand-count) - 1))); }
+.clash-hand-card:not([data-can-drag]) { cursor:pointer; }
+.clash-hand-card:hover,.clash-hand-card:focus-visible { translate:0 -6px; filter:drop-shadow(0 0 4px #d5b47a70); z-index:10; }
+.clash-hand-card.is-picked-up { translate:0 -6px; filter:drop-shadow(0 0 5px #f1ce85); z-index:11; }
+.clash-hand-card.unaffordable:not(.is-picked-up) { filter:saturate(.7); opacity:.75; }
+.clash-hand-card.queued-in-hand { opacity:.45; }
+.clash-screen.is-dragging-card,.clash-screen.is-dragging-card * { cursor:grabbing; user-select:none; }
+.clash-screen.is-dragging-card .clash-hand-card.is-picked-up { opacity:.25; }
+.clash-drag-preview { position:fixed; top:0; left:0; z-index:90; aspect-ratio:2/3; pointer-events:none; filter:drop-shadow(0 14px 16px #000a); will-change:transform; }
+.clash-drag-preview.can-drop { filter:drop-shadow(0 0 9px #9ce7d6bb) drop-shadow(0 14px 16px #000a); }
+.clash-drag-preview.cannot-drop { filter:drop-shadow(0 0 9px #e78767bb) drop-shadow(0 14px 16px #000a); }
+.clash-hand-queued-label { position:absolute; top:45%; left:0; right:0; background:#08121cee; color:#efdbaf; font-size:10px; padding:4px; }
+.clash-card-detail { position:relative; display:flex; flex:none; justify-content:center; align-items:center; gap:2px 9px; height:var(--detail-height); min-height:var(--detail-height); padding:4px 0 0; text-align:center; font-size:11px; line-height:1.3; }
+.clash-card-detail b { color:#ebcd90; white-space:nowrap; font-weight:500; max-width:40%; overflow:hidden; text-overflow:ellipsis; }
+.clash-card-detail > span { color:#e1d8c7; min-width:0; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; line-height:1.2; max-height:2.4em; text-wrap:pretty; }
+.clash-card-detail button { white-space:nowrap; flex:none; }
+.clash-card-detail.is-card-ability { z-index:20; pointer-events:none; }
+.clash-ability-description { position:absolute; bottom:0; left:50%; translate:-50% 0; width:max-content; max-width:min(720px,100%); display:flex; flex-wrap:wrap; justify-content:center; align-items:baseline; gap:3px 8px; padding:6px 10px; color:#e1d8c7; background:linear-gradient(110deg,#0b1824f5,#10202af5); border-top:1px solid #bba16a66; border-radius:4px; box-shadow:0 -4px 16px #0004; line-height:1.4; }
+.clash-ability-description b { max-width:100%; white-space:normal; overflow:visible; }
+.clash-ability-description > span { min-width:0; overflow-wrap:anywhere; }
+.clash-empty-hand { color:#c9bfa9; font-size:12px; align-self:center; }
+.clash-queued-spells { display:flex; flex:none; flex-wrap:wrap; gap:4px; justify-content:center; padding-top:4px; }
+.clash-queued-spells button { border:1px dashed #bfa970; color:#ead7ad; background:#10222deb; font-size:9px; padding:2px 5px; }
+.clash-footer { position:relative; display:flex; align-items:center; justify-content:space-between; gap:14px; padding-top:4px; border-top:1px solid #b79a5966; background:linear-gradient(90deg,#0b182488,#0b182444,#0b182499); }
+.clash-energy { flex:none; width:auto; height:44px; display:flex; align-items:center; gap:10px; color:#b5e7ff; font-family:var(--ae-font-ui); font-variant-numeric:tabular-nums; text-shadow:0 0 12px #63b9ed44; }
+.clash-energy b { min-width:1.2ch; font-size:22px; line-height:1; font-weight:800; }
+.clash-text-button { color:#e2d1af; font-size:10px; cursor:pointer; text-align:left; }
+.clash-text-button:hover { color:#fff0bf; }
+.clash-actions { display:flex; align-items:center; gap:8px; }
+.clash-retreat { color:#d1b3a1; margin-right:4px; }
+.clash-error { position:absolute; z-index:40; bottom:64px; left:50%; translate:-50% 0; width:max-content; max-width:calc(100% - 24px); color:#ffc6ad; font-size:11px; padding:8px 12px; background:#301c19f5; border:1px solid #b5785788; border-radius:8px; box-shadow:0 8px 30px #0007; text-align:center; }
+.clash-footer .clash-result-trigger { position:absolute; right:0; min-height:40px; padding:8px 16px; font-size:12px; white-space:nowrap; }
+@media (min-width:801px) and (min-aspect-ratio:1/1) {
+ .clash-lanes { --board-columns:4; --board-rows:1; }
+}
+@media (max-width:800px) {
+ .clash-lanes { --lane-gap:10px; --site-height:100px; }
+ .clash-site-copy h2 { font-size:11px; }
+ .clash-site-copy > span { font-size:10px; }
+}
+@media (max-width:480px) {
+ .clash-screen { padding:5px 7px 7px; gap:3px; }
+ .clash-header { height:38px; }
+ .clash-header { gap:7px; }
+ .clash-player-profile { --avatar-size:30px; gap:6px; }
+ .clash-player-copy { gap:2px; }
+ .clash-player-copy strong { font-size:11px; }
+ .clash-player-copy small { font-size:8px; }
+ .clash-turn-track { font-size:12px; padding:3px 14px; }
+ .clash-turn-track b { font-size:16px; }
+ .clash-turn-track i { width:9px; }
+ .clash-lanes { --site-height:96px; }
+ .clash-site-copy { padding:12px 5px; }
+ .clash-site-copy h2 { font-size:10px; }
+ .clash-site-copy > span { font-size:9px; }
+ .clash-site-score { width:27px; height:25px; font-size:18px; }
+ .clash-hand-area { --hand-card-width:clamp(54px,8.2dvh,70px); --hand-heading-height:11px; --detail-height:33px; }
+ .clash-hand-heading { font-size:8px; line-height:11px; }
+ .clash-hand-count { display:none; }
+ .clash-card-detail { font-size:10px; gap:2px 6px; }
+ .clash-card-detail button { font-size:9px; }
+ .clash-footer { gap:8px; padding-top:4px; }
+ .clash-actions { gap:5px; }
+ .clash-retreat { font-size:8px; margin-right:1px; }
+ .clash-actions .clash-button { min-height:32px; font-size:9px; padding:7px 11px; }
+ .clash-lock-button { min-width:105px; min-height:35px; font-size:10px; padding:8px 10px; }
+ .clash-footer .clash-result-trigger { min-height:35px; padding:8px 10px; font-size:10px; }
+}
+/* Compact phones reserve their limited height for the four rows of cards. */
+@media (max-width:480px) and (max-height:700px) {
+ .clash-screen { gap:2px; }
+ .clash-header { height:30px; }
+ .clash-player-profile { --avatar-size:26px; }
+ .clash-turn-track { font-size:11px; padding-block:1px; }
+ .clash-turn-track b { font-size:14px; }
+ .clash-turn-track > div { margin-top:2px; }
+ .clash-lanes { --site-height:72px; --side-gap:4px; }
+ .clash-site-copy { padding:8px 5px; }
+ .clash-site-copy > span { display:none; }
+ .clash-site-score { width:24px; height:22px; font-size:16px; }
+ .clash-site-tile { inset:8px 0; }
+ .clash-hand-area { --hand-card-width:clamp(46px,8dvh,54px); --hand-heading-height:0px; --detail-height:24px; }
+ .clash-hand-heading { display:none; }
+ .clash-card-detail { padding-top:2px; }
+ .clash-energy { width:auto; height:36px; }
+ .clash-energy b { font-size:18px; }
+}
+/* In short landscape windows the hand sits beside the board, freeing its height. */
+@media (min-aspect-ratio:4/3) and (max-height:650px) {
+ .clash-screen { padding-block:4px; gap:2px 14px; display:grid; grid-template-columns:minmax(0,1fr) 170px; grid-template-rows:34px minmax(0,1fr) auto; grid-template-areas:'header header' 'board hand' 'footer footer'; }
+ .clash-header { grid-area:header; }
+ .clash-locations { grid-area:board; height:100%; }
+ .clash-hand-area { --detail-height:23px; grid-area:hand; min-height:0; height:100%; display:grid; grid-template-rows:minmax(0,1fr) auto; }
+ .clash-hand-area:has(.clash-queued-spells) { grid-template-rows:minmax(0,1fr) auto auto; }
+ .clash-footer { grid-area:footer; }
+ .clash-error { bottom:48px; }
+ .clash-header { height:34px; }
+ .clash-player-profile { --avatar-size:28px; gap:7px; }
+ .clash-player-copy strong { font-size:11px; }
+ .clash-player-copy small { font-size:8px; }
+ .clash-turn-track { font-size:12px; padding-block:2px; }
+ .clash-turn-track b { font-size:15px; }
+ .clash-turn-track > div { display:none; }
+ .clash-lanes { --site-height:76px; --board-columns:4; --board-rows:1; --card-max:100px; }
+ .clash-site-info { width:min(100%,155px); }
+ .clash-site-copy { padding:6px 7px; gap:1px; }
+ .clash-site-copy h2 { font-size:10px; }
+ .clash-site-copy > span { font-size:9px; }
+ .clash-site-score { width:26px; height:23px; font-size:17px; }
+ .clash-site-tile { inset:8px 0; }
+ .clash-hand { container-type:size; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(3,minmax(0,1fr)); min-height:0; height:100%; gap:4px; padding:6px 0 0; align-items:center; justify-items:center; }
+ .clash-hand-card { width:min(50px,calc((100cqh - 14px) / 4.5)); }
+ .clash-hand-card + .clash-hand-card { margin-left:0; }
+ .clash-hand-heading { display:none; }
+ .clash-card-detail { font-size:9px; padding-top:2px; }
+ .clash-card-detail > span { display:none; }
+ .clash-card-detail button { font-size:9px; }
+ .clash-footer { padding-top:2px; }
+ .clash-energy { width:auto; height:34px; }
+ .clash-energy b { font-size:18px; }
+ .clash-lock-button { min-height:32px; font-size:10px; padding:7px 13px; }
+ .clash-footer .clash-result-trigger { min-height:32px; padding:7px 13px; font-size:10px; }
+ .clash-button { min-height:30px; padding:6px 14px; }
+}
+@media (prefers-reduced-motion:reduce) { .clash-hand-card,.clash-board-card,.clash-player-avatar,.clash-priority-mark { transition:none; } }
+.clash-preview-tools { height:32px; display:flex; align-items:center; justify-content:safe center; gap:12px; padding:0 8px; overflow-x:auto; scrollbar-width:none; background:#080c12; color:#bdc5ca; font-family:var(--ae-font-ui); font-size:10px; white-space:nowrap; }
+.clash-preview-tools > * { flex-shrink:0; }
+.clash-preview-tools select { background:#14202a; border:1px solid #7e8e9833; padding:2px; border-radius:3px; color:#e0dac9; font-size:9px; }
+@media (max-width:480px) { .clash-preview-tools { gap:8px; font-size:8px; } .clash-preview-tools select { font-size:8px; max-width:43px; } .clash-preview-tools .clash-preview-family { max-width:80px; } }
+@media (max-width:350px) { .clash-preview-tools { gap:5px; font-size:7px; padding:0 4px; } }
+
+/* Draw flights use the card's reserved hand slot; they never change board sizing. */
+.clash-hand-card[data-drawing] { z-index:15; pointer-events:none; will-change:transform,opacity; filter:drop-shadow(0 0 9px #c9eaff88); }
+.clash-draw-back { position:absolute; inset:0; z-index:8; opacity:0; pointer-events:none; background-position:center; background-size:cover; border:1px solid #d9bd82; border-radius:5px; box-shadow:inset 0 0 0 2px #14222b; }
+
+/* Reuse the card-cost artwork: lit shards are available, dim shards are spent. */
+.clash-energy-shards { display:flex; align-items:center; gap:3px; }
+.clash-energy-shards i { display:block; width:14px; height:29px; background:url('/ui/cards/aether-energy-v1.svg') center/contain no-repeat; transition:filter .22s,opacity .22s; }
+.clash-energy-shards .is-available { opacity:1; filter:brightness(1.2) drop-shadow(0 0 4px #57baff99); }
+.clash-energy-shards .is-spent { opacity:.38; filter:grayscale(1); }
+.clash-energy-shards .is-locked { opacity:.12; filter:grayscale(1); }
+@media (max-width:480px) { .clash-energy { gap:6px; } .clash-energy b { font-size:18px; } .clash-energy-shards { gap:1px; } .clash-energy-shards i { width:9px; height:22px; } }
+@media (prefers-reduced-motion:reduce) { .clash-energy-shards i { transition:none; } }
+
+/* Keep artwork full bleed while excluding iOS system chrome from board sizing. */
+.native-ios .clash-screen {
+  padding-top:calc(8px + env(safe-area-inset-top));
+  padding-bottom:calc(10px + env(safe-area-inset-bottom));
+  padding-left:max(10px,env(safe-area-inset-left));
+  padding-right:max(10px,env(safe-area-inset-right));
+}
+.native-ios .practice-screen {
+  background:radial-gradient(ellipse at 50% 45%,#05111ac9,#06121a88 65%,#07101955),url('/ui/arena-menu-background.jpg') center/cover;
+}
+.native-ios .practice-screen > div:first-child {
+  height:calc(32px + env(safe-area-inset-top));
+  padding-top:env(safe-area-inset-top);
+  padding-left:env(safe-area-inset-left);
+  padding-right:env(safe-area-inset-right);
+  background:linear-gradient(#07101966,transparent);
+}
+.native-ios .practice-screen .clash-screen {
+  height:calc(100dvh - 32px - env(safe-area-inset-top));
+  padding-top:5px;
+  background:transparent;
+}

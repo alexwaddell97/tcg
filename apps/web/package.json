@@ -9,14 +9,29 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "type-check": "tsc --noEmit",
-    "electron:dev": "concurrently \"cross-env BROWSER=none vite\" \"wait-on http://localhost:5173 && cross-env ELECTRON_START_URL=http://localhost:5173 electron .\"",
-    "electron:build": "pnpm run build && electron-builder",
-    "electron:build:mac": "pnpm run build && electron-builder --mac",
-    "electron:build:win": "pnpm run build && electron-builder --win",
-    "electron:build:linux": "pnpm run build && electron-builder --linux"
+    "type-check": "tsc -b",
+    "electron:dev": "concurrently --kill-others \"vite --port 5174 --strictPort\" \"wait-on http://localhost:5174 && cross-env ELECTRON_START_URL=http://localhost:5174 electron .\"",
+    "electron:build": "pnpm electron:bundle && electron-builder",
+    "electron:build:mac": "pnpm electron:bundle && electron-builder --mac",
+    "electron:build:win": "pnpm electron:bundle && electron-builder --win",
+    "electron:build:linux": "pnpm electron:bundle && electron-builder --linux",
+    "mobile:build": "tsc -b && vite build --mode mobile",
+    "mobile:sync": "pnpm mobile:build && cap sync",
+    "mobile:ios": "cap open ios",
+    "mobile:android": "cap open android",
+    "mobile:run:ios": "pnpm mobile:sync && cap run ios",
+    "mobile:run:android": "pnpm mobile:sync && cap run android",
+    "electron:bundle": "tsc -b && vite build --mode desktop",
+    "electron:start": "pnpm electron:bundle && electron .",
+    "electron:pack": "pnpm electron:bundle && electron-builder --dir"
   },
   "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/app": "^8.1.1",
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/ios": "^8.5.2",
+    "@fontsource/cormorant-garamond": "^5.3.0",
+    "@fontsource/manrope": "^5.3.0",
     "@phosphor-icons/react": "^2.1.10",
     "@tcg/shared": "workspace:*",
     "clsx": "^2.1.1",
@@ -30,6 +45,7 @@
     "zustand": "^5.0.11"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.5.2",
     "@tailwindcss/vite": "^4.0.0",
     "@types/node": "^24.0.0",
     "@types/react": "^19.0.0",
@@ -37,7 +53,7 @@
     "@vitejs/plugin-react-swc": "^4.0.0",
     "concurrently": "^9.0.0",
     "cross-env": "^10.0.0",
-    "electron": "^33.0.0",
+    "electron": "^44.4.1",
     "electron-builder": "^26.0.0",
     "tailwindcss": "^4.0.0",
     "typescript": "~5.9.3",
@@ -45,23 +61,38 @@
     "wait-on": "^9.0.0"
   },
   "build": {
-    "appId": "com.tcg.game",
-    "productName": "TCG",
+    "appId": "com.arenaeternal.game",
+    "productName": "Arena Eternal",
     "directories": {
       "buildResources": "build",
       "output": "../../dist-electron"
     },
     "files": [
-      "dist/**/*",
-      "electron/**/*",
-      "package.json"
+      {
+        "from": "dist",
+        "to": "dist",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "electron",
+        "to": "electron",
+        "filter": [
+          "**/*.cjs"
+        ]
+      },
+      "package.json",
+      "!node_modules/**/*"
     ],
     "mac": {
       "target": [
         "dmg",
         "zip"
       ],
-      "category": "public.app-category.games"
+      "category": "public.app-category.games",
+      "identity": null,
+      "icon": "build/icon.icns"
     },
     "win": {
       "target": [
@@ -71,12 +102,16 @@
             "x64"
           ]
         }
-      ]
+      ],
+      "icon": "build/icon.ico"
     },
     "linux": {
       "target": [
         "AppImage"
-      ]
-    }
-  }
+      ],
+      "icon": "build/icon.png"
+    },
+    "npmRebuild": false
+  },
+  "description": "Arena Eternal fantasy card game"
 }

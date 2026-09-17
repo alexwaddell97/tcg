@@ -2,7 +2,12 @@
   "name": "tcg",
   "private": true,
   "pnpm": {
-    "onlyBuiltDependencies": ["@swc/core", "electron", "electron-winstaller", "esbuild"]
+    "onlyBuiltDependencies": [
+      "@swc/core",
+      "electron",
+      "electron-winstaller",
+      "esbuild"
+    ]
   },
   "scripts": {
     "dev:web": "pnpm --filter @tcg/web dev",
@@ -13,10 +18,24 @@
     "build:electron:mac": "pnpm --filter @tcg/web electron:build:mac",
     "build:electron:win": "pnpm --filter @tcg/web electron:build:win",
     "lint": "turbo run lint",
-    "type-check": "turbo run type-check"
+    "type-check": "turbo run type-check",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "balance:arena": "node --import tsx scripts/arena-balance.ts",
+    "mobile:build": "pnpm --filter @tcg/web mobile:build",
+    "mobile:sync": "pnpm --filter @tcg/web mobile:sync",
+    "mobile:ios": "pnpm --filter @tcg/web mobile:ios",
+    "mobile:android": "pnpm --filter @tcg/web mobile:android",
+    "mobile:run:ios": "pnpm --filter @tcg/web mobile:run:ios",
+    "mobile:run:android": "pnpm --filter @tcg/web mobile:run:android",
+    "start:electron": "pnpm --filter @tcg/web electron:start",
+    "pack:electron": "pnpm --filter @tcg/web electron:pack"
   },
   "devDependencies": {
     "turbo": "^2.5.6",
-    "typescript": "~5.9.3"
-  }
+    "typescript": "~5.9.3",
+    "tsx": "^4.19.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
+  },
+  "packageManager": "pnpm@10.30.2"
 }

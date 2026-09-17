@@ -1,13 +1,49 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* --- Mobile hand rail improvements for Triple Triad --- */
+@media (max-width: 640px) {
+  .min-h-28 {
+    min-height: 7.5rem !important;
+  }
+  .hand-rail-mobile {
+    padding-bottom: 0.25rem !important;
+    padding-top: 0.25rem !important;
+    min-height: 7.5rem !important;
+    gap: 0.75rem !important;
+  }
+  .hand-card-mobile {
+    min-width: 4.5rem !important;
+    max-width: 6rem !important;
+    min-height: 6.75rem !important;
+    max-height: 9rem !important;
+    font-size: 1rem !important;
+    border-radius: 0.75rem !important;
+  }
+}
 
 @theme {
-  --font-ui: 'Inter', system-ui, sans-serif;
+  --font-ui: 'Manrope', system-ui, sans-serif;
+  --font-cinzel: 'Cormorant Garamond', 'Georgia', serif;
 }
 
 :root {
-  font-family: 'Crimson Text', Georgia, serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   color-scheme: dark;
+}
+
+/* ─── Singleplayer roguelike design tokens ───────────────────────────────── */
+/* Warm dark palette inspired by dungeon / arena aesthetics                   */
+.sp-label {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #6b5640;
+}
+.sp-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #3a2d1f 40%, #3a2d1f 60%, transparent);
 }
 
 * {
@@ -21,12 +57,12 @@ html, body {
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #0d0906;
-  color: #e7e0d8;
+  background-color: #0B0B0F;
+  color: #e5d5b8;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Cinzel', Georgia, serif;
+  font-family: 'Manrope', system-ui, sans-serif;
 }
 
 /* Scrollbar styling */
@@ -36,16 +72,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1410;
+  background: #0B0B0F;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #5a3e2b;
+  background: #3a2f1a;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #7a5a3a;
+  background: #5c4a26;
 }
 
 /* ─── Chrome image/video compositing antialiasing fix ───────────────────── */
@@ -303,30 +339,214 @@ img, video {
   transform-origin: center center;
 }
 
-/* ─── Pack Rip Animation ─────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════════════
+   ARENA ETERNAL — Cosmic Gladiator theme
+   Void Black #0B0B0F | Deep Space #12121A | Arena Shadow #1A1A24
+   Champion Gold #D8A44C | Arena Bronze #B57A2A | Ancient Gold #F2C979
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-@keyframes pack-rip-shake {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  15%  { transform: translate(-6px, -2px) rotate(-2deg); }
-  30%  { transform: translate(6px,  2px) rotate(2deg); }
-  45%  { transform: translate(-5px, -1px) rotate(-1.5deg); }
-  60%  { transform: translate(5px,  2px) rotate(1.5deg); }
-  75%  { transform: translate(-3px, -1px) rotate(-1deg); }
-  90%  { transform: translate(3px,  1px) rotate(1deg); }
+/* ─── Starfield background ──────────────────────────────────────────────── */
+/* Pure CSS star field: we generate layers of tiny radial dots via           */
+/* multiple box-shadow values on a generated pseudo-element.                 */
+/* Three layers = small/medium/large stars for depth.                        */
+
+@keyframes arena-stars-drift {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-100px); }
 }
 
-@keyframes pack-rip-top {
-  0%   { transform: translateY(0) rotate(0deg);    opacity: 1; }
-  100% { transform: translateY(-120vh) rotate(-22deg); opacity: 0; }
+.arena-starfield {
+  position: absolute;
+  inset: -100px;
+  overflow: hidden;
 }
 
-@keyframes pack-rip-bottom {
-  0%   { transform: translateY(0) rotate(0deg);   opacity: 1; }
-  100% { transform: translateY(120vh) rotate(16deg); opacity: 0; }
+.arena-starfield::before,
+.arena-starfield::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
 }
 
-@keyframes pack-rip-flash {
-  0%   { opacity: 0; }
-  25%  { opacity: 1; }
-  100% { opacity: 0; }
+/* Small distant stars */
+.arena-starfield::before {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow:
+    120px 80px rgba(255,255,255,0.35),  240px 160px rgba(255,255,255,0.25),
+    340px 60px rgba(255,255,255,0.4),   460px 200px rgba(255,255,255,0.2),
+    580px 130px rgba(255,255,255,0.35), 700px 300px rgba(255,255,255,0.45),
+    820px 50px rgba(255,255,255,0.3),   940px 250px rgba(255,255,255,0.25),
+    1060px 380px rgba(255,255,255,0.4), 1180px 110px rgba(255,255,255,0.3),
+    60px 450px rgba(255,255,255,0.25),  200px 520px rgba(255,255,255,0.35),
+    380px 480px rgba(255,255,255,0.2),  520px 560px rgba(255,255,255,0.3),
+    680px 420px rgba(255,255,255,0.4),  800px 600px rgba(255,255,255,0.25),
+    960px 500px rgba(255,255,255,0.35), 1100px 650px rgba(255,255,255,0.2),
+    150px 700px rgba(255,255,255,0.3),  350px 750px rgba(255,255,255,0.45),
+    550px 680px rgba(255,255,255,0.2),  750px 780px rgba(255,255,255,0.35),
+    950px 720px rgba(255,255,255,0.25), 1150px 800px rgba(255,255,255,0.4),
+    /* gold-tinted stars near top */
+    280px 40px rgba(216,164,76,0.3),    760px 20px rgba(242,201,121,0.2),
+    1020px 90px rgba(216,164,76,0.25),  480px 30px rgba(242,201,121,0.15);
+  animation: arena-stars-drift 120s linear infinite;
+}
+
+/* Larger accent stars */
+.arena-starfield::after {
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow:
+    180px 140px rgba(255,255,255,0.2),  420px 90px rgba(255,255,255,0.15),
+    660px 220px rgba(255,255,255,0.2),  900px 170px rgba(255,255,255,0.15),
+    1140px 310px rgba(255,255,255,0.2), 100px 390px rgba(255,255,255,0.15),
+    320px 460px rgba(255,255,255,0.2),  560px 540px rgba(255,255,255,0.15),
+    780px 490px rgba(255,255,255,0.2),  1020px 580px rgba(255,255,255,0.15),
+    /* cosmic purple accent stars */
+    440px 260px rgba(167,139,250,0.2),  880px 340px rgba(96,165,250,0.15),
+    220px 600px rgba(167,139,250,0.18), 680px 660px rgba(96,165,250,0.12);
+  animation: arena-stars-drift 80s linear infinite reverse;
+}
+
+/* ─── Glow ring behind logo ─────────────────────────────────────────────── */
+
+@keyframes arena-glow-ring-pulse {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50%       { opacity: 0.45; transform: scale(1.04); }
+}
+
+.arena-glow-ring {
+  border: 1px solid rgba(216,164,76,0.2);
+  box-shadow:
+    0 0 24px 8px rgba(181,122,42,0.12),
+    0 0 60px 20px rgba(88,28,135,0.08),
+    inset 0 0 24px 4px rgba(181,122,42,0.06);
+  animation: arena-glow-ring-pulse 4s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+/* ─── Arena card panels ─────────────────────────────────────────────────── */
+
+.arena-card {
+  background: linear-gradient(145deg, #10181cd9, #111419e8), url('/ui/arena-panel-texture.jpg') repeat;
+  background-size: auto, 320px;
+  border: 1px solid rgba(216,164,76,0.14);
+  box-shadow: 0 2px 16px rgba(11,11,15,0.4), inset 0 1px 0 rgba(255,255,255,0.03);
+  backdrop-filter: blur(4px);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.arena-card:hover {
+  border-color: rgba(216,164,76,0.28);
+  box-shadow: 0 4px 24px rgba(11,11,15,0.5), 0 0 0 1px rgba(216,164,76,0.1), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* ─── Currency pill buttons ─────────────────────────────────────────────── */
+
+.arena-pill {
+  background: rgba(26,26,36,0.7);
+  border: 1px solid rgba(216,164,76,0.15);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.arena-pill:hover {
+  border-color: rgba(124,58,237,0.5);
+  box-shadow: 0 0 12px rgba(124,58,237,0.2);
+}
+
+/* ─── Enter the Arena primary CTA ───────────────────────────────────────── */
+
+@keyframes arena-enter-ember {
+  0%, 100% { box-shadow: 0 4px 20px rgba(181,122,42,0.4), 0 0 40px rgba(181,122,42,0.15), inset 0 1px 0 rgba(255,255,255,0.2); }
+  50%       { box-shadow: 0 6px 32px rgba(181,122,42,0.6), 0 0 60px rgba(216,164,76,0.2), inset 0 1px 0 rgba(255,255,255,0.25); }
+}
+
+.arena-enter-btn {
+  background: linear-gradient(135deg, #F2C979 0%, #D8A44C 40%, #B57A2A 75%, #8B5E1A 100%);
+  color: #1A0E00;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.15);
+  animation: arena-enter-ember 3s ease-in-out infinite;
+}
+
+.arena-enter-btn:hover {
+  filter: brightness(1.1);
+}
+
+/* ─── Patch notes tag colors ────────────────────────────────────────────── */
+
+.arena-tag-new {
+  background: rgba(5,46,22,0.8);
+  color: #6ee7b7;
+  border: 1px solid rgba(16,185,129,0.4);
+}
+
+.arena-tag-fix {
+  background: rgba(120,53,15,0.6);
+  color: #fcd34d;
+  border: 1px solid rgba(181,122,42,0.4);
+}
+
+.arena-tag-update {
+  background: rgba(30,27,75,0.8);
+  color: #a5b4fc;
+  border: 1px solid rgba(99,102,241,0.4);
+}
+
+/* ─── Secondary nav tiles ───────────────────────────────────────────────── */
+
+.arena-secondary-btn {
+  background: linear-gradient(145deg, #121a1dde, #171a1ee8), url('/ui/arena-panel-texture.jpg') repeat;
+  background-size: auto, 320px;
+  border: 1px solid rgba(216,164,76,0.14);
+  box-shadow: 0 2px 12px rgba(11,11,15,0.5), inset 0 1px 0 rgba(255,255,255,0.03);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+
+.arena-secondary-btn:hover {
+  border-color: rgba(216,164,76,0.35);
+  box-shadow: 0 4px 20px rgba(11,11,15,0.6), 0 0 14px var(--btn-glow, rgba(216,164,76,0.15)), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* Generated arena artwork stays behind live text and controls. */
+.arena-menu-art {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.arena-menu-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.arena-menu-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #070c1252, #080d1230 40%, #080c12a6);
+}
+.arena-brand-logo {
+  display: block;
+  width: clamp(240px, 28vw, 370px);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 18px #0009);
+}
+.arena-library-screen {
+  background: linear-gradient(#0b1017e8, #0b1017d9), url('/ui/arena-menu-background.jpg') center / cover;
+}
+.arena-lobby-screen {
+  background: linear-gradient(#0b1017a6, #0b1017c9), url('/ui/arena-menu-background.jpg') center / cover;
+}
+.arena-news-panel {
+  background: linear-gradient(#10151be6, #10151bf2), url('/ui/arena-panel-texture.jpg') center / 320px;
+}
+@media (max-width: 639px) {
+  .arena-menu-art img { object-position: 48% center; }
+  .arena-brand-logo { width: 260px; }
 }

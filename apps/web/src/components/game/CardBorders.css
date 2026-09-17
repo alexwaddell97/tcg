@@ -1,0 +1,9 @@
+.ae-border { position:absolute; inset:0; width:100%; height:100%; overflow:visible; pointer-events:none; z-index:4; }
+.ae-border-jade { filter:drop-shadow(0 0 2px #68ffc24d); }
+.ae-border-arcane { filter:drop-shadow(0 0 3px #a172ff6b); }
+.ae-border-sunfire { filter:drop-shadow(0 0 3px #ffba556b); }
+.ae-border-eternal { filter:drop-shadow(0 0 3px #caa7ff8c); }
+.ae-border-shimmer { opacity:.8; stroke-dashoffset:260; }
+.ae-card-full .ae-border-shimmer, button:hover .ae-border-shimmer, button:focus-visible .ae-border-shimmer { animation:ae-border-orbit 8s linear infinite; }
+@keyframes ae-border-orbit { to { stroke-dashoffset:-1136; } }
+@media (prefers-reduced-motion:reduce) { .ae-border-shimmer { animation:none !important; } }

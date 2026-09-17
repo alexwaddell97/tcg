@@ -1,5 +1,5 @@
-import type { Card, Keyword } from '@tcg/shared'
-import { Sword } from '@phosphor-icons/react'
+import type { Card } from '@tcg/shared'
+import { getTriadValues } from '@tcg/shared'
 import { cn } from '../../lib/cn.ts'
 import { CardMedia } from './CardMedia.tsx'
 
@@ -10,45 +10,45 @@ const rarityBorderClass: Record<string, string> = {
   legendary: 'border-amber-400 card-legendary',
 }
 
-const KEYWORD_ICONS: Record<Keyword, string> = {
-  fleeting:   '💨',
-  elusive:    '👻',
-  overwhelm:  '🔥',
-  challenger: '⚔️',
-  resilient:  '🛡️',
-  commander:  '👑',
-  scorch:     '💀',
-}
-
 interface HandCardProps {
   card: Card
   isPlayable: boolean
+  isSelected?: boolean
   onInspect: () => void
 }
 
-export default function HandCard({ card, isPlayable, onInspect }: HandCardProps) {
-  const totalPower = card.power + (card.powerBonus ?? 0)
-  const hasPowerBonus = (card.powerBonus ?? 0) !== 0
+function FaceValue({ value, className }: { value: number; className: string }) {
+  return (
+    <span
+      className={cn(
+        'absolute z-30 min-w-6 h-6 px-1.5 rounded bg-black/80 border border-stone-700 text-[1.08rem] font-black tabular-nums text-amber-200 flex items-center justify-center pointer-events-none select-none',
+        className
+      )}
+    >
+      {value}
+    </span>
+  )
+}
 
-  let spellLabel = ''
-  if (card.type === 'spell' && card.spellEffect) {
-    const { type, value } = card.spellEffect
-    if (type === 'draw')        spellLabel = `DRAW ${value}`
-    if (type === 'power_boost') spellLabel = `+${value}`
-    if (type === 'power_drain') spellLabel = `-${value}`
-  }
-  const isSpellPower = card.type === 'spell' && card.spellEffect && card.spellEffect.type !== 'draw'
+export default function HandCard({ card, isPlayable, isSelected = false, onInspect, mobile }: HandCardProps & { mobile?: boolean }) {
+  const values = getTriadValues(card)
+
+  // Mobile: larger touch targets, clearer selection, much bigger face values
+  const base = 'relative rounded-xl border-2 overflow-hidden select-none transition-all duration-150 aspect-2/3 cursor-pointer bg-stone-950'
+  const mobileCard = mobile
+    ? 'w-full h-full max-w-[96px] max-h-[144px] min-w-[72px] min-h-[108px] text-[1.45rem]'
+    : 'w-full h-full text-[1.45rem]'
+  const selected = isSelected
+    ? 'ring-4 ring-amber-400/90 shadow-[0_0_20px_rgba(245,158,11,0.45)] -translate-y-1 scale-105 z-20'
+    : ''
+  const hoverable = isPlayable && !mobile ? 'hover:-translate-y-1 hover:shadow-xl hover:shadow-black/60' : ''
+  const opacity = isPlayable ? '' : 'opacity-55'
 
   return (
     <div
       onClick={onInspect}
-      className={cn(
-        'relative rounded-xl border-2 overflow-hidden select-none transition-all duration-150 aspect-2/3 cursor-pointer',
-        rarityBorderClass[card.rarity],
-        isPlayable
-          ? 'hover:scale-105 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/60'
-          : 'opacity-40'
-      )}
+      className={cn(base, rarityBorderClass[card.rarity], mobileCard, hoverable, opacity, selected)}
+      style={{ touchAction: 'manipulation' }}
     >
       {/* Holographic sheen for rare/legendary */}
       {(card.rarity === 'rare' || card.rarity === 'legendary') && (
@@ -56,7 +56,7 @@ export default function HandCard({ card, isPlayable, onInspect }: HandCardProps)
       )}
 
       {/* Background image / video */}
-      <div className="absolute inset-0 bg-stone-950 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center">
         {card.imageUrl
           ? <CardMedia card={card} className="w-full h-full object-cover" objectPosition="top" />
           : <span className="text-2xl opacity-20">{card.type === 'unit' ? '⚔️' : '✨'}</span>
@@ -65,9 +65,12 @@ export default function HandCard({ card, isPlayable, onInspect }: HandCardProps)
 
       {/* Gradient overlays */}
       <div className="absolute inset-0 pointer-events-none bg-linear-to-t from-black/80 via-transparent to-black/25" />
-      {card.type === 'spell' && (
-        <div className="absolute inset-0 pointer-events-none bg-violet-950/20" />
-      )}
+
+      {/* Triad face values (much bigger, always visible) */}
+      <FaceValue value={values.top} className={mobile ? 'left-1/2 top-2 -translate-x-1/2' : 'left-1/2 top-2 -translate-x-1/2'} />
+      <FaceValue value={values.right} className={mobile ? 'right-2 top-1/2 -translate-y-1/2' : 'right-2 top-1/2 -translate-y-1/2'} />
+      <FaceValue value={values.bottom} className={mobile ? 'left-1/2 bottom-2 -translate-x-1/2' : 'left-1/2 bottom-2 -translate-x-1/2'} />
+      <FaceValue value={values.left} className={mobile ? 'left-2 top-1/2 -translate-y-1/2' : 'left-2 top-1/2 -translate-y-1/2'} />
 
       {/* Transformed indicator */}
       {card.isTransformed && (
@@ -76,31 +79,7 @@ export default function HandCard({ card, isPlayable, onInspect }: HandCardProps)
         </div>
       )}
 
-      {/* Bottom info overlay */}
-      <div className="absolute bottom-0 inset-x-0 z-20 flex flex-col items-center pb-1 px-1 pointer-events-none">
-        {card.keywords.length > 0 && (
-          <div className="flex gap-0.5 mb-0.5">
-            {card.keywords.slice(0, 2).map((kw) => (
-              <span key={kw} className="text-[0.6rem] leading-none">{KEYWORD_ICONS[kw]}</span>
-            ))}
-          </div>
-        )}
-
-        {card.type === 'spell' && spellLabel ? (
-          <span className="inline-flex items-center gap-0.5 font-black text-[0.6rem] font-ui px-1 py-px rounded-xs border leading-tight text-violet-200 bg-violet-900/80 border-violet-700/50">
-            {isSpellPower && <Sword size={7} weight="fill" className="shrink-0" />}{spellLabel}
-          </span>
-        ) : card.type !== 'spell' ? (
-          <span className={cn(
-            'inline-flex items-center gap-0.5 font-black text-[0.6rem] font-ui px-1 py-px rounded-xs border shadow-sm leading-tight',
-            hasPowerBonus
-              ? 'bg-emerald-950/90 border-emerald-500/60 text-emerald-300'
-              : 'bg-stone-950/90 border-stone-600/60 text-amber-200'
-          )}>
-            <Sword size={7} weight="fill" className="shrink-0" />{totalPower}
-          </span>
-        ) : null}
-      </div>
+      {/* No name label for hand cards */}
     </div>
   )
 }

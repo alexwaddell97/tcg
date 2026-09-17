@@ -1,0 +1,16 @@
+.sound-library { min-height:100svh; padding:36px max(20px,calc((100vw - 980px)/2)); background:#101922; color:#d6e1e5; font-family:var(--font-ui,sans-serif); }
+.sound-library header { display:flex; justify-content:space-between; align-items:center; gap:20px; margin-bottom:28px; }
+.sound-library header small { font-size:10px; letter-spacing:.16em; color:#9daaad; }
+.sound-library h1 { font-size:28px; color:#edd6ae; margin-top:5px; }
+.sound-library a { color:#e2c99f; text-decoration:underline; text-underline-offset:3px; }
+.sound-library-guide { border:1px solid #b5986244; border-radius:10px; background:#1b2732; padding:22px; margin-bottom:24px; font-size:13px; line-height:1.8; }
+.sound-library h2 { font-size:15px; font-weight:600; margin-bottom:5px; }
+.sound-library ol { list-style:decimal; padding-left:20px; margin:10px 0; }
+.sound-library code { font-family:monospace; font-size:12px; overflow-wrap:anywhere; color:#bbcbd3; }
+.sound-library-guide p { color:#9eafb8; margin-bottom:10px; }
+.sound-library-list article { display:grid; grid-template-columns:1fr 300px; align-items:center; gap:24px; padding:20px 0; border-bottom:1px solid #99aab522; }
+.sound-library-list p,.sound-library-list span { font-size:12px; color:#95aab7; margin:5px 0 10px; }
+.sound-library-list a { display:block; font-size:12px; margin-bottom:8px; overflow-wrap:anywhere; }
+.sound-library audio { display:block; width:100%; height:38px; }
+.sound-library .sound-library-error { color:#f0b9a5; font-size:13px; }
+@media(max-width:640px) { .sound-library { padding:24px 18px; } .sound-library-list article { grid-template-columns:1fr; gap:12px; } }

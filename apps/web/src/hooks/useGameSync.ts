@@ -15,6 +15,7 @@ export function useGameSync() {
 
   const handleGameStart = useCallback(
     (state: GameState) => {
+      useGameStore.getState().reset()
       setStatus('found')
       setGameState(state)
       navigate('/game')
@@ -30,7 +31,7 @@ export function useGameSync() {
   )
 
   const handleGameOver = useCallback(
-    ({ winnerId }: { winnerId: string; reason: string }) => {
+    ({ winnerId }: { winnerId: string | null; reason: string }) => {
       setGameOver(winnerId)
     },
     [setGameOver]

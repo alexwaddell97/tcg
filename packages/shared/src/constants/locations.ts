@@ -4,11 +4,11 @@ export const LOCATION_DATABASE: LocationDefinition[] = [
   {
     definitionId: 'the_forge',
     name: 'The Forge',
-    description: 'Units played here cost 1 less energy.',
+    description: 'Units played here cost 1 less aether.',
     effect: {
       type: 'cost_reduction',
       value: 1,
-      description: 'Units played here cost 1 less energy.',
+      description: 'Units played here cost 1 less aether.',
     },
     theme: 'fire',
   },

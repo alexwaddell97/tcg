@@ -10,7 +10,10 @@ export function registerGameHandlers(io: IoServer, socket: IoSocket) {
   function withEngine(cb: (engine: InstanceType<typeof import('../game/GameEngine.js').GameEngine>) => void) {
     const roomId = socket.data.roomId ?? ''
     const engine = roomManager.getEngine(roomId)
-    if (!engine) return
+    if (!engine) {
+      socket.emit('game:action_result', { success: false, error: 'No active match. Return to the lobby to find an opponent.' })
+      return
+    }
     engine.onStateChange ??= () => {
       broadcastGameState(io, roomId, engine)
       checkGameOver(io, roomId, engine)
@@ -18,16 +21,27 @@ export function registerGameHandlers(io: IoServer, socket: IoSocket) {
     cb(engine)
   }
 
-  socket.on('game:place_card', ({ cardInstanceId, laneIndex, slotIndex }) => {
+  socket.on('game:place_card', ({ cardInstanceId, cellIndex, hexCoord }) => {
     withEngine((engine) => {
       const result = engine.processAction({
         type: 'place_card',
         playerId: socket.data.playerId,
         cardInstanceId,
-        laneIndex,
-        slotIndex,
+        cellIndex,
+        hexCoord,
         timestamp: Date.now(),
       })
+      socket.emit('game:action_result', { success: result.success, error: result.error })
+      if (result.success) {
+        broadcastGameState(io, socket.data.roomId!, engine)
+        checkGameOver(io, socket.data.roomId!, engine)
+      }
+    })
+  })
+
+  socket.on('game:commit_turn', (submission) => {
+    withEngine((engine) => {
+      const result = engine.processAction({ type: 'commit_turn', playerId: socket.data.playerId, submission, timestamp: Date.now() })
       socket.emit('game:action_result', { success: result.success, error: result.error })
       if (result.success) {
         broadcastGameState(io, socket.data.roomId!, engine)
@@ -68,11 +82,13 @@ export function registerGameHandlers(io: IoServer, socket: IoSocket) {
 
   socket.on('game:surrender', () => {
     withEngine((engine) => {
-      engine.processAction({
+      const result = engine.processAction({
         type: 'surrender',
         playerId: socket.data.playerId,
         timestamp: Date.now(),
       })
+      socket.emit('game:action_result', { success: result.success, error: result.error })
+      if (!result.success) return
       broadcastGameState(io, socket.data.roomId!, engine)
       checkGameOver(io, socket.data.roomId!, engine)
     })
@@ -90,6 +106,7 @@ export function registerGameHandlers(io: IoServer, socket: IoSocket) {
     if (!roomId) return
     const engine = roomManager.getEngine(roomId)
     if (!engine) return
+    if (engine.isGameOver().over) return
 
     // Notify the opponent immediately
     io.to(roomId).emit('game:player_disconnected', socket.data.playerId)
@@ -124,9 +141,9 @@ function checkGameOver(
   engine: InstanceType<typeof import('../game/GameEngine.js').GameEngine>
 ) {
   const result = engine.isGameOver()
-  if (result.over && result.winnerId) {
+  if (result.over) {
     io.to(roomId).emit('game:over', {
-      winnerId: result.winnerId,
+      winnerId: result.winnerId ?? null,
       reason: result.reason ?? 'unknown',
     })
     roomManager.endGame(roomId)

@@ -1,238 +1,133 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import {
-  ArrowLeft, CircleNotch, CardsThree, Check, MapPin, Sword,
-} from '@phosphor-icons/react'
+import { getDeckCardVariants } from '../stores/useCollectionStore.ts'
+import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { ARENA_ARCHETYPE_DECKS, ARENA_CARD_DATABASE, ARENA_DECK_SIZE, ARENA_STARTER_DECK, getArenaDeckError } from '@tcg/shared'
 import { useMatchmakingStore } from '../stores/useLobbyStore.ts'
 import { useAuthStore } from '../stores/useAuthStore.ts'
-import { useDeckStore, deckCardCount, type SavedDeck } from '../stores/useDeckStore.ts'
-import { LOCATION_DATABASE, DECK_SIZE } from '@tcg/shared'
-import { connectSocket, getSocket } from '../lib/socket.ts'
-import { cn } from '../lib/cn.ts'
+import { useDeckStore } from '../stores/useDeckStore.ts'
+import { connectSocket, getSocket, hasMultiplayerServer } from '../lib/socket.ts'
+import { UI_ASSETS } from '../lib/uiAssets.ts'
+import ArenaFrame from '../components/ui/ArenaFrame.tsx'
+import { getDeckCardBorders } from '../stores/useCardMasteryStore.ts'
+import ArenaCardFace from '../components/game/ArenaCardFace.tsx'
+import MusicControls from '../components/audio/MusicControls.tsx'
 
-// ─── Deck card ────────────────────────────────────────────────────────────────
-
-function DeckOption({ deck, selected, onSelect }: { deck: SavedDeck; selected: boolean; onSelect: () => void }) {
-  const total = deckCardCount(deck.cards)
-  const ready = total >= DECK_SIZE
-  const locations = deck.locationIds
-    .map(id => LOCATION_DATABASE.find(l => l.definitionId === id)?.name)
-    .filter(Boolean)
-
-  return (
-    <button
-      onClick={onSelect}
-      className={cn(
-        'w-full text-left rounded-xl border px-4 py-3.5 transition-all duration-150 flex items-start gap-3',
-        selected
-          ? 'bg-amber-950/40 border-amber-600/60 shadow-[0_0_12px_rgba(245,158,11,0.12)]'
-          : 'bg-stone-900/40 border-stone-800/60 hover:border-stone-600/60 hover:bg-stone-900/70',
-      )}
-    >
-      {/* Checkbox */}
-      <div className={cn(
-        'mt-0.5 w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors',
-        selected ? 'border-amber-400 bg-amber-400' : 'border-stone-600',
-      )}>
-        {selected && <Check size={9} weight="bold" className="text-stone-950" />}
-      </div>
-
-      <div className="flex-1 min-w-0">
-        <p className={cn('text-sm font-semibold truncate', selected ? 'text-amber-200' : 'text-stone-200')}>
-          {deck.name}
-        </p>
-        {locations.length > 0 && (
-          <div className="flex items-center gap-1 mt-1">
-            <MapPin size={10} className="text-stone-500 shrink-0" />
-            <p className="text-[10px] text-stone-500 truncate">{locations.join(' · ')}</p>
-          </div>
-        )}
-      </div>
-
-      <div className={cn('shrink-0 text-right', ready ? 'text-emerald-400' : 'text-stone-600')}>
-        <p className="text-xs font-bold tabular-nums">{total}/{DECK_SIZE}</p>
-        <p className="text-[9px] mt-0.5">{ready ? 'ready' : 'incomplete'}</p>
-      </div>
-    </button>
-  )
+type DeckChoice = { id: string; name: string; description: string; cards: string[]; savedId?: string; cover?: string }
+const STARTER_DETAILS: Record<string, { description: string; cover: string }> = {
+  transmutation: { description: 'Swap cost and power. Turn humble units into heavy hitters.', cover: 'paradox_regent' },
+  sabotage: { description: 'Send unwanted gifts across the board and crowd out your opponent.', cover: 'ashen_envoy' },
+  affliction: { description: 'Wear down enemy power, then feed on their weakness.', cover: 'famine_sovereign' },
+  conduits: { description: 'Copy, channel and multiply power for a decisive finish.', cover: 'prism_titan' },
+  formation: { description: 'Connect neighbours and hold the ends of your formation.', cover: 'banner_heir' },
+  wayfarers: { description: 'Move units between arenas to unlock their power.', cover: 'horizon_rider' },
+  invocation: { description: 'Use utility spells to fuel your units and relics.', cover: 'archmage' },
+  stewardship: { description: 'Build around relics, then reclaim them when space matters.', cover: 'master_forger' },
 }
-
-// ─── Main page ────────────────────────────────────────────────────────────────
+const STARTERS: DeckChoice[] = [
+  { id: 'starter:balanced', name: 'Arena Starter', description: 'A balanced introduction to leads, comebacks and arena control.', cards: ARENA_STARTER_DECK, cover: 'the_unbroken' },
+  ...ARENA_ARCHETYPE_DECKS.map(deck => ({ ...deck, ...STARTER_DETAILS[deck.id], id: `starter:${deck.id}` })),
+]
+const getCards = (deck: DeckChoice) => deck.cards.flatMap(id => ARENA_CARD_DATABASE.find(card => card.definitionId === id) ?? [])
+const getCover = (deck: DeckChoice) => ARENA_CARD_DATABASE.find(card => card.definitionId === deck.cover)
+  ?? getCards(deck).filter(card => card.type === 'unit').sort((a, b) => b.cost - a.cost)[0]
 
 export default function Lobby() {
   const navigate = useNavigate()
-  const { status, queueSize, setStatus } = useMatchmakingStore()
-  const { displayName, avatarEmoji, rank } = useAuthStore()
-  const { decks, activeDeckId } = useDeckStore()
+  const { status, setStatus } = useMatchmakingStore()
+  const { displayName, avatarId, titleId, rank } = useAuthStore()
+  const { decks, activeDeckId, createDeck, saveDeck, setActiveDeck } = useDeckStore()
+  const [selectedId, setSelectedId] = useState(activeDeckId ? `saved:${activeDeckId}` : STARTERS[0].id)
+  const [query, setQuery] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const saved: DeckChoice[] = decks.map(deck => ({ id: `saved:${deck.id}`, savedId: deck.id, name: deck.name,
+    description: 'Your custom deck', cards: Object.entries(deck.cards).flatMap(([id, count]) => Array<string>(count).fill(id)) }))
+  const selected = [...saved, ...STARTERS].find(deck => deck.id === selectedId) ?? STARTERS[0]
+  const deckError = getArenaDeckError(selected.cards)
+  const selectedCards = getCards(selected).sort((a, b) => a.cost - b.cost || a.name.localeCompare(b.name))
+  const cover = getCover(selected)
+  const previewCards = [cover, ...selectedCards.filter(card => card.type === 'unit' && card.definitionId !== cover?.definitionId)].filter(card => Boolean(card)).slice(0, 3)
+  const matches = (deck: DeckChoice) => `${deck.name} ${deck.description} ${getCards(deck).map(card => card.name).join(' ')}`.toLowerCase().includes(query.trim().toLowerCase())
+  const visibleSaved = saved.filter(matches), visibleStarters = STARTERS.filter(matches)
+  const searching = status === 'searching' || status === 'found'
 
-  const [selectedDeckId, setSelectedDeckId] = useState<string | null>(activeDeckId)
+  useEffect(() => {
+    setStatus('idle')
+    const socket = getSocket()
+    const rejected = ({ message }: { message: string }) => { setError(message); setStatus('idle') }
+    const disconnected = () => { setError('Could not connect to matchmaking. Try again, or play a practice match.'); setStatus('idle') }
+    socket.on('matchmaking:error', rejected)
+    socket.on('connect_error', disconnected)
+    return () => { socket.off('matchmaking:error', rejected); socket.off('connect_error', disconnected) }
+  }, [setStatus])
 
-  // Reset the matchmaking state each time we land on the lobby page
-  // (status can be 'found' / 'searching' left over from a previous session)
-  useEffect(() => { setStatus('idle') }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-  const selectedDeck = decks.find(d => d.id === selectedDeckId) ?? null
-  const deckReady = selectedDeck !== null && deckCardCount(selectedDeck.cards) >= DECK_SIZE
-
-  const handleSearch = () => {
-    connectSocket()
-    setStatus('searching')
-    const deckDefinitionIds = selectedDeck
-      ? Object.entries(selectedDeck.cards).flatMap(([defId, count]) => Array<string>(count).fill(defId))
-      : undefined
-
-    getSocket().emit('matchmaking:join', {
-      displayName,
-      avatarEmoji,
-      rank,
-      deckId: selectedDeckId ?? undefined,
-      deckDefinitionIds,
-    })
+  const search = () => {
+    if (deckError || searching) return
+    if (!hasMultiplayerServer) { setError('Multiplayer is unavailable in this preview build. You can still play a practice match.'); return }
+    setError(null); setStatus('searching')
+    connectSocket().emit('matchmaking:join', { displayName: displayName || 'Player', avatarId, titleId, rank,
+      deckId: selected.savedId, deckDefinitionIds: selected.cards, cardBorders: getDeckCardBorders(selected.cards), cardVariants: getDeckCardVariants(selected.cards) })
+  }
+  const cancel = () => { getSocket().emit('matchmaking:leave'); setStatus('idle') }
+  const editSelected = () => {
+    if (selected.savedId) setActiveDeck(selected.savedId)
+    else {
+      const id = createDeck()
+      saveDeck(id, { name: selected.name, cards: Object.fromEntries(selected.cards.map(cardId => [cardId, 1])) })
+    }
+    navigate('/deck-builder')
+  }
+  const deckTile = (deck: DeckChoice) => {
+    const problem = getArenaDeckError(deck.cards), art = getCover(deck)
+    return <button key={deck.id} className="ae-lobby-deck" aria-pressed={selected.id === deck.id}
+      aria-label={`Select ${deck.name}${deck.savedId ? ', saved deck' : ', starter deck'}`}
+      disabled={searching} onClick={() => { setSelectedId(deck.id); setError(null) }}>
+      <span className="ae-lobby-deck-art">{art ? <img src={art.imageUrl} alt="" loading="lazy" /> : <span aria-hidden="true">◇</span>}</span>
+      <span className="ae-lobby-deck-copy"><strong>{deck.name}</strong><span>{deck.description}</span>
+        <small className={problem ? 'needs-update' : ''}>{problem ? `${deck.cards.length} / ${ARENA_DECK_SIZE} cards · Needs editing` : `${ARENA_DECK_SIZE} cards · Ready to play`}</small></span>
+      <span className="ae-lobby-deck-check" aria-hidden="true">{selected.id === deck.id ? '✓' : ''}</span>
+    </button>
   }
 
-  const handleCancel = () => {
-    getSocket().emit('matchmaking:leave')
-    navigate('/')
-  }
-
-  // ── Searching / found view ────────────────────────────────────────────────
-
-  if (status === 'searching' || status === 'found') {
-    return (
-      <div
-        className="min-h-screen flex flex-col items-center justify-center p-4"
-        style={{ background: 'radial-gradient(ellipse at center, #1a1008 0%, #0d0906 70%)' }}
-      >
-        <div className="max-w-sm w-full flex flex-col gap-8 items-center text-center">
-          <div className="flex flex-col items-center gap-2">
-            <h1 className="text-3xl font-bold text-amber-100">Finding Match</h1>
-            <p className="text-stone-400">
-              Playing as <span className="text-amber-400">{displayName}</span>
-              {selectedDeck && (
-                <> · <span className="text-stone-400">{selectedDeck.name}</span></>
-              )}
-            </p>
+  return <main className="ae-page ae-lobby-screen">
+    <div className="ae-lobby-shell">
+      <header className="ae-lobby-header">
+        <Link to="/" onClick={() => { if (searching) cancel() }} aria-label="Main menu"><img src={UI_ASSETS.logo} alt="Arena Eternal" /></Link>
+        <div><p className="ae-eyebrow">Choose your strategy</p><h1>Enter the Arena</h1><p>Six turns. Three arenas. Make every card count.</p></div>
+        <MusicControls compact/><Link to="/" onClick={() => { if (searching) cancel() }}>← Main menu</Link>
+      </header>
+      <div className="ae-lobby-layout">
+        <section className="ae-panel ae-lobby-library" aria-label="Deck library">
+          <div className="ae-lobby-library-header"><h2>Choose your deck</h2><Link to="/deck-builder" onClick={() => { if (searching) cancel() }}>Deck Builder →</Link></div>
+          <input className="ae-input ae-lobby-search" aria-label="Search decks" placeholder="Search decks or cards…" value={query} onChange={event => setQuery(event.target.value)} />
+          <section className="ae-lobby-deck-section" aria-labelledby="saved-decks-heading">
+            <div className="ae-lobby-section-heading"><h3 id="saved-decks-heading">Your decks</h3><span>{saved.length}</span></div>
+            <div className="ae-lobby-deck-grid">{visibleSaved.map(deckTile)}</div>
+            {!saved.length && <p className="ae-lobby-empty">Your saved decks will appear here. Pick a starter below to jump into a match.</p>}
+            {saved.length > 0 && !visibleSaved.length && <p className="ae-lobby-empty">No saved decks match your search.</p>}
+          </section>
+          <section className="ae-lobby-deck-section" aria-labelledby="starter-decks-heading">
+            <div className="ae-lobby-section-heading"><h3 id="starter-decks-heading">Starter decks</h3><span>{STARTERS.length}</span></div>
+            <p className="ae-lobby-section-note">Ready to play. Choose one and make it your own.</p>
+            <div className="ae-lobby-deck-grid">{visibleStarters.map(deckTile)}</div>
+            {!visibleStarters.length && <p className="ae-lobby-empty">No starter decks match your search.</p>}
+          </section>
+        </section>
+        <aside className="ae-panel ae-lobby-selection" aria-label="Selected deck"><ArenaFrame ornate />
+          <p className="ae-eyebrow">{selected.savedId ? 'Your deck' : 'Starter deck'}</p>
+          <h2>{selected.name}</h2><p className="ae-lobby-description">{selected.description}</p>
+          <div className="ae-lobby-preview" aria-hidden="true">{previewCards.map(card => card && <div key={card.definitionId}><ArenaCardFace card={card} variant="hand" /></div>)}</div>
+          <details className="ae-lobby-card-list" key={selected.id}><summary>View deck <span>{selected.cards.length} cards</span></summary><ul>{selectedCards.map((card, index) => <li key={`${card.definitionId}-${index}`}><span>{card.cost}</span>{card.name}</li>)}</ul></details>
+          {deckError && <p className="ae-lobby-problem" role="status">{deckError} Edit this deck or choose a starter.</p>}
+          <div className="ae-lobby-launch" aria-live="polite">
+            <p className="ae-lobby-launch-name">{selected.name}</p>
+            {searching ? <><div className="ae-lobby-searching"><span className="ae-lobby-spinner" aria-hidden="true" /><p>{status === 'found' ? 'Match found. Entering the arena…' : `Finding an opponent for ${selected.name}…`}</p></div><button className="ae-button" onClick={cancel}>Cancel search</button></>
+              : <><button className="ae-button ae-button-primary" disabled={Boolean(deckError)} onClick={search}>Find a match</button>
+                <button className="ae-button" disabled={Boolean(deckError)} onClick={() => navigate('/practice', { state: { deckDefinitionIds: selected.cards } })}>Practice with this deck</button>
+                <button className="ae-lobby-edit" onClick={editSelected}>{selected.savedId ? 'Edit deck' : 'Customize starter deck'} →</button></>}
+            {error && <p className="ae-lobby-problem" role="alert">{error}</p>}
           </div>
-
-          {status === 'searching' && (
-            <div className="flex flex-col items-center gap-4">
-              <CircleNotch className="w-12 h-12 text-amber-400 animate-spin" weight="bold" />
-              <p className="text-stone-300 text-lg">Searching for opponent…</p>
-              {queueSize > 0 && (
-                <p className="text-stone-500 text-sm">
-                  {queueSize} player{queueSize !== 1 ? 's' : ''} in queue
-                </p>
-              )}
-            </div>
-          )}
-
-          {status === 'found' && (
-            <div className="flex flex-col items-center gap-4">
-              <p className="text-emerald-400 text-xl font-semibold">Match found!</p>
-              <p className="text-stone-400">Starting game…</p>
-            </div>
-          )}
-
-          {status === 'searching' && (
-            <button
-              onClick={handleCancel}
-              className="flex items-center gap-2 text-stone-500 hover:text-stone-200 text-sm transition-colors border border-stone-800 hover:border-stone-600 rounded-lg px-4 py-2"
-            >
-              Cancel
-            </button>
-          )}
-        </div>
-      </div>
-    )
-  }
-
-  // ── Deck picker view (idle) ───────────────────────────────────────────────
-
-  return (
-    <div
-      className="min-h-screen flex flex-col items-center justify-center p-4"
-      style={{ background: 'radial-gradient(ellipse at center, #1a1008 0%, #0d0906 70%)' }}
-    >
-      <div className="w-full max-w-md flex flex-col gap-6">
-
-        {/* Header */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => navigate('/')}
-            className="p-1.5 rounded-lg text-stone-500 hover:text-stone-200 hover:bg-stone-900 transition-colors"
-          >
-            <ArrowLeft size={16} weight="bold" />
-          </button>
-          <Sword size={16} weight="duotone" className="text-amber-500/70" />
-          <h1 className="text-xl font-bold text-amber-100">Find a Match</h1>
-        </div>
-
-        {/* Deck selector */}
-        <div className="flex flex-col gap-2">
-          <div className="flex items-center justify-between">
-            <p className="text-stone-400 text-xs uppercase tracking-widest font-semibold">Choose Your Deck</p>
-            <button
-              onClick={() => navigate('/deck-builder')}
-              className="text-[10px] text-stone-500 hover:text-amber-400 transition-colors flex items-center gap-1"
-            >
-              <CardsThree size={11} />
-              Manage decks
-            </button>
-          </div>
-
-          {decks.length === 0 ? (
-            <div className="rounded-xl border border-dashed border-stone-700/60 px-5 py-8 text-center flex flex-col items-center gap-3">
-              <CardsThree size={36} weight="duotone" className="text-stone-700" />
-              <p className="text-stone-500 text-sm">You don't have any decks yet.</p>
-              <button
-                onClick={() => navigate('/deck-builder')}
-                className="text-xs text-amber-400 hover:text-amber-300 border border-amber-800/50 hover:border-amber-600/50 rounded-lg px-4 py-2 transition-colors"
-              >
-                Build a deck
-              </button>
-            </div>
-          ) : (
-            <div className="flex flex-col gap-2 max-h-72 overflow-y-auto pr-px">
-              {decks.map(deck => (
-                <DeckOption
-                  key={deck.id}
-                  deck={deck}
-                  selected={selectedDeckId === deck.id}
-                  onSelect={() => setSelectedDeckId(deck.id)}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Info row */}
-        {decks.length > 0 && selectedDeck && !deckReady && (
-          <div className="-mt-2 flex items-center gap-2 rounded-lg border border-red-900/60 bg-red-950/30 px-3 py-2.5">
-            <span className="text-red-400 text-sm shrink-0">⚠</span>
-            <p className="text-red-400/90 text-xs leading-snug">
-              This deck only has <span className="font-bold">{deckCardCount(selectedDeck.cards)}/{DECK_SIZE}</span> cards.
-              {' '}Add {DECK_SIZE - deckCardCount(selectedDeck.cards)} more to queue.
-            </p>
-          </div>
-        )}
-
-        {/* Find Match button */}
-        <button
-          onClick={handleSearch}
-          disabled={!deckReady}
-          className={cn(
-            'w-full py-3 rounded-xl font-bold text-sm transition-all duration-150 flex items-center justify-center gap-2',
-            deckReady
-              ? 'bg-amber-600 hover:bg-amber-500 text-stone-950 shadow-lg shadow-amber-900/40'
-              : 'bg-stone-800 text-stone-600 cursor-not-allowed',
-          )}
-        >
-          <Sword size={15} weight="bold" />
-          {selectedDeck ? `Queue with "${selectedDeck.name}"` : 'Find Match (any deck)'}
-        </button>
-
+        </aside>
       </div>
     </div>
-  )
+  </main>
 }
-

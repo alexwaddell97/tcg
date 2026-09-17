@@ -1,0 +1,30 @@
+.clash-location { isolation:isolate; }
+.clash-atmosphere { position:absolute; inset:-10px -12px; z-index:-1; pointer-events:none; color:#8c95ac; transition:opacity .4s; }
+.clash-atmosphere.atmosphere-forge { color:#eeaa66; --atmosphere-glow:#bc571332; }
+.clash-atmosphere.atmosphere-sanctum { color:#adb1f4; --atmosphere-glow:#655fa334; }
+.clash-atmosphere.atmosphere-summit { color:#bae0ed; --atmosphere-glow:#4f9baa2b; }
+.clash-atmosphere.atmosphere-chainbridge { color:#cbbb93; --atmosphere-glow:#9b835b26; }
+.clash-atmosphere.atmosphere-leyline_nexus { color:#93d9f5; --atmosphere-glow:#4f9bce2b; }
+.clash-atmosphere.atmosphere-ashen_orchard { color:#eb9b78; --atmosphere-glow:#b54b312a; }
+.clash-atmosphere.atmosphere-bellmarsh { color:#a0d0be; --atmosphere-glow:#589b8b25; }
+.clash-atmosphere.atmosphere-mirror_reservoir { color:#c4b8ed; --atmosphere-glow:#8763b52b; }
+.clash-atmosphere.atmosphere-gilded_exchange { color:#e6b470; --atmosphere-glow:#ad76352a; }
+.clash-atmosphere-haze { position:absolute; inset:2% -7%; border-radius:50%; background:radial-gradient(ellipse at center,var(--atmosphere-glow,transparent),transparent 70%); }
+.clash-atmosphere-particles { position:absolute; inset:0; overflow:hidden; }
+.clash-atmosphere-particles i { position:absolute; width:2px; height:3px; left:var(--mote-x); top:85%; background:currentColor; border-radius:50%; opacity:0; box-shadow:0 0 5px currentColor; animation:clash-ember-rise var(--mote-duration) var(--mote-delay) linear infinite; }
+.atmosphere-forge .clash-atmosphere-particles i:nth-child(3n) { height:5px; width:1px; }
+.atmosphere-summit .clash-atmosphere-particles i { top:5%; width:2px; height:2px; box-shadow:none; animation-name:clash-snow-drift; }
+.atmosphere-sanctum .clash-atmosphere-particles i { top:70%; width:3px; height:3px; animation-name:clash-aether-float; }
+.clash-atmosphere.is-paused * { animation-play-state:paused; }
+.clash-screen.is-revealing .clash-atmosphere,.clash-screen.is-finale .clash-atmosphere { opacity:.45; }
+.clash-site-score.control-gained { filter:drop-shadow(0 0 9px #c1ffe499); }
+.clash-site-score.their-score.control-gained { filter:drop-shadow(0 0 9px #ffca9899); }
+@keyframes clash-ember-rise { 0% { opacity:0; transform:translate3d(0,0,0) scale(.6); } 20% { opacity:.55; } 75% { opacity:.24; } 100% { opacity:0; transform:translate3d(var(--mote-drift),-160px,0) scale(.25); } }
+@keyframes clash-snow-drift { 0% { opacity:0; transform:translate3d(-12px,0,0); } 18%,72% { opacity:.45; } 100% { opacity:0; transform:translate3d(var(--mote-drift),200px,0); } }
+@keyframes clash-aether-float { 0% { opacity:0; transform:translate3d(0,25px,0) scale(.5); } 25% { opacity:.6; transform:translate3d(var(--mote-drift),-20px,0); } 65% { opacity:.25; } 100% { opacity:0; transform:translate3d(0,-130px,0) scale(.4); } }
+@media (max-width:480px) { .clash-atmosphere { inset:-7px -6px; } .clash-atmosphere-particles i:nth-child(n+6) { display:none; } }
+@media (prefers-reduced-motion:reduce) {
+  .clash-atmosphere * { animation:none !important; }
+  .clash-atmosphere-particles { display:none; }
+  .clash-atmosphere { transition:none; }
+}

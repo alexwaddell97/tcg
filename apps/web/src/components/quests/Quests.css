@@ -1,0 +1,48 @@
+.ae-quests-page { width:100%; max-width:1000px; margin:0 auto; padding:26px 24px 48px; color:#dce5e7; font-family:var(--ae-font-ui); }
+.ae-quests-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px; }
+.ae-quests-heading h2,.ae-quests-heading h3 { font-family:var(--ae-font-ui); font-size:18px; font-weight:600; color:#e7e0cf; }
+.ae-quests-heading > span { font-size:11px; color:#99b0ba; text-align:right; }
+.ae-gameplay-quests { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; width:100%; margin:0; padding:0; list-style:none; }
+.ae-gameplay-quest { display:flex; align-items:center; gap:12px; min-width:0; min-height:80px; padding:14px; border:1px solid #7899ab3d; border-radius:7px; background:linear-gradient(120deg,#182c37ed,#0d1b26ee); }
+.ae-quest-symbol { width:26px; height:26px; flex:none; color:#88c0d0; }
+.ae-quest-objective { flex:1; min-width:0; }
+.ae-quest-objective > div { display:flex; align-items:baseline; justify-content:space-between; gap:8px; }
+.ae-quest-objective span { font-size:12px; line-height:1.5; color:#dee6e5; }
+.ae-quest-objective small { font-size:10px; color:#8fa8b6; white-space:nowrap; }
+.ae-quest-objective progress { display:block; width:100%; height:3px; margin-top:9px; border:0; appearance:none; border-radius:3px; overflow:hidden; background:#819baa22; }
+.ae-quest-objective progress::-webkit-progress-bar { background:#819baa22; }
+.ae-quest-objective progress::-webkit-progress-value { background:#92c3cc; }
+.ae-quest-objective progress::-moz-progress-bar { background:#92c3cc; }
+.ae-quest-payout { display:flex; flex-direction:column; align-items:end; gap:4px; flex:none; color:#b7d8ef; font-size:11px; white-space:nowrap; }
+.ae-quest-payout small { display:flex; align-items:center; gap:3px; font-size:9px; color:#8bc8ad; }
+.ae-gameplay-quest.is-complete { border-color:#6b9b8055; background:#122921a6; }
+.ae-gameplay-quest.is-complete .ae-quest-symbol { color:#8bc8ad; }
+.ae-season-quests { margin-top:28px; }
+.ae-quests-page > .ae-season-quests:first-child { margin-top:0; }
+.ae-quests-page > section:not(:first-child) { margin-top:28px; }
+.ae-quests-season-label { margin-bottom:4px; color:#c5a5ef; font-size:10px; }
+.ae-season-quests .ae-quests-heading h2 { color:#e3d5fa; }
+.ae-season-quests .ae-quests-heading > span { color:#b5a6c9; }
+.is-season .ae-gameplay-quest { border-color:#ac86dd66; background:linear-gradient(120deg,#302343f5,#1b1930f5); box-shadow:inset 2px 0 #b18bdb; }
+.is-season .ae-quest-payout { color:#ddc4ff; }
+.is-season .ae-quest-symbol { color:#c6a3ef; }
+.is-season .ae-quest-objective small { color:#b7a7cc; }
+.is-season .ae-quest-objective progress { background:#bd9add26; }
+.is-season .ae-quest-objective progress::-webkit-progress-bar { background:#bd9add26; }
+.is-season .ae-quest-objective progress::-webkit-progress-value { background:#c6a3ef; }
+.is-season .ae-quest-objective progress::-moz-progress-bar { background:#c6a3ef; }
+.is-season .ae-gameplay-quest.is-complete { border-color:#b797dd88; background:linear-gradient(120deg,#35294af5,#241e38f5); }
+.ae-quests-note { font-size:11px; line-height:1.6; color:#9eb2bd; margin-top:12px; }
+.ae-quests-link { display:inline-flex; gap:6px; margin-top:14px; color:#e2c890; font-size:12px; }
+.ae-sheet .ae-gameplay-quests { grid-template-columns:1fr; }
+.ae-match-quest-reward { color:#d7c49b; font-size:12px; text-align:center; margin:12px auto; }
+@media(max-width:700px) {
+ .ae-quests-page { padding:22px 14px 36px; }
+ .ae-gameplay-quests { grid-template-columns:1fr; gap:8px; }
+ .ae-quests-heading { align-items:start; }
+ .ae-quests-heading h2,.ae-quests-heading h3 { font-size:16px; }
+ .ae-quests-heading > span { font-size:10px; max-width:150px; line-height:1.6; }
+ .ae-gameplay-quest { padding:12px; gap:10px; min-height:72px; }
+ .ae-quest-objective span { font-size:11px; }
+ .ae-quest-symbol { width:23px; height:23px; }
+}

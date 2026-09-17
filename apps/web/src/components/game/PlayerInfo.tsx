@@ -1,5 +1,7 @@
 import { Crown, Books } from '@phosphor-icons/react'
 import type { PlayerState } from '@tcg/shared'
+import { getProfileTitle, sanitizePlayerCosmetics } from '@tcg/shared'
+import ProfileAvatar from '../ui/ProfileAvatar.tsx'
 
 const RANK_STYLES: Record<string, string> = {
   Initiate:   'text-stone-400  border-stone-600',
@@ -23,7 +25,7 @@ export default function PlayerInfo({ player, isOpponent = false, hasPendingPlay 
     <div className="flex items-center gap-3 px-3 py-2 rounded-xl bg-stone-900/70 border border-stone-700/50">
       {/* Avatar */}
       <div className="shrink-0 w-9 h-9 rounded-full bg-stone-800 border border-stone-600/60 flex items-center justify-center text-lg select-none">
-        {player.avatarEmoji}
+        <ProfileAvatar avatarId={sanitizePlayerCosmetics(player).avatarId} label={`${player.displayName}'s avatar`}/>
       </div>
 
       {/* Name + rank */}
@@ -40,7 +42,7 @@ export default function PlayerInfo({ player, isOpponent = false, hasPendingPlay 
           )}
         </div>
         <span className={`text-[10px] uppercase tracking-widest font-semibold border rounded-full px-1.5 py-px w-fit ${rankStyle}`}>
-          {player.rank}
+          {getProfileTitle(player.titleId)?.name ?? player.rank}
         </span>
       </div>
 

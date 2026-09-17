@@ -14,7 +14,7 @@ interface GameStoreState {
   setHand: (hand: Card[]) => void
   selectCard: (cardInstanceId: string | null) => void
   setDragging: (dragging: boolean) => void
-  setGameOver: (winnerId: string) => void
+  setGameOver: (winnerId: string | null) => void
   setCommendedBy: (name: string) => void
   reset: () => void
 }

@@ -1,0 +1,6496 @@
+{
+  "totals": {
+    "base": 140,
+    "variants": 31
+  },
+  "cards": [
+    {
+      "definitionId": "aether_battery",
+      "name": "Aether Battery",
+      "type": "relic",
+      "cost": 1,
+      "power": 0,
+      "rarity": "rare",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Relics",
+      "arenaAbility": {
+        "type": "aether_battery",
+        "value": 0
+      },
+      "arenaArchetypes": [
+        "stewardship",
+        "conduits"
+      ],
+      "imageUrl": "./cards/relics/aether_battery-v1.jpg",
+      "description": "After each turn, store your unspent aether. When you next reveal an adjacent friendly unit, spend all stored aether to give it that much power before its ability.",
+      "abilities": [
+        {
+          "type": "aether_battery",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "blight_acolyte",
+      "name": "Blight Acolyte",
+      "cost": 1,
+      "power": 1,
+      "rarity": "common",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "imageUrl": "./cards/shattered-pacts/blight_acolyte.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "drain",
+        "value": 2,
+        "target": "weakest"
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: the weakest unwarded enemy unit here loses 2 power.",
+      "abilities": [
+        {
+          "type": "drain",
+          "value": 2,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "break_standard",
+      "name": "Break Standard",
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "formation",
+        "stewardship"
+      ],
+      "arenaAbility": {
+        "type": "dispel",
+        "value": 0
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: destroy the cheapest enemy relic here. Ties favour the earlier position.",
+      "imageUrl": "./cards/foundations/break_standard.webp",
+      "abilities": [
+        {
+          "type": "dispel",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "candle_tender",
+      "name": "Candle Tender",
+      "cost": 1,
+      "power": 2,
+      "rarity": "common",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [],
+      "imageUrl": "./cards/shattered-pacts/candle_tender.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "boost",
+        "value": 1,
+        "target": "weakest"
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: give your weakest other unit here +1 power.",
+      "abilities": [
+        {
+          "type": "boost",
+          "value": 1,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "chain_anchor",
+      "name": "Chain Anchor",
+      "type": "relic",
+      "cost": 1,
+      "power": 0,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "formation",
+        "stewardship"
+      ],
+      "arenaAbility": {
+        "type": "adjacent_aura",
+        "value": 1
+      },
+      "arenaEffects": [],
+      "description": "Ongoing: adjacent friendly units have +1 power.",
+      "imageUrl": "./cards/foundations/chain_anchor.webp",
+      "abilities": [
+        {
+          "type": "adjacent_aura",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "chalk_apprentice",
+      "name": "Chalk Apprentice",
+      "cost": 1,
+      "power": 2,
+      "rarity": "common",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_forge"
+      ],
+      "imageUrl": "./cards/shattered-pacts/chalk_apprentice.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "transmute_draw",
+        "value": 1
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Transmute the next eligible unit you draw: swap cost and power (cost 0–6; once per card).",
+      "abilities": [
+        {
+          "type": "transmute_draw",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "cinder_script",
+      "name": "Cinder Script",
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "invocation",
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "drain",
+        "value": 1
+      },
+      "arenaEffects": [
+        {
+          "type": "boost",
+          "value": 1,
+          "target": "weakest"
+        }
+      ],
+      "description": "On Reveal: the strongest unwarded enemy unit here loses 1 power. On Reveal: give your weakest other unit here +1 power.",
+      "imageUrl": "./cards/foundations/cinder_script.webp",
+      "abilities": [
+        {
+          "type": "drain",
+          "value": 1
+        },
+        {
+          "type": "boost",
+          "value": 1,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "cleansing_flame",
+      "name": "Cleansing Flame",
+      "cost": 1,
+      "power": 0,
+      "rarity": "common",
+      "type": "spell",
+      "keywords": [],
+      "affinity": [
+        "the_forge"
+      ],
+      "imageUrl": "./cards/shattered-pacts/cleansing_flame.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "conduits",
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "purge",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "cleanse",
+          "value": 0,
+          "target": "weakest"
+        }
+      ],
+      "description": "On Reveal: Purge all generated units on your side here. On Reveal: Cleanse your weakest afflicted unit here: remove applied power reductions and Wither, preserving buffs and printed negative power.",
+      "abilities": [
+        {
+          "type": "purge",
+          "value": 0
+        },
+        {
+          "type": "cleanse",
+          "value": 0,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "exile_ritual",
+      "name": "Exile Ritual",
+      "cost": 1,
+      "power": 0,
+      "rarity": "common",
+      "type": "spell",
+      "keywords": [],
+      "affinity": [
+        "the_rift"
+      ],
+      "imageUrl": "./cards/shattered-pacts/exile_ritual.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "sabotage"
+      ],
+      "arenaAbility": {
+        "type": "send",
+        "value": 0
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Exile your weakest other unit here with 0 or less power to the opponent’s side, if there is an unreserved space.",
+      "abilities": [
+        {
+          "type": "send",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "hold_the_line",
+      "name": "Hold the Line",
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "formation",
+        "invocation"
+      ],
+      "arenaAbility": {
+        "type": "formation_boost",
+        "value": 1
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: give your units here with an occupied adjacent friendly position +1 power.",
+      "imageUrl": "./cards/foundations/hold_the_line.webp",
+      "abilities": [
+        {
+          "type": "formation_boost",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "hollow_gift",
+      "name": "Hollow Gift",
+      "cost": 1,
+      "power": 0,
+      "rarity": "common",
+      "type": "spell",
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "imageUrl": "./cards/shattered-pacts/hollow_gift.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "sabotage"
+      ],
+      "arenaAbility": {
+        "type": "burden",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "draw",
+          "value": 1
+        }
+      ],
+      "description": "On Reveal: add a Burden to the opponent’s hand, if space remains. It is a 0-cost, −1-power unit with no ability. On Reveal: draw 1 card (hand limit 7).",
+      "abilities": [
+        {
+          "type": "burden",
+          "value": 0
+        },
+        {
+          "type": "draw",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "iron_flanker",
+      "name": "Iron Flanker",
+      "type": "unit",
+      "cost": 1,
+      "power": 1,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "formation"
+      ],
+      "arenaAbility": {
+        "type": "flank",
+        "value": 2
+      },
+      "arenaEffects": [],
+      "description": "Ongoing: +2 power in position 1 or 4.",
+      "imageUrl": "./cards/foundations/iron_flanker.webp",
+      "abilities": [
+        {
+          "type": "flank",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "lead_to_gold",
+      "name": "Lead to Gold",
+      "cost": 1,
+      "power": 0,
+      "rarity": "common",
+      "type": "spell",
+      "keywords": [],
+      "affinity": [
+        "the_forge"
+      ],
+      "imageUrl": "./cards/shattered-pacts/lead_to_gold.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "transmutation",
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "hand_weaken",
+        "value": 2
+      },
+      "arenaEffects": [
+        {
+          "type": "draw",
+          "value": 1
+        }
+      ],
+      "description": "On Reveal: the lowest-power unit in your hand loses 2 power. On Reveal: draw 1 card (hand limit 7).",
+      "abilities": [
+        {
+          "type": "hand_weaken",
+          "value": 2
+        },
+        {
+          "type": "draw",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "liquid_potential",
+      "name": "Liquid Potential",
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "transmutation",
+        "invocation"
+      ],
+      "arenaAbility": {
+        "type": "hand_weaken",
+        "value": 1
+      },
+      "arenaEffects": [
+        {
+          "type": "transmute_draw",
+          "value": 1
+        }
+      ],
+      "description": "On Reveal: the lowest-power unit in your hand loses 1 power. On Reveal: Transmute the next eligible unit you draw: swap cost and power (cost 0–6; once per card).",
+      "imageUrl": "./cards/foundations/liquid_potential.webp",
+      "abilities": [
+        {
+          "type": "hand_weaken",
+          "value": 1
+        },
+        {
+          "type": "transmute_draw",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "mana_surge",
+      "name": "Mana Surge",
+      "type": "spell",
+      "rarity": "common",
+      "cost": 1,
+      "power": 0,
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "description": "On Reveal: draw 2 cards (hand limit 7).",
+      "flavourText": "A single spark, drawn at the right moment, is enough.",
+      "imageUrl": "./cards/mana-surge.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "invocation",
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "draw",
+        "value": 2
+      },
+      "abilities": [
+        {
+          "type": "draw",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "measured_cast",
+      "name": "Measured Cast",
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "invocation",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "draw",
+        "value": 1
+      },
+      "arenaEffects": [
+        {
+          "type": "hand_boost",
+          "value": 1
+        }
+      ],
+      "description": "On Reveal: draw 1 card (hand limit 7). On Reveal: give the lowest-power unit in your hand +1 power.",
+      "imageUrl": "./cards/foundations/measured_cast.webp",
+      "abilities": [
+        {
+          "type": "draw",
+          "value": 1
+        },
+        {
+          "type": "hand_boost",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "phase_walk",
+      "name": "Phase Walk",
+      "type": "spell",
+      "rarity": "uncommon",
+      "cost": 1,
+      "power": 0,
+      "keywords": [],
+      "affinity": [
+        "the_rift"
+      ],
+      "description": "On Reveal: move your weakest unit from another arena here, if space remains.",
+      "flavourText": "Between one heartbeat and the next, everything changes.",
+      "imageUrl": "./cards/phase-walk.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "wayfarers",
+        "invocation"
+      ],
+      "arenaAbility": {
+        "type": "move",
+        "value": 0
+      },
+      "abilities": [
+        {
+          "type": "move",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "restoration",
+      "name": "Restoration",
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "stewardship",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "cleanse",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "boost",
+          "value": 1,
+          "target": "weakest"
+        }
+      ],
+      "description": "On Reveal: Cleanse your units here: remove applied power reductions and Wither, preserving buffs and printed negative power. On Reveal: give your weakest other unit here +1 power.",
+      "imageUrl": "./cards/foundations/restoration.webp",
+      "abilities": [
+        {
+          "type": "cleanse",
+          "value": 0
+        },
+        {
+          "type": "boost",
+          "value": 1,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "rune_attendant",
+      "name": "Rune Attendant",
+      "type": "unit",
+      "cost": 1,
+      "power": 1,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "invocation"
+      ],
+      "arenaAbility": {
+        "type": "boost",
+        "value": 1,
+        "target": "self",
+        "timing": "spell",
+        "oncePerTurn": true
+      },
+      "arenaEffects": [],
+      "description": "After you cast a spell here, once per turn: this gains +1 power.",
+      "imageUrl": "./cards/foundations/rune_attendant.webp",
+      "abilities": [
+        {
+          "type": "boost",
+          "value": 1,
+          "target": "self",
+          "timing": "spell",
+          "oncePerTurn": true
+        }
+      ]
+    },
+    {
+      "definitionId": "salt_hex",
+      "name": "Salt Hex",
+      "cost": 1,
+      "power": 0,
+      "rarity": "common",
+      "type": "spell",
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "imageUrl": "./cards/shattered-pacts/salt_hex.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "drain",
+        "value": 3,
+        "target": "weakest"
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: the weakest unwarded enemy unit here loses 3 power.",
+      "abilities": [
+        {
+          "type": "drain",
+          "value": 3,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "salvage_rite",
+      "name": "Salvage Rite",
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "stewardship",
+        "invocation"
+      ],
+      "arenaAbility": {
+        "type": "salvage",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "boost",
+          "value": 2,
+          "target": "weakest"
+        }
+      ],
+      "description": "On Reveal: destroy your cheapest relic here to draw 1 card. Ties favour the earlier position. On Reveal: give your weakest other unit here +2 power.",
+      "imageUrl": "./cards/foundations/salvage_rite.webp",
+      "abilities": [
+        {
+          "type": "salvage",
+          "value": 0
+        },
+        {
+          "type": "boost",
+          "value": 2,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "scrap_custodian",
+      "name": "Scrap Custodian",
+      "type": "unit",
+      "cost": 1,
+      "power": 1,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "stewardship"
+      ],
+      "arenaAbility": {
+        "type": "relic_power",
+        "value": 2
+      },
+      "arenaEffects": [],
+      "description": "Ongoing: +2 power for each friendly relic here.",
+      "imageUrl": "./cards/foundations/scrap_custodian.webp",
+      "abilities": [
+        {
+          "type": "relic_power",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "smuggler_vault",
+      "name": "Smuggler Vault",
+      "type": "relic",
+      "cost": 1,
+      "power": 0,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "sabotage",
+        "stewardship"
+      ],
+      "arenaAbility": {
+        "type": "burden",
+        "value": 0,
+        "target": "self"
+      },
+      "arenaEffects": [
+        {
+          "type": "token_aura",
+          "value": 2
+        }
+      ],
+      "description": "On Reveal: add a Burden to your hand, if space remains. It is a 0-cost, −1-power unit with no ability. Ongoing: your other generated units here have +2 power.",
+      "imageUrl": "./cards/foundations/smuggler_vault.webp",
+      "abilities": [
+        {
+          "type": "burden",
+          "value": 0,
+          "target": "self"
+        },
+        {
+          "type": "token_aura",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "spark_sprite",
+      "name": "Spark Sprite",
+      "type": "unit",
+      "rarity": "common",
+      "cost": 1,
+      "power": 1,
+      "keywords": [],
+      "affinity": [
+        "the_rift"
+      ],
+      "description": "On Reveal: +2 power if this arena was tied before this card revealed.",
+      "flavourText": "Blink and it's gone. Hesitate and so are you.",
+      "imageUrl": "./cards/spark-sprite.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "formation"
+      ],
+      "arenaAbility": {
+        "type": "parity",
+        "value": 2
+      },
+      "abilities": [
+        {
+          "type": "parity",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "tainted_idol",
+      "name": "Tainted Idol",
+      "cost": 1,
+      "power": -2,
+      "rarity": "common",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_graveyard"
+      ],
+      "imageUrl": "./cards/shattered-pacts/tainted_idol.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "sabotage",
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "draw",
+        "value": 2
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: draw 2 cards (hand limit 7).",
+      "abilities": [
+        {
+          "type": "draw",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "temper",
+      "name": "Temper",
+      "type": "spell",
+      "rarity": "common",
+      "cost": 1,
+      "power": 0,
+      "keywords": [],
+      "affinity": [
+        "the_forge"
+      ],
+      "description": "On Reveal: give your strongest unit here +3 power.",
+      "flavourText": "Heat reveals the truth in all things.",
+      "imageUrl": "./cards/temper.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "conduits",
+        "invocation"
+      ],
+      "arenaAbility": {
+        "type": "boost",
+        "value": 3
+      },
+      "abilities": [
+        {
+          "type": "boost",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "definitionId": "trail_wisp",
+      "name": "Trail Wisp",
+      "type": "unit",
+      "cost": 1,
+      "power": 1,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "wayfarers",
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "moved_power",
+        "value": 3
+      },
+      "arenaEffects": [],
+      "description": "Journey: +3 power after this unit moves between arenas. Does not stack; changing sides does not count.",
+      "imageUrl": "./cards/foundations/trail_wisp.webp",
+      "abilities": [
+        {
+          "type": "moved_power",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "definitionId": "village_scout",
+      "name": "Village Scout",
+      "type": "unit",
+      "rarity": "common",
+      "cost": 1,
+      "power": 2,
+      "keywords": [],
+      "affinity": [],
+      "description": "Steady power. No ability.",
+      "flavourText": "Not every hero wears armour.",
+      "imageUrl": "./cards/village-scout.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "formation"
+      ],
+      "abilities": []
+    },
+    {
+      "definitionId": "warding_bell",
+      "name": "Warding Bell",
+      "type": "relic",
+      "cost": 1,
+      "power": 0,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Relics",
+      "arenaAbility": {
+        "type": "warding_bell",
+        "value": 1
+      },
+      "arenaArchetypes": [
+        "stewardship",
+        "formation"
+      ],
+      "imageUrl": "./cards/relics/warding_bell-v1.jpg",
+      "description": "Once each turn, prevent the first enemy power reduction to an adjacent friendly unit.",
+      "abilities": [
+        {
+          "type": "warding_bell",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "wayward_current",
+      "name": "Wayward Current",
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "wayfarers",
+        "invocation"
+      ],
+      "arenaAbility": {
+        "type": "march",
+        "value": 0
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: move your weakest unit here to the next arena (left → middle → right → left), if space remains.",
+      "imageUrl": "./cards/foundations/wayward_current.webp",
+      "abilities": [
+        {
+          "type": "march",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "apprentice_mage",
+      "name": "Apprentice Mage",
+      "type": "unit",
+      "rarity": "uncommon",
+      "cost": 2,
+      "power": 1,
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "description": "Ongoing: your other units here have +1 power.",
+      "flavourText": "She memorised three hundred spells before she cast her first.",
+      "imageUrl": "./cards/apprentice-mage.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "formation",
+        "invocation"
+      ],
+      "arenaAbility": {
+        "type": "aura",
+        "value": 1
+      },
+      "abilities": [
+        {
+          "type": "aura",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "arcane_echo",
+      "name": "Arcane Echo",
+      "type": "spell",
+      "rarity": "rare",
+      "cost": 2,
+      "power": 0,
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "description": "On Reveal: give your units here +2 power.",
+      "flavourText": "The second time is always cheaper.",
+      "imageUrl": "./cards/arcane-echo.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "invocation",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "boost_all",
+        "value": 2
+      },
+      "abilities": [
+        {
+          "type": "boost_all",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "bone_knight",
+      "name": "Bone Knight",
+      "type": "unit",
+      "rarity": "common",
+      "cost": 2,
+      "power": 3,
+      "keywords": [],
+      "affinity": [
+        "the_graveyard"
+      ],
+      "description": "Steady power. No ability.",
+      "flavourText": "Death is just a detour when you know the way home.",
+      "imageUrl": "./cards/bone-knight.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "formation"
+      ],
+      "abilities": []
+    },
+    {
+      "definitionId": "borrowed_strength",
+      "name": "Borrowed Strength",
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "affliction",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "drain",
+        "value": 3
+      },
+      "arenaEffects": [
+        {
+          "type": "boost",
+          "value": 2,
+          "target": "weakest"
+        }
+      ],
+      "description": "On Reveal: the strongest unwarded enemy unit here loses 3 power. On Reveal: give your weakest other unit here +2 power.",
+      "imageUrl": "./cards/foundations/borrowed_strength.webp",
+      "abilities": [
+        {
+          "type": "drain",
+          "value": 3
+        },
+        {
+          "type": "boost",
+          "value": 2,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "chain_sentinel",
+      "name": "Chain Sentinel",
+      "type": "unit",
+      "cost": 2,
+      "power": 2,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "formation",
+        "stewardship"
+      ],
+      "arenaAbility": {
+        "type": "linked",
+        "value": 1
+      },
+      "arenaEffects": [],
+      "description": "Ongoing: +1 power for each occupied adjacent friendly position (units or relics).",
+      "imageUrl": "./cards/foundations/chain_sentinel.webp",
+      "abilities": [
+        {
+          "type": "linked",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "close_ranks",
+      "name": "Close Ranks",
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "formation",
+        "wayfarers"
+      ],
+      "arenaAbility": {
+        "type": "move",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "boost_all",
+          "value": 1
+        }
+      ],
+      "description": "On Reveal: move your weakest unit from another arena here, if space remains. On Reveal: give your units here +1 power.",
+      "imageUrl": "./cards/foundations/close_ranks.webp",
+      "abilities": [
+        {
+          "type": "move",
+          "value": 0
+        },
+        {
+          "type": "boost_all",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "codex_of_ages",
+      "name": "Codex of Ages",
+      "type": "relic",
+      "cost": 2,
+      "power": 0,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "invocation",
+        "stewardship"
+      ],
+      "arenaAbility": {
+        "type": "draw",
+        "value": 1,
+        "timing": "spell",
+        "oncePerTurn": true
+      },
+      "arenaEffects": [],
+      "description": "After you cast a spell here, once per turn: draw 1 card (hand limit 7).",
+      "imageUrl": "./cards/codex-of-ages.png",
+      "abilities": [
+        {
+          "type": "draw",
+          "value": 1,
+          "timing": "spell",
+          "oncePerTurn": true
+        }
+      ]
+    },
+    {
+      "definitionId": "contraband_cache",
+      "name": "Contraband Cache",
+      "type": "relic",
+      "cost": 2,
+      "power": 0,
+      "rarity": "rare",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Relics",
+      "arenaAbility": {
+        "type": "plant",
+        "value": 0,
+        "timing": "spell",
+        "oncePerTurn": true,
+        "token": "burden_token"
+      },
+      "arenaArchetypes": [
+        "sabotage",
+        "invocation",
+        "stewardship"
+      ],
+      "imageUrl": "./cards/relics/contraband_cache-v1.jpg",
+      "description": "After you cast a spell here, once per turn: Plant a −1 Burden on the enemy side here, if space remains. Burdens stay until removed by an effect.",
+      "abilities": [
+        {
+          "type": "plant",
+          "value": 0,
+          "timing": "spell",
+          "oncePerTurn": true,
+          "token": "burden_token"
+        }
+      ]
+    },
+    {
+      "definitionId": "counterfeit_courier",
+      "name": "Counterfeit Courier",
+      "cost": 2,
+      "power": 3,
+      "rarity": "common",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [],
+      "imageUrl": "./cards/shattered-pacts/counterfeit_courier.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "sabotage"
+      ],
+      "arenaAbility": {
+        "type": "burden",
+        "value": 0
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: add a Burden to the opponent’s hand, if space remains. It is a 0-cost, −1-power unit with no ability.",
+      "abilities": [
+        {
+          "type": "burden",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "crossing_guard",
+      "name": "Crossing Guard",
+      "type": "unit",
+      "cost": 2,
+      "power": 2,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "wayfarers",
+        "formation"
+      ],
+      "arenaAbility": {
+        "type": "moved_power",
+        "value": 3
+      },
+      "arenaEffects": [],
+      "description": "Journey: +3 power after this unit moves between arenas. Does not stack; changing sides does not count.",
+      "imageUrl": "./cards/foundations/crossing_guard.webp",
+      "abilities": [
+        {
+          "type": "moved_power",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "definitionId": "current_runner",
+      "name": "Current Runner",
+      "cost": 2,
+      "power": 3,
+      "rarity": "uncommon",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [],
+      "imageUrl": "./cards/shattered-pacts/current_runner.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "transfer",
+        "value": 2
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: transfer up to 2 positive power from your strongest unit here to your weakest unit in another arena.",
+      "abilities": [
+        {
+          "type": "transfer",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "dusk_leech",
+      "name": "Dusk Leech",
+      "cost": 2,
+      "power": 2,
+      "rarity": "uncommon",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_forge"
+      ],
+      "imageUrl": "./cards/shattered-pacts/dusk_leech.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "affliction",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "siphon",
+        "value": 1
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Siphon 1 power from the strongest unwarded enemy unit here: it loses it and this gains the amount removed.",
+      "abilities": [
+        {
+          "type": "siphon",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "ember_conduit",
+      "name": "Ember Conduit",
+      "cost": 2,
+      "power": 2,
+      "rarity": "uncommon",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_forge"
+      ],
+      "imageUrl": "./cards/shattered-pacts/ember_conduit.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "boost",
+        "value": 2,
+        "target": "self",
+        "timing": "spell",
+        "oncePerTurn": true
+      },
+      "arenaEffects": [],
+      "description": "After you cast a spell here, once per turn: this gains +2 power.",
+      "abilities": [
+        {
+          "type": "boost",
+          "value": 2,
+          "target": "self",
+          "timing": "spell",
+          "oncePerTurn": true
+        }
+      ]
+    },
+    {
+      "definitionId": "ember_incubator",
+      "name": "Ember Incubator",
+      "type": "relic",
+      "cost": 2,
+      "power": 0,
+      "rarity": "rare",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Relics",
+      "arenaAbility": {
+        "type": "incubate",
+        "value": 2
+      },
+      "arenaArchetypes": [
+        "stewardship",
+        "conduits"
+      ],
+      "imageUrl": "./cards/relics/ember_incubator-v1.jpg",
+      "description": "After 2 turn endings, destroy this and summon a 5-power Emberling in its position. Includes the turn played.",
+      "abilities": [
+        {
+          "type": "incubate",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "false_standard",
+      "name": "False Standard",
+      "cost": 2,
+      "power": 3,
+      "rarity": "rare",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [],
+      "imageUrl": "./cards/shattered-pacts/false_standard.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "sabotage",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "token_aura",
+        "value": 2
+      },
+      "arenaEffects": [
+        {
+          "type": "burden",
+          "value": 1,
+          "target": "self"
+        }
+      ],
+      "description": "Ongoing: your other generated units here have +2 power. On Reveal: add a Burden to your hand, if space remains. It is a 0-cost, −1-power unit with no ability.",
+      "abilities": [
+        {
+          "type": "token_aura",
+          "value": 2
+        },
+        {
+          "type": "burden",
+          "value": 1,
+          "target": "self"
+        }
+      ]
+    },
+    {
+      "definitionId": "forge_apprentice",
+      "name": "Forge Apprentice",
+      "type": "unit",
+      "rarity": "uncommon",
+      "cost": 2,
+      "power": 2,
+      "keywords": [],
+      "affinity": [
+        "the_forge"
+      ],
+      "description": "On Reveal: +2 power if you were leading here before this card revealed.",
+      "flavourText": "Every master was once unsure which end of the hammer to hold.",
+      "imageUrl": "./cards/forge-apprentice.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "formation"
+      ],
+      "arenaAbility": {
+        "type": "pressure",
+        "value": 2
+      },
+      "abilities": [
+        {
+          "type": "pressure",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "glyph_scholar",
+      "name": "Glyph Scholar",
+      "type": "unit",
+      "cost": 2,
+      "power": 1,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "invocation",
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "draw",
+        "value": 1,
+        "timing": "spell",
+        "oncePerTurn": true
+      },
+      "arenaEffects": [],
+      "description": "After you cast a spell here, once per turn: draw 1 card (hand limit 7).",
+      "imageUrl": "./cards/foundations/glyph_scholar.webp",
+      "abilities": [
+        {
+          "type": "draw",
+          "value": 1,
+          "timing": "spell",
+          "oncePerTurn": true
+        }
+      ]
+    },
+    {
+      "definitionId": "grand_invocation",
+      "name": "Grand Invocation",
+      "type": "spell",
+      "rarity": "legendary",
+      "cost": 2,
+      "power": 0,
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "description": "On Reveal: draw 3 cards (hand limit 7).",
+      "flavourText": "The words take a lifetime to learn. The effect takes less than a second.",
+      "imageUrl": "./cards/grand-invocation.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "invocation"
+      ],
+      "arenaAbility": {
+        "type": "draw",
+        "value": 3
+      },
+      "abilities": [
+        {
+          "type": "draw",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "definitionId": "homeward_call",
+      "name": "Homeward Call",
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "wayfarers",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "move",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "boost",
+          "value": 2,
+          "target": "weakest"
+        }
+      ],
+      "description": "On Reveal: move your weakest unit from another arena here, if space remains. On Reveal: give your weakest other unit here +2 power.",
+      "imageUrl": "./cards/foundations/homeward_call.webp",
+      "abilities": [
+        {
+          "type": "move",
+          "value": 0
+        },
+        {
+          "type": "boost",
+          "value": 2,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "inversion_rite",
+      "name": "Inversion Rite",
+      "cost": 2,
+      "power": 0,
+      "rarity": "common",
+      "type": "spell",
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "imageUrl": "./cards/shattered-pacts/inversion_rite.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "conduits",
+        "sabotage",
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "purify",
+        "value": 0
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Invert your weakest unit here if its current power is negative, turning that number positive.",
+      "abilities": [
+        {
+          "type": "purify",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "lingering_curse",
+      "name": "Lingering Curse",
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "affliction",
+        "invocation"
+      ],
+      "arenaAbility": {
+        "type": "wither",
+        "value": 2,
+        "target": "weakest"
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Wither the weakest unwarded enemy unit here: it loses 2 power at the end of this turn and the next.",
+      "imageUrl": "./cards/foundations/lingering_curse.webp",
+      "abilities": [
+        {
+          "type": "wither",
+          "value": 2,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "mercury_scholar",
+      "name": "Mercury Scholar",
+      "cost": 2,
+      "power": 2,
+      "rarity": "uncommon",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "imageUrl": "./cards/shattered-pacts/mercury_scholar.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "transmute_hand",
+        "value": 1
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Transmute the lowest-power eligible unit in your hand: swap cost and power (cost 0–6; once per card).",
+      "abilities": [
+        {
+          "type": "transmute_hand",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "miasma_lantern",
+      "name": "Miasma Lantern",
+      "cost": 2,
+      "power": 2,
+      "rarity": "rare",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_rift"
+      ],
+      "imageUrl": "./cards/shattered-pacts/miasma_lantern.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "affliction",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "siphon",
+        "value": 1,
+        "timing": "spell",
+        "oncePerTurn": true
+      },
+      "arenaEffects": [],
+      "description": "After you cast a spell here, once per turn: Siphon 1 power from the strongest unwarded enemy unit here: it loses it and this gains the amount removed.",
+      "abilities": [
+        {
+          "type": "siphon",
+          "value": 1,
+          "timing": "spell",
+          "oncePerTurn": true
+        }
+      ]
+    },
+    {
+      "definitionId": "mirror_squire",
+      "name": "Mirror Squire",
+      "cost": 2,
+      "power": 2,
+      "rarity": "common",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [],
+      "imageUrl": "./cards/shattered-pacts/mirror_squire.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "conduits",
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "copy_power",
+        "value": 0,
+        "target": "weakest"
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: set this card’s current power to your weakest other unit’s current power here.",
+      "abilities": [
+        {
+          "type": "copy_power",
+          "value": 0,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "mountain_hermit",
+      "name": "Mountain Hermit",
+      "type": "unit",
+      "rarity": "common",
+      "cost": 2,
+      "power": 1,
+      "keywords": [],
+      "affinity": [
+        "the_summit"
+      ],
+      "description": "After each later turn, gain +1 power.",
+      "flavourText": "He left the city fifteen years ago. The mountain kept him.",
+      "imageUrl": "./cards/mountain-hermit.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "conduits",
+        "wayfarers"
+      ],
+      "arenaAbility": {
+        "type": "grow",
+        "value": 1
+      },
+      "abilities": [
+        {
+          "type": "grow",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "null_sigil",
+      "name": "Null Sigil",
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "stewardship",
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "dispel",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "drain",
+          "value": 2
+        }
+      ],
+      "description": "On Reveal: destroy the cheapest enemy relic here. Ties favour the earlier position. On Reveal: the strongest unwarded enemy unit here loses 2 power.",
+      "imageUrl": "./cards/foundations/null_sigil.webp",
+      "abilities": [
+        {
+          "type": "dispel",
+          "value": 0
+        },
+        {
+          "type": "drain",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "oathbound_scavenger",
+      "name": "Oathbound Scavenger",
+      "type": "unit",
+      "cost": 2,
+      "power": 3,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "sabotage",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "purge",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "boost",
+          "value": 1,
+          "target": "weakest"
+        }
+      ],
+      "description": "On Reveal: Purge all generated units on your side here. On Reveal: give your weakest other unit here +1 power.",
+      "imageUrl": "./cards/foundations/oathbound_scavenger.webp",
+      "abilities": [
+        {
+          "type": "purge",
+          "value": 0
+        },
+        {
+          "type": "boost",
+          "value": 1,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "open_horizon",
+      "name": "Open Horizon",
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "wayfarers",
+        "invocation"
+      ],
+      "arenaAbility": {
+        "type": "move",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "draw",
+          "value": 1
+        }
+      ],
+      "description": "On Reveal: move your weakest unit from another arena here, if space remains. On Reveal: draw 1 card (hand limit 7).",
+      "imageUrl": "./cards/foundations/open_horizon.webp",
+      "abilities": [
+        {
+          "type": "move",
+          "value": 0
+        },
+        {
+          "type": "draw",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "pale_physician",
+      "name": "Pale Physician",
+      "cost": 2,
+      "power": 3,
+      "rarity": "common",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_summit"
+      ],
+      "imageUrl": "./cards/shattered-pacts/pale_physician.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "affliction",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "cleanse",
+        "value": 0,
+        "target": "weakest"
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Cleanse your weakest afflicted unit here: remove applied power reductions and Wither, preserving buffs and printed negative power.",
+      "abilities": [
+        {
+          "type": "cleanse",
+          "value": 0,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "pilgrim_compass",
+      "name": "Pilgrim Compass",
+      "type": "relic",
+      "cost": 2,
+      "power": 0,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "wayfarers",
+        "stewardship"
+      ],
+      "arenaAbility": {
+        "type": "journey_aura",
+        "value": 2
+      },
+      "arenaEffects": [],
+      "description": "Ongoing: friendly units here that have moved between arenas have +2 power.",
+      "imageUrl": "./cards/foundations/pilgrim_compass.webp",
+      "abilities": [
+        {
+          "type": "journey_aura",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "plague_censer",
+      "name": "Plague Censer",
+      "type": "relic",
+      "cost": 2,
+      "power": 0,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "affliction",
+        "invocation",
+        "stewardship"
+      ],
+      "arenaAbility": {
+        "type": "drain",
+        "value": 1,
+        "target": "weakest",
+        "timing": "spell",
+        "oncePerTurn": true
+      },
+      "arenaEffects": [],
+      "description": "After you cast a spell here, once per turn: the weakest unwarded enemy unit here loses 1 power.",
+      "imageUrl": "./cards/foundations/plague_censer.webp",
+      "abilities": [
+        {
+          "type": "drain",
+          "value": 1,
+          "target": "weakest",
+          "timing": "spell",
+          "oncePerTurn": true
+        }
+      ]
+    },
+    {
+      "definitionId": "prism_initiate",
+      "name": "Prism Initiate",
+      "cost": 2,
+      "power": 2,
+      "rarity": "common",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "imageUrl": "./cards/shattered-pacts/prism_initiate.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "hand_boost",
+        "value": 2,
+        "target": "strongest"
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: give the highest-power unit in your hand +2 power.",
+      "abilities": [
+        {
+          "type": "hand_boost",
+          "value": 2,
+          "target": "strongest"
+        }
+      ]
+    },
+    {
+      "definitionId": "refracting_lens",
+      "name": "Refracting Lens",
+      "type": "relic",
+      "cost": 2,
+      "power": 0,
+      "rarity": "rare",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "transmutation",
+        "invocation",
+        "stewardship"
+      ],
+      "arenaAbility": {
+        "type": "transmute_draw",
+        "value": 1,
+        "timing": "spell",
+        "oncePerTurn": true
+      },
+      "arenaEffects": [],
+      "description": "After you cast a spell here, once per turn: Transmute the next eligible unit you draw: swap cost and power (cost 0–6; once per card).",
+      "imageUrl": "./cards/foundations/refracting_lens.webp",
+      "abilities": [
+        {
+          "type": "transmute_draw",
+          "value": 1,
+          "timing": "spell",
+          "oncePerTurn": true
+        }
+      ]
+    },
+    {
+      "definitionId": "relic_diver",
+      "name": "Relic Diver",
+      "type": "unit",
+      "cost": 2,
+      "power": 3,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "stewardship",
+        "invocation"
+      ],
+      "arenaAbility": {
+        "type": "salvage",
+        "value": 0
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: destroy your cheapest relic here to draw 1 card. Ties favour the earlier position.",
+      "imageUrl": "./cards/foundations/relic_diver.webp",
+      "abilities": [
+        {
+          "type": "salvage",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "revenant",
+      "name": "Revenant",
+      "type": "unit",
+      "rarity": "uncommon",
+      "cost": 2,
+      "power": 1,
+      "keywords": [],
+      "affinity": [
+        "the_graveyard"
+      ],
+      "description": "On Reveal: Consume your weakest other unit here. Gain its positive current power, then remove it.",
+      "flavourText": "It remembers the name of every person who thought it was gone for good.",
+      "imageUrl": "./cards/revenant.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "sabotage",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "consume",
+        "value": 0
+      },
+      "abilities": [
+        {
+          "type": "consume",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "ritual_caster",
+      "name": "Ritual Caster",
+      "type": "unit",
+      "rarity": "common",
+      "cost": 2,
+      "power": 2,
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "description": "Ongoing: +3 power while your side here is full.",
+      "flavourText": "The words matter. The will matters more.",
+      "imageUrl": "./cards/ritual-caster.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "formation",
+        "stewardship"
+      ],
+      "arenaAbility": {
+        "type": "full",
+        "value": 3
+      },
+      "abilities": [
+        {
+          "type": "full",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "definitionId": "silver_equation",
+      "name": "Silver Equation",
+      "cost": 2,
+      "power": 0,
+      "rarity": "rare",
+      "type": "spell",
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "imageUrl": "./cards/shattered-pacts/silver_equation.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "transmute_hand",
+        "value": 2
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Transmute the 2 lowest-power eligible units in your hand: swap cost and power (cost 0–6; once per card).",
+      "abilities": [
+        {
+          "type": "transmute_hand",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "smuggled_contract",
+      "name": "Smuggled Contract",
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "rarity": "rare",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "sabotage",
+        "invocation"
+      ],
+      "arenaAbility": {
+        "type": "plant",
+        "value": 0,
+        "token": "burden_token"
+      },
+      "arenaEffects": [
+        {
+          "type": "draw",
+          "value": 1
+        }
+      ],
+      "description": "On Reveal: Plant a −1 Burden on the enemy side here, if space remains. Burdens stay until removed by an effect. On Reveal: draw 1 card (hand limit 7).",
+      "imageUrl": "./cards/foundations/smuggled_contract.webp",
+      "abilities": [
+        {
+          "type": "plant",
+          "value": 0,
+          "token": "burden_token"
+        },
+        {
+          "type": "draw",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "spellfont",
+      "name": "Spellfont",
+      "type": "relic",
+      "cost": 2,
+      "power": 0,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Relics",
+      "arenaAbility": {
+        "type": "spellfont",
+        "value": 1,
+        "timing": "spell"
+      },
+      "arenaArchetypes": [
+        "stewardship",
+        "invocation"
+      ],
+      "imageUrl": "./cards/relics/spellfont-v1.jpg",
+      "description": "After you cast a spell here, give your lowest-power adjacent unit +1 power. Ties favour the earlier position.",
+      "abilities": [
+        {
+          "type": "spellfont",
+          "value": 1,
+          "timing": "spell"
+        }
+      ]
+    },
+    {
+      "definitionId": "thorn_seeder",
+      "name": "Thorn Seeder",
+      "cost": 2,
+      "power": 3,
+      "rarity": "uncommon",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_summit"
+      ],
+      "imageUrl": "./cards/shattered-pacts/thorn_seeder.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "sabotage"
+      ],
+      "arenaAbility": {
+        "type": "plant",
+        "value": 0
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Plant a −2 Cursed Offering on the enemy side here, if space remains. It disappears when its controller casts a spell here.",
+      "abilities": [
+        {
+          "type": "plant",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "unmaking",
+      "name": "Unmaking",
+      "cost": 2,
+      "power": 0,
+      "rarity": "common",
+      "type": "spell",
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "imageUrl": "./cards/shattered-pacts/unmaking.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "afflict_all",
+        "value": 2
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: all unwarded enemy units here lose 2 power.",
+      "abilities": [
+        {
+          "type": "afflict_all",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "wandering_blade",
+      "name": "Wandering Blade",
+      "type": "unit",
+      "rarity": "common",
+      "cost": 2,
+      "power": 2,
+      "keywords": [],
+      "affinity": [],
+      "description": "On Reveal: +2 power if you were behind here before this card revealed.",
+      "flavourText": "No lord, no banner — just steel and the road ahead.",
+      "imageUrl": "./cards/wandering-blade.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "formation"
+      ],
+      "arenaAbility": {
+        "type": "rally",
+        "value": 2
+      },
+      "abilities": [
+        {
+          "type": "rally",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "war_standard",
+      "name": "War Standard",
+      "type": "relic",
+      "cost": 2,
+      "power": 0,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Relics",
+      "arenaAbility": {
+        "type": "adjacent_aura",
+        "value": 2
+      },
+      "arenaArchetypes": [
+        "stewardship",
+        "formation"
+      ],
+      "imageUrl": "./cards/relics/war_standard-v1.jpg",
+      "description": "Ongoing: adjacent friendly units have +2 power.",
+      "abilities": [
+        {
+          "type": "adjacent_aura",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "alloy_guardian",
+      "name": "Alloy Guardian",
+      "cost": 3,
+      "power": 2,
+      "rarity": "uncommon",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_summit"
+      ],
+      "imageUrl": "./cards/shattered-pacts/alloy_guardian.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "ward",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "rally",
+          "value": 2
+        }
+      ],
+      "description": "Ward: enemy effects cannot reduce this card’s power. On Reveal: +2 power if you were behind here before this card revealed.",
+      "abilities": [
+        {
+          "type": "ward",
+          "value": 0
+        },
+        {
+          "type": "rally",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "ashen_envoy",
+      "name": "Ashen Envoy",
+      "cost": 3,
+      "power": -5,
+      "rarity": "uncommon",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_graveyard"
+      ],
+      "imageUrl": "./cards/shattered-pacts/ashen_envoy.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "sabotage",
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "defect",
+        "value": 0
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Defect: switch to the opponent’s side here if there is an unreserved space. Otherwise, stay on your side.",
+      "abilities": [
+        {
+          "type": "defect",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "bridge_marshal",
+      "name": "Bridge Marshal",
+      "type": "unit",
+      "cost": 3,
+      "power": 3,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "formation",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "adjacent_aura",
+        "value": 1
+      },
+      "arenaEffects": [],
+      "description": "Ongoing: adjacent friendly units have +1 power.",
+      "imageUrl": "./cards/foundations/bridge_marshal.webp",
+      "abilities": [
+        {
+          "type": "adjacent_aura",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "censer_warden",
+      "name": "Censer Warden",
+      "cost": 3,
+      "power": 3,
+      "rarity": "legendary",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_summit"
+      ],
+      "imageUrl": "./cards/shattered-pacts/censer_warden.webp",
+      "arenaSet": "eternal",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "ward",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "cleanse",
+          "value": 0
+        }
+      ],
+      "description": "Ward: enemy effects cannot reduce this card’s power. On Reveal: Cleanse your units here: remove applied power reductions and Wither, preserving buffs and printed negative power.",
+      "abilities": [
+        {
+          "type": "ward",
+          "value": 0
+        },
+        {
+          "type": "cleanse",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "crucible_seer",
+      "name": "Crucible Seer",
+      "cost": 3,
+      "power": 3,
+      "rarity": "uncommon",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_summit"
+      ],
+      "imageUrl": "./cards/shattered-pacts/crucible_seer.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "transmute_draw",
+        "value": 2
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Transmute the next 2 eligible units you draw: swap cost and power (cost 0–6; once per card).",
+      "abilities": [
+        {
+          "type": "transmute_draw",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "debt_broker",
+      "name": "Debt Broker",
+      "cost": 3,
+      "power": 3,
+      "rarity": "rare",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_graveyard"
+      ],
+      "imageUrl": "./cards/shattered-pacts/debt_broker.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "sabotage",
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "burden",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "harvest",
+          "value": 1
+        }
+      ],
+      "description": "On Reveal: add a Burden to the opponent’s hand, if space remains. It is a 0-cost, −1-power unit with no ability. On Reveal: gain +1 power for each enemy unit here with negative current power.",
+      "abilities": [
+        {
+          "type": "burden",
+          "value": 0
+        },
+        {
+          "type": "harvest",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "frost_sage",
+      "name": "Frost Sage",
+      "type": "unit",
+      "rarity": "uncommon",
+      "cost": 3,
+      "power": 3,
+      "keywords": [],
+      "affinity": [
+        "the_summit"
+      ],
+      "description": "On Reveal: +3 power if you were behind here before this card revealed.",
+      "flavourText": "Patience is the summit's only lesson.",
+      "imageUrl": "./cards/frost-sage.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "formation"
+      ],
+      "arenaAbility": {
+        "type": "rally",
+        "value": 3
+      },
+      "abilities": [
+        {
+          "type": "rally",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "definitionId": "gilded_astrolabe",
+      "name": "Gilded Astrolabe",
+      "type": "relic",
+      "cost": 3,
+      "power": 0,
+      "rarity": "rare",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "formation",
+        "stewardship",
+        "invocation"
+      ],
+      "arenaAbility": {
+        "type": "boost_all",
+        "value": 1,
+        "timing": "spell",
+        "oncePerTurn": true
+      },
+      "arenaEffects": [],
+      "description": "After you cast a spell here, once per turn: give your units here +1 power.",
+      "imageUrl": "./cards/foundations/gilded_astrolabe.webp",
+      "abilities": [
+        {
+          "type": "boost_all",
+          "value": 1,
+          "timing": "spell",
+          "oncePerTurn": true
+        }
+      ]
+    },
+    {
+      "definitionId": "glass_familiar",
+      "name": "Glass Familiar",
+      "cost": 3,
+      "power": 2,
+      "rarity": "common",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_rift"
+      ],
+      "imageUrl": "./cards/shattered-pacts/glass_familiar.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "transmuted_power",
+        "value": 2
+      },
+      "arenaEffects": [
+        {
+          "type": "grow",
+          "value": 1
+        }
+      ],
+      "description": "Ongoing: +2 power if this card has been transmuted. After each later turn, gain +1 power.",
+      "abilities": [
+        {
+          "type": "transmuted_power",
+          "value": 2
+        },
+        {
+          "type": "grow",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "grand_convergence",
+      "name": "Grand Convergence",
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "rarity": "rare",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "invocation",
+        "formation"
+      ],
+      "arenaAbility": {
+        "type": "boost_all",
+        "value": 3
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: give your units here +3 power.",
+      "imageUrl": "./cards/foundations/grand_convergence.webp",
+      "abilities": [
+        {
+          "type": "boost_all",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "definitionId": "hollow_choir",
+      "name": "Hollow Choir",
+      "cost": 3,
+      "power": 3,
+      "rarity": "uncommon",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_graveyard"
+      ],
+      "imageUrl": "./cards/shattered-pacts/hollow_choir.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "afflict_all",
+        "value": 1
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: all unwarded enemy units here lose 1 power.",
+      "abilities": [
+        {
+          "type": "afflict_all",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "iron_golem",
+      "name": "Iron Golem",
+      "type": "unit",
+      "rarity": "common",
+      "cost": 3,
+      "power": 5,
+      "keywords": [],
+      "affinity": [
+        "the_forge"
+      ],
+      "description": "Steady power. No ability.",
+      "flavourText": "Forged without a heart, yet it fights as though it has something to protect.",
+      "imageUrl": "./cards/iron-golem.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "conduits"
+      ],
+      "abilities": []
+    },
+    {
+      "definitionId": "marrow_engine",
+      "name": "Marrow Engine",
+      "cost": 3,
+      "power": 4,
+      "rarity": "uncommon",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_forge"
+      ],
+      "imageUrl": "./cards/shattered-pacts/marrow_engine.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "conduits",
+        "sabotage"
+      ],
+      "arenaAbility": {
+        "type": "consume",
+        "value": 0
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Consume your weakest other unit here. Gain its positive current power, then remove it.",
+      "abilities": [
+        {
+          "type": "consume",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "masked_ferryman",
+      "name": "Masked Ferryman",
+      "cost": 3,
+      "power": 4,
+      "rarity": "uncommon",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_rift"
+      ],
+      "imageUrl": "./cards/shattered-pacts/masked_ferryman.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "sabotage"
+      ],
+      "arenaAbility": {
+        "type": "send",
+        "value": 0
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Exile your weakest other unit here with 0 or less power to the opponent’s side, if there is an unreserved space.",
+      "abilities": [
+        {
+          "type": "send",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "master_forger",
+      "name": "Master Forger",
+      "type": "unit",
+      "cost": 3,
+      "power": 2,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "stewardship",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "relic_power",
+        "value": 2
+      },
+      "arenaEffects": [
+        {
+          "type": "boost",
+          "value": 1,
+          "target": "weakest"
+        }
+      ],
+      "description": "Ongoing: +2 power for each friendly relic here. On Reveal: give your weakest other unit here +1 power.",
+      "imageUrl": "./cards/master-forger.png",
+      "abilities": [
+        {
+          "type": "relic_power",
+          "value": 2
+        },
+        {
+          "type": "boost",
+          "value": 1,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "rift_caller",
+      "name": "Rift Caller",
+      "type": "unit",
+      "rarity": "uncommon",
+      "cost": 3,
+      "power": 3,
+      "keywords": [],
+      "affinity": [
+        "the_rift"
+      ],
+      "description": "On Reveal: draw 1 card (hand limit 7).",
+      "flavourText": "He opens the door. He does not ask what comes through.",
+      "imageUrl": "./cards/rift-caller.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "invocation",
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "draw",
+        "value": 1
+      },
+      "abilities": [
+        {
+          "type": "draw",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "rot_scribe",
+      "name": "Rot Scribe",
+      "cost": 3,
+      "power": 3,
+      "rarity": "uncommon",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "imageUrl": "./cards/shattered-pacts/rot_scribe.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "wither",
+        "value": 2,
+        "target": "weakest"
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Wither the weakest unwarded enemy unit here: it loses 2 power at the end of this turn and the next.",
+      "abilities": [
+        {
+          "type": "wither",
+          "value": 2,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "shield_warden",
+      "name": "Shield Warden",
+      "type": "unit",
+      "rarity": "uncommon",
+      "cost": 3,
+      "power": 2,
+      "keywords": [],
+      "affinity": [],
+      "description": "Ongoing: +2 power for each occupied adjacent friendly position (units or relics).",
+      "flavourText": "He has stood at this gate for forty years. He will stand for forty more.",
+      "imageUrl": "./cards/shield-warden.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "formation",
+        "stewardship"
+      ],
+      "arenaAbility": {
+        "type": "linked",
+        "value": 2
+      },
+      "abilities": [
+        {
+          "type": "linked",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "splinter_agent",
+      "name": "Splinter Agent",
+      "cost": 3,
+      "power": 4,
+      "rarity": "rare",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_forge"
+      ],
+      "imageUrl": "./cards/shattered-pacts/splinter_agent.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "sabotage",
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "plant",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "drain",
+          "value": 1,
+          "target": "weakest"
+        }
+      ],
+      "description": "On Reveal: Plant a −2 Cursed Offering on the enemy side here, if space remains. It disappears when its controller casts a spell here. On Reveal: the weakest unwarded enemy unit here loses 1 power.",
+      "abilities": [
+        {
+          "type": "plant",
+          "value": 0
+        },
+        {
+          "type": "drain",
+          "value": 1,
+          "target": "weakest"
+        }
+      ]
+    },
+    {
+      "definitionId": "sunken_reliquary",
+      "name": "Sunken Reliquary",
+      "type": "relic",
+      "cost": 3,
+      "power": 0,
+      "rarity": "rare",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "conduits",
+        "stewardship",
+        "invocation"
+      ],
+      "arenaAbility": {
+        "type": "boost",
+        "value": 2,
+        "target": "weakest",
+        "timing": "spell",
+        "oncePerTurn": true
+      },
+      "arenaEffects": [],
+      "description": "After you cast a spell here, once per turn: give your weakest other unit here +2 power.",
+      "imageUrl": "./cards/foundations/sunken_reliquary.webp",
+      "abilities": [
+        {
+          "type": "boost",
+          "value": 2,
+          "target": "weakest",
+          "timing": "spell",
+          "oncePerTurn": true
+        }
+      ]
+    },
+    {
+      "definitionId": "tax_collector",
+      "name": "Tax Collector",
+      "type": "unit",
+      "cost": 3,
+      "power": 3,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "sabotage",
+        "invocation",
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "harvest",
+        "value": 1,
+        "timing": "spell",
+        "oncePerTurn": true
+      },
+      "arenaEffects": [],
+      "description": "After you cast a spell here, once per turn: gain +1 power for each enemy unit here with negative current power.",
+      "imageUrl": "./cards/foundations/tax_collector.webp",
+      "abilities": [
+        {
+          "type": "harvest",
+          "value": 1,
+          "timing": "spell",
+          "oncePerTurn": true
+        }
+      ]
+    },
+    {
+      "definitionId": "vessel_of_echoes",
+      "name": "Vessel of Echoes",
+      "cost": 3,
+      "power": 0,
+      "rarity": "rare",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_summit"
+      ],
+      "imageUrl": "./cards/shattered-pacts/vessel_of_echoes.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "transmutation",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "copy_power",
+        "value": 0
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: set this card’s current power to your strongest other unit’s current power here.",
+      "abilities": [
+        {
+          "type": "copy_power",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "waystone_pilgrim",
+      "name": "Waystone Pilgrim",
+      "type": "unit",
+      "cost": 3,
+      "power": 3,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "wayfarers"
+      ],
+      "arenaAbility": {
+        "type": "move",
+        "value": 0
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: move your weakest unit from another arena here, if space remains.",
+      "imageUrl": "./cards/foundations/waystone_pilgrim.webp",
+      "abilities": [
+        {
+          "type": "move",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "ascended_prophet",
+      "name": "Ascended Prophet",
+      "type": "unit",
+      "cost": 4,
+      "power": 1,
+      "rarity": "rare",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "transmutation",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "transmuted_power",
+        "value": 2
+      },
+      "arenaEffects": [
+        {
+          "type": "hand_boost",
+          "value": 2
+        }
+      ],
+      "description": "Ongoing: +2 power if this card has been transmuted. On Reveal: give the lowest-power unit in your hand +2 power.",
+      "imageUrl": "./cards/ascended-prophet.png",
+      "abilities": [
+        {
+          "type": "transmuted_power",
+          "value": 2
+        },
+        {
+          "type": "hand_boost",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "bastion_architect",
+      "name": "Bastion Architect",
+      "type": "unit",
+      "cost": 4,
+      "power": 4,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "formation",
+        "stewardship"
+      ],
+      "arenaAbility": {
+        "type": "relic_power",
+        "value": 2
+      },
+      "arenaEffects": [],
+      "description": "Ongoing: +2 power for each friendly relic here.",
+      "imageUrl": "./cards/foundations/bastion_architect.webp",
+      "abilities": [
+        {
+          "type": "relic_power",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "chaos_drake",
+      "name": "Chaos Drake",
+      "type": "unit",
+      "rarity": "rare",
+      "cost": 4,
+      "power": 5,
+      "keywords": [],
+      "affinity": [
+        "the_rift"
+      ],
+      "description": "Ongoing: +3 power while this is your only card here.",
+      "flavourText": "It doesn't aim. It doesn't need to.",
+      "imageUrl": "./cards/chaos-drake.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "wayfarers"
+      ],
+      "arenaAbility": {
+        "type": "alone",
+        "value": 3
+      },
+      "abilities": [
+        {
+          "type": "alone",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "definitionId": "debt_collector",
+      "name": "Debt Collector",
+      "cost": 4,
+      "power": 4,
+      "rarity": "rare",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_graveyard"
+      ],
+      "imageUrl": "./cards/shattered-pacts/debt_collector.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "affliction",
+        "sabotage"
+      ],
+      "arenaAbility": {
+        "type": "harvest",
+        "value": 2,
+        "target": "afflicted"
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: gain +2 power for each enemy unit here with negative current power. Gain +1 instead for each other enemy here with an applied power reduction.",
+      "abilities": [
+        {
+          "type": "harvest",
+          "value": 2,
+          "target": "afflicted"
+        }
+      ]
+    },
+    {
+      "definitionId": "equal_measure",
+      "name": "Equal Measure",
+      "cost": 4,
+      "power": 0,
+      "rarity": "rare",
+      "type": "spell",
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "imageUrl": "./cards/shattered-pacts/equal_measure.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "equalize",
+        "value": 3
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: set every unit’s current power here to 3. Enemy Ward prevents reductions.",
+      "abilities": [
+        {
+          "type": "equalize",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "definitionId": "frost_elder",
+      "name": "Frost Elder",
+      "type": "unit",
+      "cost": 4,
+      "power": 4,
+      "rarity": "rare",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "invocation",
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "cleanse",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "drain",
+          "value": 1,
+          "timing": "spell",
+          "oncePerTurn": true
+        }
+      ],
+      "description": "On Reveal: Cleanse your units here: remove applied power reductions and Wither, preserving buffs and printed negative power. After you cast a spell here, once per turn: the strongest unwarded enemy unit here loses 1 power.",
+      "imageUrl": "./cards/frost-elder.png",
+      "abilities": [
+        {
+          "type": "cleanse",
+          "value": 0
+        },
+        {
+          "type": "drain",
+          "value": 1,
+          "timing": "spell",
+          "oncePerTurn": true
+        }
+      ]
+    },
+    {
+      "definitionId": "gilded_oracle",
+      "name": "Gilded Oracle",
+      "cost": 4,
+      "power": 2,
+      "rarity": "rare",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_summit"
+      ],
+      "imageUrl": "./cards/shattered-pacts/gilded_oracle.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "draw",
+        "value": 1
+      },
+      "arenaEffects": [
+        {
+          "type": "draw",
+          "value": 1,
+          "condition": "transmuted"
+        },
+        {
+          "type": "rally",
+          "value": 1
+        }
+      ],
+      "description": "On Reveal: draw 1 card (hand limit 7). On Reveal, if this card was transmuted: draw 1 card (hand limit 7). On Reveal: +1 power if you were behind here before this card revealed.",
+      "abilities": [
+        {
+          "type": "draw",
+          "value": 1
+        },
+        {
+          "type": "draw",
+          "value": 1,
+          "condition": "transmuted"
+        },
+        {
+          "type": "rally",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "horizon_rider",
+      "name": "Horizon Rider",
+      "type": "unit",
+      "cost": 4,
+      "power": 4,
+      "rarity": "uncommon",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "wayfarers",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "moved_power",
+        "value": 4
+      },
+      "arenaEffects": [],
+      "description": "Journey: +4 power after this unit moves between arenas. Does not stack; changing sides does not count.",
+      "imageUrl": "./cards/foundations/horizon_rider.webp",
+      "abilities": [
+        {
+          "type": "moved_power",
+          "value": 4
+        }
+      ]
+    },
+    {
+      "definitionId": "linebreaker",
+      "name": "Linebreaker",
+      "type": "unit",
+      "cost": 4,
+      "power": 4,
+      "rarity": "common",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "core",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "formation",
+        "wayfarers"
+      ],
+      "arenaAbility": {
+        "type": "flank",
+        "value": 3
+      },
+      "arenaEffects": [],
+      "description": "Ongoing: +3 power in position 1 or 4.",
+      "imageUrl": "./cards/foundations/linebreaker.webp",
+      "abilities": [
+        {
+          "type": "flank",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "definitionId": "living_codex",
+      "name": "Living Codex",
+      "type": "unit",
+      "rarity": "legendary",
+      "cost": 4,
+      "power": 3,
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "description": "On Reveal: draw 2 cards (hand limit 7).",
+      "flavourText": "It writes itself. That is the part that concerns everyone.",
+      "imageUrl": "./cards/living-codex.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "invocation",
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "draw",
+        "value": 2
+      },
+      "abilities": [
+        {
+          "type": "draw",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "oathbreaker_duke",
+      "name": "Oathbreaker Duke",
+      "cost": 4,
+      "power": -7,
+      "rarity": "legendary",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_graveyard"
+      ],
+      "imageUrl": "./cards/shattered-pacts/oathbreaker_duke.webp",
+      "arenaSet": "eternal",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "sabotage",
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "defect",
+        "value": 0
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Defect: switch to the opponent’s side here if there is an unreserved space. Otherwise, stay on your side.",
+      "abilities": [
+        {
+          "type": "defect",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "paradox_regent",
+      "name": "Paradox Regent",
+      "cost": 4,
+      "power": 3,
+      "rarity": "legendary",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "imageUrl": "./cards/shattered-pacts/paradox_regent.webp",
+      "arenaSet": "eternal",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "transmute_deck",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "draw",
+          "value": 1
+        }
+      ],
+      "description": "On Reveal: Transmute every eligible unit in your deck: swap cost and power (cost 0–6; once per card). On Reveal: draw 1 card (hand limit 7).",
+      "abilities": [
+        {
+          "type": "transmute_deck",
+          "value": 0
+        },
+        {
+          "type": "draw",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "plague_cartographer",
+      "name": "Plague Cartographer",
+      "cost": 4,
+      "power": 4,
+      "rarity": "rare",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_rift"
+      ],
+      "imageUrl": "./cards/shattered-pacts/plague_cartographer.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "drain",
+        "value": 2,
+        "target": "other_arenas"
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: the weakest unwarded enemy unit in each other arena loses 2 power.",
+      "abilities": [
+        {
+          "type": "drain",
+          "value": 2,
+          "target": "other_arenas"
+        }
+      ]
+    },
+    {
+      "definitionId": "quicksilver_archivist",
+      "name": "Quicksilver Archivist",
+      "cost": 4,
+      "power": 3,
+      "rarity": "rare",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "imageUrl": "./cards/shattered-pacts/quicksilver_archivist.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "transmute_hand",
+        "value": 2
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Transmute the 2 lowest-power eligible units in your hand: swap cost and power (cost 0–6; once per card).",
+      "abilities": [
+        {
+          "type": "transmute_hand",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "soul_collector",
+      "name": "Soul Collector",
+      "type": "unit",
+      "rarity": "rare",
+      "cost": 4,
+      "power": 5,
+      "keywords": [],
+      "affinity": [
+        "the_graveyard"
+      ],
+      "description": "On Reveal: the strongest unwarded enemy unit here loses 2 power.",
+      "flavourText": "Three souls. It only needed three.",
+      "imageUrl": "./cards/soul-collector.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "affliction",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "drain",
+        "value": 2
+      },
+      "abilities": [
+        {
+          "type": "drain",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "summit_prophet",
+      "name": "Summit Prophet",
+      "type": "unit",
+      "rarity": "legendary",
+      "cost": 4,
+      "power": 4,
+      "keywords": [],
+      "affinity": [
+        "the_summit"
+      ],
+      "description": "On Reveal: draw 1 card (hand limit 7).",
+      "flavourText": "She climbed the mountain to find answers. The mountain gave her something better.",
+      "imageUrl": "./cards/summit-prophet.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "invocation"
+      ],
+      "arenaAbility": {
+        "type": "draw",
+        "value": 1
+      },
+      "abilities": [
+        {
+          "type": "draw",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "sunwell_keeper",
+      "name": "Sunwell Keeper",
+      "cost": 4,
+      "power": 3,
+      "rarity": "rare",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_summit"
+      ],
+      "imageUrl": "./cards/shattered-pacts/sunwell_keeper.webp",
+      "arenaSet": "expanded",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "echo_power",
+        "value": 0
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: give your weakest other unit here power equal to this card’s positive current power.",
+      "abilities": [
+        {
+          "type": "echo_power",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "the_undying",
+      "name": "The Undying",
+      "type": "unit",
+      "rarity": "legendary",
+      "cost": 4,
+      "power": 4,
+      "keywords": [],
+      "affinity": [
+        "the_graveyard"
+      ],
+      "description": "After each later turn, gain +2 power.",
+      "flavourText": "They killed it four times. After the fourth, they stopped trying.",
+      "imageUrl": "./cards/the-undying.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "grow",
+        "value": 2
+      },
+      "abilities": [
+        {
+          "type": "grow",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "thunder_hawk",
+      "name": "Thunder Hawk",
+      "type": "unit",
+      "rarity": "uncommon",
+      "cost": 4,
+      "power": 5,
+      "keywords": [],
+      "affinity": [],
+      "description": "On Reveal: +2 power if you were leading here before this card revealed.",
+      "flavourText": "The sky itself breaks before its wings.",
+      "imageUrl": "./cards/thunder-hawk.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "formation"
+      ],
+      "arenaAbility": {
+        "type": "pressure",
+        "value": 2
+      },
+      "abilities": [
+        {
+          "type": "pressure",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "ancient_guardian",
+      "name": "Ancient Guardian",
+      "type": "unit",
+      "rarity": "rare",
+      "cost": 5,
+      "power": 8,
+      "keywords": [],
+      "affinity": [
+        "the_summit"
+      ],
+      "description": "Ward: enemy effects cannot reduce this card’s power.",
+      "flavourText": "It was here before the first war. It will be here after the last.",
+      "imageUrl": "./cards/ancient-guardian.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "ward",
+        "value": 0
+      },
+      "abilities": [
+        {
+          "type": "ward",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "archmage",
+      "name": "Archmage",
+      "type": "unit",
+      "cost": 5,
+      "power": 4,
+      "rarity": "rare",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "invocation",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "boost_all",
+        "value": 1,
+        "timing": "spell",
+        "oncePerTurn": true
+      },
+      "arenaEffects": [],
+      "description": "After you cast a spell here, once per turn: give your units here +1 power.",
+      "imageUrl": "./cards/archmage.png",
+      "abilities": [
+        {
+          "type": "boost_all",
+          "value": 1,
+          "timing": "spell",
+          "oncePerTurn": true
+        }
+      ]
+    },
+    {
+      "definitionId": "banner_heir",
+      "name": "Banner Heir",
+      "type": "unit",
+      "cost": 5,
+      "power": 6,
+      "rarity": "rare",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "formation"
+      ],
+      "arenaAbility": {
+        "type": "full",
+        "value": 4
+      },
+      "arenaEffects": [],
+      "description": "Ongoing: +4 power while your side here is full.",
+      "imageUrl": "./cards/foundations/banner_heir.webp",
+      "abilities": [
+        {
+          "type": "full",
+          "value": 4
+        }
+      ]
+    },
+    {
+      "definitionId": "banshee_queen",
+      "name": "Banshee Queen",
+      "type": "unit",
+      "rarity": "legendary",
+      "cost": 5,
+      "power": 6,
+      "keywords": [],
+      "affinity": [
+        "the_graveyard"
+      ],
+      "description": "On Reveal: all unwarded enemy units here lose 1 power.",
+      "flavourText": "She wept for the dying. Then she stopped weeping and started working.",
+      "imageUrl": "./cards/banshee-queen.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "afflict_all",
+        "value": 1
+      },
+      "abilities": [
+        {
+          "type": "afflict_all",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "court_of_thorns",
+      "name": "Court of Thorns",
+      "cost": 5,
+      "power": 6,
+      "rarity": "legendary",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_graveyard"
+      ],
+      "imageUrl": "./cards/shattered-pacts/court_of_thorns.webp",
+      "arenaSet": "eternal",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "sabotage"
+      ],
+      "arenaAbility": {
+        "type": "plant",
+        "value": 0,
+        "target": "other_arenas",
+        "token": "burden_token"
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Plant a −1 Burden on the enemy side of each other arena, if space remains. Burdens stay until removed by an effect.",
+      "abilities": [
+        {
+          "type": "plant",
+          "value": 0,
+          "target": "other_arenas",
+          "token": "burden_token"
+        }
+      ]
+    },
+    {
+      "definitionId": "death_reaper",
+      "name": "Death Reaper",
+      "type": "unit",
+      "cost": 5,
+      "power": 6,
+      "rarity": "rare",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "affliction",
+        "sabotage"
+      ],
+      "arenaAbility": {
+        "type": "harvest",
+        "value": 2,
+        "timing": "final"
+      },
+      "arenaEffects": [],
+      "description": "After turn 6: gain +2 power for each enemy unit here with negative current power.",
+      "imageUrl": "./cards/death-reaper.png",
+      "abilities": [
+        {
+          "type": "harvest",
+          "value": 2,
+          "timing": "final"
+        }
+      ]
+    },
+    {
+      "definitionId": "entropic_maw",
+      "name": "Entropic Maw",
+      "type": "unit",
+      "rarity": "legendary",
+      "cost": 5,
+      "power": 8,
+      "keywords": [],
+      "affinity": [
+        "the_rift"
+      ],
+      "description": "On Reveal: +3 power if you were leading here before this card revealed.",
+      "flavourText": "It does not hunger. It simply unravels everything it touches.",
+      "imageUrl": "./cards/entropic-maw.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "formation"
+      ],
+      "arenaAbility": {
+        "type": "pressure",
+        "value": 3
+      },
+      "abilities": [
+        {
+          "type": "pressure",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "definitionId": "forge_wraith",
+      "name": "Forge Wraith",
+      "type": "unit",
+      "rarity": "legendary",
+      "cost": 5,
+      "power": 6,
+      "keywords": [],
+      "affinity": [
+        "the_forge"
+      ],
+      "description": "On Reveal: the strongest unwarded enemy unit here loses 3 power.",
+      "flavourText": "It burns without fuel. It ends without warning. It leaves nothing behind.",
+      "imageUrl": "./cards/forge-wraith.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "drain",
+        "value": 3
+      },
+      "abilities": [
+        {
+          "type": "drain",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "definitionId": "glass_dragoon",
+      "name": "Glass Dragoon",
+      "type": "unit",
+      "cost": 5,
+      "power": 2,
+      "rarity": "rare",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "transmutation",
+        "wayfarers",
+        "formation"
+      ],
+      "arenaAbility": {
+        "type": "flank",
+        "value": 2
+      },
+      "arenaEffects": [
+        {
+          "type": "moved_power",
+          "value": 2
+        }
+      ],
+      "description": "Ongoing: +2 power in position 1 or 4. Journey: +2 power after this unit moves between arenas. Does not stack; changing sides does not count.",
+      "imageUrl": "./cards/foundations/glass_dragoon.webp",
+      "abilities": [
+        {
+          "type": "flank",
+          "value": 2
+        },
+        {
+          "type": "moved_power",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "igna_unchained",
+      "name": "Igna Unchained",
+      "type": "unit",
+      "cost": 5,
+      "power": 6,
+      "rarity": "legendary",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "eternal",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "stewardship",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "relic_power",
+        "value": 2
+      },
+      "arenaEffects": [],
+      "description": "Ongoing: +2 power for each friendly relic here.",
+      "imageUrl": "./cards/igna-unchained.png",
+      "abilities": [
+        {
+          "type": "relic_power",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "last_light_beacon",
+      "name": "Last Light Beacon",
+      "cost": 5,
+      "power": 7,
+      "rarity": "legendary",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_summit"
+      ],
+      "imageUrl": "./cards/shattered-pacts/last_light_beacon.webp",
+      "arenaSet": "eternal",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "distribute",
+        "value": 0,
+        "timing": "final"
+      },
+      "arenaEffects": [],
+      "description": "After turn 6: distribute all this card’s positive current power evenly among your weakest units in the other arenas. Any extra point goes left first.",
+      "abilities": [
+        {
+          "type": "distribute",
+          "value": 0,
+          "timing": "final"
+        }
+      ]
+    },
+    {
+      "definitionId": "lord_of_bones",
+      "name": "Lord of Bones",
+      "type": "unit",
+      "rarity": "legendary",
+      "cost": 5,
+      "power": 5,
+      "keywords": [],
+      "affinity": [
+        "the_graveyard"
+      ],
+      "description": "Ongoing: your other generated units here have +3 power.",
+      "flavourText": "They offered him a throne. He built one himself — out of what remained.",
+      "imageUrl": "./cards/lord-of-bones.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "sabotage",
+        "stewardship"
+      ],
+      "arenaAbility": {
+        "type": "token_aura",
+        "value": 3
+      },
+      "abilities": [
+        {
+          "type": "token_aura",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "definitionId": "philosopher_engine",
+      "name": "Philosopher Engine",
+      "cost": 5,
+      "power": 2,
+      "rarity": "legendary",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_forge"
+      ],
+      "imageUrl": "./cards/shattered-pacts/philosopher_engine.webp",
+      "arenaSet": "eternal",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "transmutation",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "aura",
+        "value": 1
+      },
+      "arenaEffects": [
+        {
+          "type": "rally",
+          "value": 3
+        }
+      ],
+      "description": "Ongoing: your other units here have +1 power. On Reveal: +3 power if you were behind here before this card revealed.",
+      "abilities": [
+        {
+          "type": "aura",
+          "value": 1
+        },
+        {
+          "type": "rally",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "definitionId": "rift_herald",
+      "name": "Rift Herald",
+      "type": "unit",
+      "cost": 5,
+      "power": 5,
+      "rarity": "rare",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "expanded",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "wayfarers",
+        "formation"
+      ],
+      "arenaAbility": {
+        "type": "move",
+        "value": 0
+      },
+      "arenaEffects": [
+        {
+          "type": "rally",
+          "value": 2
+        }
+      ],
+      "description": "On Reveal: move your weakest unit from another arena here, if space remains. On Reveal: +2 power if you were behind here before this card revealed.",
+      "imageUrl": "./cards/rift-herald.png",
+      "abilities": [
+        {
+          "type": "move",
+          "value": 0
+        },
+        {
+          "type": "rally",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "rift_sovereign",
+      "name": "Rift Sovereign",
+      "type": "unit",
+      "rarity": "legendary",
+      "cost": 5,
+      "power": 6,
+      "keywords": [],
+      "affinity": [
+        "the_rift"
+      ],
+      "description": "Ongoing: your other units here have +1 power.",
+      "flavourText": "Order from chaos. He commands the storm without flinching.",
+      "imageUrl": "./cards/rift-sovereign.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "formation",
+        "wayfarers"
+      ],
+      "arenaAbility": {
+        "type": "aura",
+        "value": 1
+      },
+      "abilities": [
+        {
+          "type": "aura",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "definitionId": "wandering_colossus",
+      "name": "Wandering Colossus",
+      "type": "unit",
+      "cost": 5,
+      "power": 6,
+      "rarity": "legendary",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "eternal",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "wayfarers"
+      ],
+      "arenaAbility": {
+        "type": "moved_power",
+        "value": 5
+      },
+      "arenaEffects": [],
+      "description": "Journey: +5 power after this unit moves between arenas. Does not stack; changing sides does not count.",
+      "imageUrl": "./cards/foundations/wandering_colossus.webp",
+      "abilities": [
+        {
+          "type": "moved_power",
+          "value": 5
+        }
+      ]
+    },
+    {
+      "definitionId": "death_incarnate",
+      "name": "Death Incarnate",
+      "type": "unit",
+      "cost": 6,
+      "power": 6,
+      "rarity": "legendary",
+      "keywords": [],
+      "affinity": [],
+      "arenaSet": "eternal",
+      "arenaRelease": "Eternal Foundations",
+      "arenaArchetypes": [
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "drain",
+        "value": 2,
+        "target": "other_arenas"
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: the weakest unwarded enemy unit in each other arena loses 2 power.",
+      "imageUrl": "./cards/death-incarnate.png",
+      "abilities": [
+        {
+          "type": "drain",
+          "value": 2,
+          "target": "other_arenas"
+        }
+      ]
+    },
+    {
+      "definitionId": "famine_sovereign",
+      "name": "Famine Sovereign",
+      "cost": 6,
+      "power": 5,
+      "rarity": "legendary",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_graveyard"
+      ],
+      "imageUrl": "./cards/shattered-pacts/famine_sovereign.webp",
+      "arenaSet": "eternal",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "affliction"
+      ],
+      "arenaAbility": {
+        "type": "siphon",
+        "value": 1,
+        "target": "all"
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: Siphon 1 power from each unwarded enemy here: they lose it and this gains the amount removed.",
+      "abilities": [
+        {
+          "type": "siphon",
+          "value": 1,
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "definitionId": "glacier_sovereign",
+      "name": "Glacier Sovereign",
+      "type": "unit",
+      "rarity": "legendary",
+      "cost": 6,
+      "power": 9,
+      "keywords": [],
+      "affinity": [
+        "the_summit"
+      ],
+      "description": "On Reveal: +4 power if you were leading here before this card revealed.",
+      "flavourText": "The glacier does not hurry. It does not need to.",
+      "imageUrl": "./cards/glacier-sovereign.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "formation"
+      ],
+      "arenaAbility": {
+        "type": "pressure",
+        "value": 4
+      },
+      "abilities": [
+        {
+          "type": "pressure",
+          "value": 4
+        }
+      ]
+    },
+    {
+      "definitionId": "igna_eternal_flame",
+      "name": "Igna, Eternal Flame",
+      "type": "unit",
+      "rarity": "legendary",
+      "cost": 6,
+      "power": 7,
+      "keywords": [],
+      "affinity": [
+        "the_forge"
+      ],
+      "description": "Ongoing: your other units here have +2 power.",
+      "flavourText": "The forge was not built. She was born, and the forge grew around her.",
+      "imageUrl": "./cards/igna-eternal-flame.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "formation",
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "aura",
+        "value": 2
+      },
+      "abilities": [
+        {
+          "type": "aura",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "definitionId": "ironclad_colossus",
+      "name": "Ironclad Colossus",
+      "type": "unit",
+      "rarity": "legendary",
+      "cost": 6,
+      "power": 12,
+      "keywords": [],
+      "affinity": [
+        "the_forge"
+      ],
+      "description": "Steady power. No ability.",
+      "flavourText": "It took eleven master smiths and a god's blessing to make it walk.",
+      "imageUrl": "./cards/ironclad-colossus.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "conduits"
+      ],
+      "abilities": []
+    },
+    {
+      "definitionId": "prism_titan",
+      "name": "Prism Titan",
+      "cost": 6,
+      "power": 4,
+      "rarity": "legendary",
+      "type": "unit",
+      "keywords": [],
+      "affinity": [
+        "the_rift"
+      ],
+      "imageUrl": "./cards/shattered-pacts/prism_titan.webp",
+      "arenaSet": "eternal",
+      "arenaRelease": "Shattered Pacts",
+      "arenaArchetypes": [
+        "conduits",
+        "transmutation"
+      ],
+      "arenaAbility": {
+        "type": "double",
+        "value": 0
+      },
+      "arenaEffects": [],
+      "description": "On Reveal: double this card’s current power.",
+      "abilities": [
+        {
+          "type": "double",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "the_archon",
+      "name": "The Archon",
+      "type": "unit",
+      "rarity": "legendary",
+      "cost": 6,
+      "power": 6,
+      "keywords": [],
+      "affinity": [
+        "the_sanctum"
+      ],
+      "description": "On Reveal: give your weakest other unit here power equal to this card’s positive current power.",
+      "flavourText": "He did not learn magic. He became it.",
+      "imageUrl": "./cards/the-archon.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "conduits"
+      ],
+      "arenaAbility": {
+        "type": "echo_power",
+        "value": 0
+      },
+      "abilities": [
+        {
+          "type": "echo_power",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "definitionId": "the_unbroken",
+      "name": "The Unbroken",
+      "type": "unit",
+      "rarity": "legendary",
+      "cost": 6,
+      "power": 8,
+      "keywords": [],
+      "affinity": [
+        "the_summit"
+      ],
+      "description": "On Reveal: +5 power if you were behind here before this card revealed.",
+      "flavourText": "It has no name. Those who faced it did not survive to give it one.",
+      "imageUrl": "./cards/the-unbroken.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "formation"
+      ],
+      "arenaAbility": {
+        "type": "rally",
+        "value": 5
+      },
+      "abilities": [
+        {
+          "type": "rally",
+          "value": 5
+        }
+      ]
+    },
+    {
+      "definitionId": "void_leviathan",
+      "name": "Void Leviathan",
+      "type": "unit",
+      "rarity": "legendary",
+      "cost": 6,
+      "power": 8,
+      "keywords": [],
+      "affinity": [
+        "the_rift"
+      ],
+      "description": "Ongoing: +5 power while this is your only card here.",
+      "flavourText": "It doesn't cross the rift. It is the rift.",
+      "imageUrl": "./cards/void-leviathan.png",
+      "arenaSet": "core",
+      "arenaArchetypes": [
+        "wayfarers"
+      ],
+      "arenaAbility": {
+        "type": "alone",
+        "value": 5
+      },
+      "abilities": [
+        {
+          "type": "alone",
+          "value": 5
+        }
+      ]
+    }
+  ],
+  "decks": [
+    {
+      "id": "transmutation",
+      "name": "Transmutation",
+      "cards": [
+        "chalk_apprentice",
+        "village_scout",
+        "silver_equation",
+        "mercury_scholar",
+        "candle_tender",
+        "glass_familiar",
+        "alloy_guardian",
+        "ascended_prophet",
+        "gilded_oracle",
+        "paradox_regent",
+        "philosopher_engine",
+        "prism_titan"
+      ]
+    },
+    {
+      "id": "sabotage",
+      "name": "Sabotage",
+      "cards": [
+        "tainted_idol",
+        "candle_tender",
+        "inversion_rite",
+        "exile_ritual",
+        "false_standard",
+        "thorn_seeder",
+        "oathbreaker_duke",
+        "ashen_envoy",
+        "smuggled_contract",
+        "tax_collector",
+        "court_of_thorns",
+        "contraband_cache"
+      ]
+    },
+    {
+      "id": "affliction",
+      "name": "Affliction",
+      "cards": [
+        "blight_acolyte",
+        "cinder_script",
+        "salt_hex",
+        "dusk_leech",
+        "miasma_lantern",
+        "rot_scribe",
+        "hollow_choir",
+        "unmaking",
+        "plague_cartographer",
+        "debt_collector",
+        "famine_sovereign",
+        "warding_bell"
+      ]
+    },
+    {
+      "id": "conduits",
+      "name": "Conduits",
+      "cards": [
+        "candle_tender",
+        "warding_bell",
+        "temper",
+        "prism_initiate",
+        "current_runner",
+        "ember_conduit",
+        "marrow_engine",
+        "vessel_of_echoes",
+        "arcane_echo",
+        "sunwell_keeper",
+        "last_light_beacon",
+        "prism_titan"
+      ]
+    },
+    {
+      "id": "formation",
+      "name": "Formation",
+      "cards": [
+        "iron_flanker",
+        "chain_anchor",
+        "hold_the_line",
+        "chain_sentinel",
+        "warding_bell",
+        "break_standard",
+        "bridge_marshal",
+        "shield_warden",
+        "linebreaker",
+        "bastion_architect",
+        "banner_heir",
+        "grand_convergence"
+      ]
+    },
+    {
+      "id": "wayfarers",
+      "name": "Wayfarers",
+      "cards": [
+        "trail_wisp",
+        "phase_walk",
+        "wayward_current",
+        "crossing_guard",
+        "pilgrim_compass",
+        "close_ranks",
+        "waystone_pilgrim",
+        "open_horizon",
+        "horizon_rider",
+        "linebreaker",
+        "rift_herald",
+        "wandering_colossus"
+      ]
+    },
+    {
+      "id": "invocation",
+      "name": "Invocation",
+      "cards": [
+        "rune_attendant",
+        "cinder_script",
+        "mana_surge",
+        "measured_cast",
+        "glyph_scholar",
+        "ember_conduit",
+        "miasma_lantern",
+        "spellfont",
+        "arcane_echo",
+        "frost_elder",
+        "archmage",
+        "grand_convergence"
+      ]
+    },
+    {
+      "id": "stewardship",
+      "name": "Stewardship",
+      "cards": [
+        "scrap_custodian",
+        "chain_anchor",
+        "chain_sentinel",
+        "linebreaker",
+        "war_standard",
+        "ember_incubator",
+        "relic_diver",
+        "master_forger",
+        "salvage_rite",
+        "null_sigil",
+        "bastion_architect",
+        "igna_unchained"
+      ]
+    }
+  ],
+  "curves": [
+    {
+      "id": "transmutation",
+      "order": [
+        "chalk_apprentice",
+        "mercury_scholar",
+        "glass_familiar",
+        "village_scout",
+        "philosopher_engine",
+        "candle_tender",
+        "paradox_regent",
+        "gilded_oracle",
+        "alloy_guardian",
+        "ascended_prophet",
+        "silver_equation",
+        "prism_titan"
+      ],
+      "turns": [
+        [
+          [
+            "chalk_apprentice",
+            0
+          ]
+        ],
+        [
+          [
+            "mercury_scholar",
+            1
+          ]
+        ],
+        [
+          [
+            "glass_familiar",
+            1
+          ],
+          [
+            "village_scout",
+            0
+          ]
+        ],
+        [
+          [
+            "paradox_regent",
+            2
+          ]
+        ],
+        [
+          [
+            "philosopher_engine",
+            0
+          ],
+          [
+            "alloy_guardian",
+            2
+          ],
+          [
+            "candle_tender",
+            0
+          ]
+        ],
+        [
+          [
+            "gilded_oracle",
+            1
+          ],
+          [
+            "ascended_prophet",
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "sabotage",
+      "order": [
+        "tainted_idol",
+        "exile_ritual",
+        "false_standard",
+        "candle_tender",
+        "contraband_cache",
+        "inversion_rite",
+        "ashen_envoy",
+        "thorn_seeder",
+        "court_of_thorns",
+        "oathbreaker_duke",
+        "tax_collector",
+        "smuggled_contract"
+      ],
+      "turns": [
+        [
+          [
+            "tainted_idol",
+            1
+          ]
+        ],
+        [
+          [
+            "false_standard",
+            0
+          ]
+        ],
+        [
+          [
+            "contraband_cache",
+            2
+          ]
+        ],
+        [
+          [
+            "burden_token",
+            2
+          ],
+          [
+            "exile_ritual",
+            2
+          ],
+          [
+            "ashen_envoy",
+            1
+          ]
+        ],
+        [
+          [
+            "court_of_thorns",
+            0
+          ]
+        ],
+        [
+          [
+            "oathbreaker_duke",
+            0
+          ],
+          [
+            "inversion_rite",
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "affliction",
+      "order": [
+        "blight_acolyte",
+        "dusk_leech",
+        "cinder_script",
+        "rot_scribe",
+        "miasma_lantern",
+        "salt_hex",
+        "unmaking",
+        "hollow_choir",
+        "famine_sovereign",
+        "plague_cartographer",
+        "debt_collector",
+        "warding_bell"
+      ],
+      "turns": [
+        [
+          [
+            "blight_acolyte",
+            0
+          ]
+        ],
+        [
+          [
+            "dusk_leech",
+            1
+          ]
+        ],
+        [
+          [
+            "rot_scribe",
+            1
+          ]
+        ],
+        [
+          [
+            "miasma_lantern",
+            1
+          ],
+          [
+            "salt_hex",
+            1
+          ],
+          [
+            "cinder_script",
+            1
+          ]
+        ],
+        [
+          [
+            "hollow_choir",
+            0
+          ],
+          [
+            "unmaking",
+            0
+          ]
+        ],
+        [
+          [
+            "famine_sovereign",
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "conduits",
+      "order": [
+        "candle_tender",
+        "prism_initiate",
+        "temper",
+        "sunwell_keeper",
+        "current_runner",
+        "marrow_engine",
+        "vessel_of_echoes",
+        "last_light_beacon",
+        "prism_titan",
+        "ember_conduit",
+        "arcane_echo",
+        "warding_bell"
+      ],
+      "turns": [
+        [
+          [
+            "candle_tender",
+            0
+          ]
+        ],
+        [
+          [
+            "prism_initiate",
+            1
+          ]
+        ],
+        [
+          [
+            "current_runner",
+            1
+          ],
+          [
+            "temper",
+            0
+          ]
+        ],
+        [
+          [
+            "sunwell_keeper",
+            1
+          ]
+        ],
+        [
+          [
+            "last_light_beacon",
+            2
+          ]
+        ],
+        [
+          [
+            "prism_titan",
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "formation",
+      "order": [
+        "iron_flanker",
+        "chain_sentinel",
+        "chain_anchor",
+        "bridge_marshal",
+        "warding_bell",
+        "shield_warden",
+        "linebreaker",
+        "banner_heir",
+        "grand_convergence",
+        "hold_the_line",
+        "break_standard",
+        "bastion_architect"
+      ],
+      "turns": [
+        [
+          [
+            "iron_flanker",
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            "chain_sentinel",
+            0,
+            2
+          ]
+        ],
+        [
+          [
+            "chain_anchor",
+            0,
+            1
+          ],
+          [
+            "warding_bell",
+            0,
+            3
+          ]
+        ],
+        [
+          [
+            "linebreaker",
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            "banner_heir",
+            1,
+            3
+          ]
+        ],
+        [
+          [
+            "shield_warden",
+            1,
+            1
+          ],
+          [
+            "grand_convergence",
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "wayfarers",
+      "order": [
+        "trail_wisp",
+        "crossing_guard",
+        "wayward_current",
+        "phase_walk",
+        "pilgrim_compass",
+        "waystone_pilgrim",
+        "horizon_rider",
+        "wandering_colossus",
+        "rift_herald",
+        "linebreaker",
+        "open_horizon",
+        "close_ranks"
+      ],
+      "turns": [
+        [
+          [
+            "trail_wisp",
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            "crossing_guard",
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            "pilgrim_compass",
+            1,
+            1
+          ],
+          [
+            "phase_walk",
+            1
+          ]
+        ],
+        [
+          [
+            "horizon_rider",
+            0,
+            2
+          ]
+        ],
+        [
+          [
+            "wandering_colossus",
+            2,
+            0
+          ]
+        ],
+        [
+          [
+            "rift_herald",
+            2,
+            1
+          ],
+          [
+            "wayward_current",
+            0
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "invocation",
+      "order": [
+        "rune_attendant",
+        "glyph_scholar",
+        "cinder_script",
+        "mana_surge",
+        "ember_conduit",
+        "miasma_lantern",
+        "spellfont",
+        "arcane_echo",
+        "frost_elder",
+        "archmage",
+        "grand_convergence",
+        "measured_cast"
+      ],
+      "turns": [
+        [
+          [
+            "rune_attendant",
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            "glyph_scholar",
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            "ember_conduit",
+            0,
+            2
+          ],
+          [
+            "cinder_script",
+            0
+          ]
+        ],
+        [
+          [
+            "spellfont",
+            0,
+            3
+          ],
+          [
+            "arcane_echo",
+            0
+          ]
+        ],
+        [
+          [
+            "archmage",
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            "frost_elder",
+            1,
+            1
+          ],
+          [
+            "mana_surge",
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "stewardship",
+      "order": [
+        "scrap_custodian",
+        "war_standard",
+        "chain_anchor",
+        "chain_sentinel",
+        "salvage_rite",
+        "master_forger",
+        "igna_unchained",
+        "ember_incubator",
+        "bastion_architect",
+        "linebreaker",
+        "relic_diver",
+        "null_sigil"
+      ],
+      "turns": [
+        [
+          [
+            "scrap_custodian",
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            "war_standard",
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            "chain_sentinel",
+            0,
+            2
+          ],
+          [
+            "chain_anchor",
+            0,
+            3
+          ]
+        ],
+        [
+          [
+            "salvage_rite",
+            0
+          ],
+          [
+            "master_forger",
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            "igna_unchained",
+            1,
+            2
+          ]
+        ],
+        [
+          [
+            "bastion_architect",
+            2,
+            0
+          ],
+          [
+            "ember_incubator",
+            1,
+            1
+          ]
+        ]
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "frost-sage-winter-ink",
+      "definitionId": "frost_sage",
+      "name": "Winter Ink",
+      "style": "Brush & ink",
+      "imageUrl": "/cards/variants/frost-sage-winter-ink.webp",
+      "gemCost": 200
+    },
+    {
+      "id": "chaos-drake-vermilion-tempest",
+      "definitionId": "chaos_drake",
+      "name": "Vermilion Tempest",
+      "style": "Woodblock",
+      "imageUrl": "/cards/variants/chaos-drake-vermilion-tempest.webp",
+      "gemCost": 200
+    },
+    {
+      "id": "ancient-guardian-hollow-sentinel",
+      "definitionId": "ancient_guardian",
+      "name": "Hollow Sentinel",
+      "style": "Dark folklore",
+      "imageUrl": "/cards/variants/ancient-guardian-hollow-sentinel.webp",
+      "gemCost": 200
+    },
+    {
+      "id": "village-scout-lanternwood",
+      "definitionId": "village_scout",
+      "name": "Lanternwood",
+      "style": "Layered paper",
+      "imageUrl": "/cards/variants/village-scout-lanternwood.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "wandering-blade-moonlit-ronin",
+      "definitionId": "wandering_blade",
+      "name": "Moonlit Ronin",
+      "style": "Brush & ink",
+      "imageUrl": "/cards/variants/wandering-blade-moonlit-ronin.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "shield-warden-brass-saint",
+      "definitionId": "shield_warden",
+      "name": "Brass Saint",
+      "style": "Stained glass",
+      "imageUrl": "/cards/variants/shield-warden-brass-saint.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "thunder-hawk-storm-scroll",
+      "definitionId": "thunder_hawk",
+      "name": "Storm Scroll",
+      "style": "Woodblock",
+      "imageUrl": "/cards/variants/thunder-hawk-storm-scroll.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "iron-golem-porcelain-giant",
+      "definitionId": "iron_golem",
+      "name": "Porcelain Giant",
+      "style": "Painted porcelain",
+      "imageUrl": "/cards/variants/iron-golem-porcelain-giant.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "forge-apprentice-ember-tapestry",
+      "definitionId": "forge_apprentice",
+      "name": "Ember Tapestry",
+      "style": "Woven tapestry",
+      "imageUrl": "/cards/variants/forge-apprentice-ember-tapestry.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "temper-goldsmiths-dream",
+      "definitionId": "temper",
+      "name": "Goldsmith’s Dream",
+      "style": "Illuminated miniature",
+      "imageUrl": "/cards/variants/temper-goldsmiths-dream.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "igna-eternal-flame-ash-queen",
+      "definitionId": "igna_eternal_flame",
+      "name": "Ash Queen",
+      "style": "Charcoal & oil",
+      "imageUrl": "/cards/variants/igna-eternal-flame-ash-queen.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "ironclad-colossus-mossbound",
+      "definitionId": "ironclad_colossus",
+      "name": "Mossbound",
+      "style": "Dark folklore",
+      "imageUrl": "/cards/variants/ironclad-colossus-mossbound.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "mountain-hermit-winter-pilgrim",
+      "definitionId": "mountain_hermit",
+      "name": "Winter Pilgrim",
+      "style": "Ink on silk",
+      "imageUrl": "/cards/variants/mountain-hermit-winter-pilgrim.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "spark-sprite-bottled-starlight",
+      "definitionId": "spark_sprite",
+      "name": "Bottled Starlight",
+      "style": "Storybook gouache",
+      "imageUrl": "/cards/variants/spark-sprite-bottled-starlight.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "phase-walk-paper-door",
+      "definitionId": "phase_walk",
+      "name": "Paper Door",
+      "style": "Paper collage",
+      "imageUrl": "/cards/variants/phase-walk-paper-door.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "bone-knight-marionette",
+      "definitionId": "bone_knight",
+      "name": "Marionette",
+      "style": "Carved theatre",
+      "imageUrl": "/cards/variants/bone-knight-marionette.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "revenant-mourning-porcelain",
+      "definitionId": "revenant",
+      "name": "Mourning Porcelain",
+      "style": "Gothic porcelain",
+      "imageUrl": "/cards/variants/revenant-mourning-porcelain.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "mana-surge-celestial-map",
+      "definitionId": "mana_surge",
+      "name": "Celestial Map",
+      "style": "Celestial engraving",
+      "imageUrl": "/cards/variants/mana-surge-celestial-map.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "arcane-echo-prism-nocturne",
+      "definitionId": "arcane_echo",
+      "name": "Prism Nocturne",
+      "style": "Art deco",
+      "imageUrl": "/cards/variants/arcane-echo-prism-nocturne.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "chalk-apprentice-chalk-dream",
+      "definitionId": "chalk_apprentice",
+      "name": "Chalk Dream",
+      "style": "Pastel & chalk",
+      "imageUrl": "/cards/variants/chalk-apprentice-chalk-dream.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "mercury-scholar-quicksilver-mask",
+      "definitionId": "mercury_scholar",
+      "name": "Quicksilver Mask",
+      "style": "Surreal oil",
+      "imageUrl": "/cards/variants/mercury-scholar-quicksilver-mask.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "glass-familiar-paper-menagerie",
+      "definitionId": "glass_familiar",
+      "name": "Paper Menagerie",
+      "style": "Origami",
+      "imageUrl": "/cards/variants/glass-familiar-paper-menagerie.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "ashen-envoy-court-of-ashes",
+      "definitionId": "ashen_envoy",
+      "name": "Court of Ashes",
+      "style": "Gothic etching",
+      "imageUrl": "/cards/variants/ashen-envoy-court-of-ashes.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "thorn-seeder-briar-doll",
+      "definitionId": "thorn_seeder",
+      "name": "Briar Doll",
+      "style": "Needle-felt folklore",
+      "imageUrl": "/cards/variants/thorn-seeder-briar-doll.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "tainted-idol-festival-mask",
+      "definitionId": "tainted_idol",
+      "name": "Festival Mask",
+      "style": "Painted folk wood",
+      "imageUrl": "/cards/variants/tainted-idol-festival-mask.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "blight-acolyte-mushroom-court",
+      "definitionId": "blight_acolyte",
+      "name": "Mushroom Court",
+      "style": "Botanical watercolour",
+      "imageUrl": "/cards/variants/blight-acolyte-mushroom-court.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "dusk-leech-abyssal-jewel",
+      "definitionId": "dusk_leech",
+      "name": "Abyssal Jewel",
+      "style": "Bioluminescent fantasy",
+      "imageUrl": "/cards/variants/dusk-leech-abyssal-jewel.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "war-standard-fallen-banner",
+      "definitionId": "war_standard",
+      "name": "Fallen Banner",
+      "style": "Woven tapestry",
+      "imageUrl": "/cards/variants/war-standard-fallen-banner.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "spellfont-moonwell",
+      "definitionId": "spellfont",
+      "name": "Moonwell",
+      "style": "Glazed ceramic",
+      "imageUrl": "/cards/variants/spellfont-moonwell.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "prism-titan-cathedral-giant",
+      "definitionId": "prism_titan",
+      "name": "Cathedral Giant",
+      "style": "Stained glass",
+      "imageUrl": "/cards/variants/prism-titan-cathedral-giant.webp",
+      "gemCost": 200,
+      "source": "pack"
+    },
+    {
+      "id": "sp-midnight-sovereign",
+      "definitionId": "paradox_regent",
+      "name": "Midnight Sovereign",
+      "style": "Gothic stained glass",
+      "imageUrl": "/ui/seasons/shattered-pacts/midnight-sovereign-v2.webp",
+      "gemCost": 0,
+      "source": "season"
+    }
+  ],
+  "assets": [
+    {
+      "id": "aether_battery",
+      "kind": "base",
+      "url": "./cards/relics/aether_battery-v1.jpg",
+      "bytes": 305677
+    },
+    {
+      "id": "blight_acolyte",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/blight_acolyte.webp",
+      "bytes": 278326
+    },
+    {
+      "id": "break_standard",
+      "kind": "base",
+      "url": "./cards/foundations/break_standard.webp",
+      "bytes": 358472
+    },
+    {
+      "id": "candle_tender",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/candle_tender.webp",
+      "bytes": 232542
+    },
+    {
+      "id": "chain_anchor",
+      "kind": "base",
+      "url": "./cards/foundations/chain_anchor.webp",
+      "bytes": 347312
+    },
+    {
+      "id": "chalk_apprentice",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/chalk_apprentice.webp",
+      "bytes": 273504
+    },
+    {
+      "id": "cinder_script",
+      "kind": "base",
+      "url": "./cards/foundations/cinder_script.webp",
+      "bytes": 232404
+    },
+    {
+      "id": "cleansing_flame",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/cleansing_flame.webp",
+      "bytes": 305662
+    },
+    {
+      "id": "exile_ritual",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/exile_ritual.webp",
+      "bytes": 283934
+    },
+    {
+      "id": "hold_the_line",
+      "kind": "base",
+      "url": "./cards/foundations/hold_the_line.webp",
+      "bytes": 330910
+    },
+    {
+      "id": "hollow_gift",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/hollow_gift.webp",
+      "bytes": 246514
+    },
+    {
+      "id": "iron_flanker",
+      "kind": "base",
+      "url": "./cards/foundations/iron_flanker.webp",
+      "bytes": 282686
+    },
+    {
+      "id": "lead_to_gold",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/lead_to_gold.webp",
+      "bytes": 295202
+    },
+    {
+      "id": "liquid_potential",
+      "kind": "base",
+      "url": "./cards/foundations/liquid_potential.webp",
+      "bytes": 282882
+    },
+    {
+      "id": "mana_surge",
+      "kind": "base",
+      "url": "./cards/mana-surge.png",
+      "bytes": 2796705
+    },
+    {
+      "id": "measured_cast",
+      "kind": "base",
+      "url": "./cards/foundations/measured_cast.webp",
+      "bytes": 211786
+    },
+    {
+      "id": "phase_walk",
+      "kind": "base",
+      "url": "./cards/phase-walk.png",
+      "bytes": 2820943
+    },
+    {
+      "id": "restoration",
+      "kind": "base",
+      "url": "./cards/foundations/restoration.webp",
+      "bytes": 343658
+    },
+    {
+      "id": "rune_attendant",
+      "kind": "base",
+      "url": "./cards/foundations/rune_attendant.webp",
+      "bytes": 183280
+    },
+    {
+      "id": "salt_hex",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/salt_hex.webp",
+      "bytes": 306656
+    },
+    {
+      "id": "salvage_rite",
+      "kind": "base",
+      "url": "./cards/foundations/salvage_rite.webp",
+      "bytes": 270474
+    },
+    {
+      "id": "scrap_custodian",
+      "kind": "base",
+      "url": "./cards/foundations/scrap_custodian.webp",
+      "bytes": 247628
+    },
+    {
+      "id": "smuggler_vault",
+      "kind": "base",
+      "url": "./cards/foundations/smuggler_vault.webp",
+      "bytes": 265752
+    },
+    {
+      "id": "spark_sprite",
+      "kind": "base",
+      "url": "./cards/spark-sprite.png",
+      "bytes": 2427059
+    },
+    {
+      "id": "tainted_idol",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/tainted_idol.webp",
+      "bytes": 207434
+    },
+    {
+      "id": "temper",
+      "kind": "base",
+      "url": "./cards/temper.png",
+      "bytes": 2370249
+    },
+    {
+      "id": "trail_wisp",
+      "kind": "base",
+      "url": "./cards/foundations/trail_wisp.webp",
+      "bytes": 331712
+    },
+    {
+      "id": "village_scout",
+      "kind": "base",
+      "url": "./cards/village-scout.png",
+      "bytes": 3009475
+    },
+    {
+      "id": "warding_bell",
+      "kind": "base",
+      "url": "./cards/relics/warding_bell-v1.jpg",
+      "bytes": 386399
+    },
+    {
+      "id": "wayward_current",
+      "kind": "base",
+      "url": "./cards/foundations/wayward_current.webp",
+      "bytes": 382026
+    },
+    {
+      "id": "apprentice_mage",
+      "kind": "base",
+      "url": "./cards/apprentice-mage.png",
+      "bytes": 2813571
+    },
+    {
+      "id": "arcane_echo",
+      "kind": "base",
+      "url": "./cards/arcane-echo.png",
+      "bytes": 2901274
+    },
+    {
+      "id": "bone_knight",
+      "kind": "base",
+      "url": "./cards/bone-knight.png",
+      "bytes": 2715178
+    },
+    {
+      "id": "borrowed_strength",
+      "kind": "base",
+      "url": "./cards/foundations/borrowed_strength.webp",
+      "bytes": 285734
+    },
+    {
+      "id": "chain_sentinel",
+      "kind": "base",
+      "url": "./cards/foundations/chain_sentinel.webp",
+      "bytes": 310918
+    },
+    {
+      "id": "close_ranks",
+      "kind": "base",
+      "url": "./cards/foundations/close_ranks.webp",
+      "bytes": 339210
+    },
+    {
+      "id": "codex_of_ages",
+      "kind": "base",
+      "url": "./cards/codex-of-ages.png",
+      "bytes": 3001817
+    },
+    {
+      "id": "contraband_cache",
+      "kind": "base",
+      "url": "./cards/relics/contraband_cache-v1.jpg",
+      "bytes": 341790
+    },
+    {
+      "id": "counterfeit_courier",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/counterfeit_courier.webp",
+      "bytes": 231070
+    },
+    {
+      "id": "crossing_guard",
+      "kind": "base",
+      "url": "./cards/foundations/crossing_guard.webp",
+      "bytes": 306704
+    },
+    {
+      "id": "current_runner",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/current_runner.webp",
+      "bytes": 338588
+    },
+    {
+      "id": "dusk_leech",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/dusk_leech.webp",
+      "bytes": 273406
+    },
+    {
+      "id": "ember_conduit",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/ember_conduit.webp",
+      "bytes": 341928
+    },
+    {
+      "id": "ember_incubator",
+      "kind": "base",
+      "url": "./cards/relics/ember_incubator-v1.jpg",
+      "bytes": 335688
+    },
+    {
+      "id": "false_standard",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/false_standard.webp",
+      "bytes": 300544
+    },
+    {
+      "id": "forge_apprentice",
+      "kind": "base",
+      "url": "./cards/forge-apprentice.png",
+      "bytes": 2908891
+    },
+    {
+      "id": "glyph_scholar",
+      "kind": "base",
+      "url": "./cards/foundations/glyph_scholar.webp",
+      "bytes": 228498
+    },
+    {
+      "id": "grand_invocation",
+      "kind": "base",
+      "url": "./cards/grand-invocation.png",
+      "bytes": 2442672
+    },
+    {
+      "id": "homeward_call",
+      "kind": "base",
+      "url": "./cards/foundations/homeward_call.webp",
+      "bytes": 292290
+    },
+    {
+      "id": "inversion_rite",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/inversion_rite.webp",
+      "bytes": 382278
+    },
+    {
+      "id": "lingering_curse",
+      "kind": "base",
+      "url": "./cards/foundations/lingering_curse.webp",
+      "bytes": 296154
+    },
+    {
+      "id": "mercury_scholar",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/mercury_scholar.webp",
+      "bytes": 240826
+    },
+    {
+      "id": "miasma_lantern",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/miasma_lantern.webp",
+      "bytes": 300344
+    },
+    {
+      "id": "mirror_squire",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/mirror_squire.webp",
+      "bytes": 314090
+    },
+    {
+      "id": "mountain_hermit",
+      "kind": "base",
+      "url": "./cards/mountain-hermit.png",
+      "bytes": 2896400
+    },
+    {
+      "id": "null_sigil",
+      "kind": "base",
+      "url": "./cards/foundations/null_sigil.webp",
+      "bytes": 337746
+    },
+    {
+      "id": "oathbound_scavenger",
+      "kind": "base",
+      "url": "./cards/foundations/oathbound_scavenger.webp",
+      "bytes": 302216
+    },
+    {
+      "id": "open_horizon",
+      "kind": "base",
+      "url": "./cards/foundations/open_horizon.webp",
+      "bytes": 398102
+    },
+    {
+      "id": "pale_physician",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/pale_physician.webp",
+      "bytes": 203816
+    },
+    {
+      "id": "pilgrim_compass",
+      "kind": "base",
+      "url": "./cards/foundations/pilgrim_compass.webp",
+      "bytes": 336810
+    },
+    {
+      "id": "plague_censer",
+      "kind": "base",
+      "url": "./cards/foundations/plague_censer.webp",
+      "bytes": 251064
+    },
+    {
+      "id": "prism_initiate",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/prism_initiate.webp",
+      "bytes": 266604
+    },
+    {
+      "id": "refracting_lens",
+      "kind": "base",
+      "url": "./cards/foundations/refracting_lens.webp",
+      "bytes": 344508
+    },
+    {
+      "id": "relic_diver",
+      "kind": "base",
+      "url": "./cards/foundations/relic_diver.webp",
+      "bytes": 334898
+    },
+    {
+      "id": "revenant",
+      "kind": "base",
+      "url": "./cards/revenant.png",
+      "bytes": 2599485
+    },
+    {
+      "id": "ritual_caster",
+      "kind": "base",
+      "url": "./cards/ritual-caster.png",
+      "bytes": 2538691
+    },
+    {
+      "id": "silver_equation",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/silver_equation.webp",
+      "bytes": 267692
+    },
+    {
+      "id": "smuggled_contract",
+      "kind": "base",
+      "url": "./cards/foundations/smuggled_contract.webp",
+      "bytes": 152268
+    },
+    {
+      "id": "spellfont",
+      "kind": "base",
+      "url": "./cards/relics/spellfont-v1.jpg",
+      "bytes": 403209
+    },
+    {
+      "id": "thorn_seeder",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/thorn_seeder.webp",
+      "bytes": 270832
+    },
+    {
+      "id": "unmaking",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/unmaking.webp",
+      "bytes": 444300
+    },
+    {
+      "id": "wandering_blade",
+      "kind": "base",
+      "url": "./cards/wandering-blade.png",
+      "bytes": 2708284
+    },
+    {
+      "id": "war_standard",
+      "kind": "base",
+      "url": "./cards/relics/war_standard-v1.jpg",
+      "bytes": 351574
+    },
+    {
+      "id": "alloy_guardian",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/alloy_guardian.webp",
+      "bytes": 310574
+    },
+    {
+      "id": "ashen_envoy",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/ashen_envoy.webp",
+      "bytes": 250582
+    },
+    {
+      "id": "bridge_marshal",
+      "kind": "base",
+      "url": "./cards/foundations/bridge_marshal.webp",
+      "bytes": 265014
+    },
+    {
+      "id": "censer_warden",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/censer_warden.webp",
+      "bytes": 218352
+    },
+    {
+      "id": "crucible_seer",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/crucible_seer.webp",
+      "bytes": 383242
+    },
+    {
+      "id": "debt_broker",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/debt_broker.webp",
+      "bytes": 198860
+    },
+    {
+      "id": "frost_sage",
+      "kind": "base",
+      "url": "./cards/frost-sage.png",
+      "bytes": 3005773
+    },
+    {
+      "id": "gilded_astrolabe",
+      "kind": "base",
+      "url": "./cards/foundations/gilded_astrolabe.webp",
+      "bytes": 350474
+    },
+    {
+      "id": "glass_familiar",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/glass_familiar.webp",
+      "bytes": 386528
+    },
+    {
+      "id": "grand_convergence",
+      "kind": "base",
+      "url": "./cards/foundations/grand_convergence.webp",
+      "bytes": 333456
+    },
+    {
+      "id": "hollow_choir",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/hollow_choir.webp",
+      "bytes": 358834
+    },
+    {
+      "id": "iron_golem",
+      "kind": "base",
+      "url": "./cards/iron-golem.png",
+      "bytes": 3029705
+    },
+    {
+      "id": "marrow_engine",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/marrow_engine.webp",
+      "bytes": 339822
+    },
+    {
+      "id": "masked_ferryman",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/masked_ferryman.webp",
+      "bytes": 218260
+    },
+    {
+      "id": "master_forger",
+      "kind": "base",
+      "url": "./cards/master-forger.png",
+      "bytes": 3162826
+    },
+    {
+      "id": "rift_caller",
+      "kind": "base",
+      "url": "./cards/rift-caller.png",
+      "bytes": 2850213
+    },
+    {
+      "id": "rot_scribe",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/rot_scribe.webp",
+      "bytes": 244914
+    },
+    {
+      "id": "shield_warden",
+      "kind": "base",
+      "url": "./cards/shield-warden.png",
+      "bytes": 2946755
+    },
+    {
+      "id": "splinter_agent",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/splinter_agent.webp",
+      "bytes": 259670
+    },
+    {
+      "id": "sunken_reliquary",
+      "kind": "base",
+      "url": "./cards/foundations/sunken_reliquary.webp",
+      "bytes": 330370
+    },
+    {
+      "id": "tax_collector",
+      "kind": "base",
+      "url": "./cards/foundations/tax_collector.webp",
+      "bytes": 241964
+    },
+    {
+      "id": "vessel_of_echoes",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/vessel_of_echoes.webp",
+      "bytes": 331194
+    },
+    {
+      "id": "waystone_pilgrim",
+      "kind": "base",
+      "url": "./cards/foundations/waystone_pilgrim.webp",
+      "bytes": 378230
+    },
+    {
+      "id": "ascended_prophet",
+      "kind": "base",
+      "url": "./cards/ascended-prophet.png",
+      "bytes": 3001215
+    },
+    {
+      "id": "bastion_architect",
+      "kind": "base",
+      "url": "./cards/foundations/bastion_architect.webp",
+      "bytes": 293444
+    },
+    {
+      "id": "chaos_drake",
+      "kind": "base",
+      "url": "./cards/chaos-drake.png",
+      "bytes": 3054272
+    },
+    {
+      "id": "debt_collector",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/debt_collector.webp",
+      "bytes": 287140
+    },
+    {
+      "id": "equal_measure",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/equal_measure.webp",
+      "bytes": 345598
+    },
+    {
+      "id": "frost_elder",
+      "kind": "base",
+      "url": "./cards/frost-elder.png",
+      "bytes": 3258557
+    },
+    {
+      "id": "gilded_oracle",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/gilded_oracle.webp",
+      "bytes": 356968
+    },
+    {
+      "id": "horizon_rider",
+      "kind": "base",
+      "url": "./cards/foundations/horizon_rider.webp",
+      "bytes": 306584
+    },
+    {
+      "id": "linebreaker",
+      "kind": "base",
+      "url": "./cards/foundations/linebreaker.webp",
+      "bytes": 311168
+    },
+    {
+      "id": "living_codex",
+      "kind": "base",
+      "url": "./cards/living-codex.png",
+      "bytes": 2743880
+    },
+    {
+      "id": "oathbreaker_duke",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/oathbreaker_duke.webp",
+      "bytes": 299910
+    },
+    {
+      "id": "paradox_regent",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/paradox_regent.webp",
+      "bytes": 416204
+    },
+    {
+      "id": "plague_cartographer",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/plague_cartographer.webp",
+      "bytes": 303988
+    },
+    {
+      "id": "quicksilver_archivist",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/quicksilver_archivist.webp",
+      "bytes": 250354
+    },
+    {
+      "id": "soul_collector",
+      "kind": "base",
+      "url": "./cards/soul-collector.png",
+      "bytes": 2787710
+    },
+    {
+      "id": "summit_prophet",
+      "kind": "base",
+      "url": "./cards/summit-prophet.png",
+      "bytes": 2884415
+    },
+    {
+      "id": "sunwell_keeper",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/sunwell_keeper.webp",
+      "bytes": 291254
+    },
+    {
+      "id": "the_undying",
+      "kind": "base",
+      "url": "./cards/the-undying.png",
+      "bytes": 2725214
+    },
+    {
+      "id": "thunder_hawk",
+      "kind": "base",
+      "url": "./cards/thunder-hawk.png",
+      "bytes": 2834549
+    },
+    {
+      "id": "ancient_guardian",
+      "kind": "base",
+      "url": "./cards/ancient-guardian.png",
+      "bytes": 2943067
+    },
+    {
+      "id": "archmage",
+      "kind": "base",
+      "url": "./cards/archmage.png",
+      "bytes": 2967878
+    },
+    {
+      "id": "banner_heir",
+      "kind": "base",
+      "url": "./cards/foundations/banner_heir.webp",
+      "bytes": 306048
+    },
+    {
+      "id": "banshee_queen",
+      "kind": "base",
+      "url": "./cards/banshee-queen.png",
+      "bytes": 2604672
+    },
+    {
+      "id": "court_of_thorns",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/court_of_thorns.webp",
+      "bytes": 258720
+    },
+    {
+      "id": "death_reaper",
+      "kind": "base",
+      "url": "./cards/death-reaper.png",
+      "bytes": 2763174
+    },
+    {
+      "id": "entropic_maw",
+      "kind": "base",
+      "url": "./cards/entropic-maw.png",
+      "bytes": 2738202
+    },
+    {
+      "id": "forge_wraith",
+      "kind": "base",
+      "url": "./cards/forge-wraith.png",
+      "bytes": 2672612
+    },
+    {
+      "id": "glass_dragoon",
+      "kind": "base",
+      "url": "./cards/foundations/glass_dragoon.webp",
+      "bytes": 272428
+    },
+    {
+      "id": "igna_unchained",
+      "kind": "base",
+      "url": "./cards/igna-unchained.png",
+      "bytes": 2872012
+    },
+    {
+      "id": "last_light_beacon",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/last_light_beacon.webp",
+      "bytes": 353450
+    },
+    {
+      "id": "lord_of_bones",
+      "kind": "base",
+      "url": "./cards/lord-of-bones.png",
+      "bytes": 2807963
+    },
+    {
+      "id": "philosopher_engine",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/philosopher_engine.webp",
+      "bytes": 383032
+    },
+    {
+      "id": "rift_herald",
+      "kind": "base",
+      "url": "./cards/rift-herald.png",
+      "bytes": 3193019
+    },
+    {
+      "id": "rift_sovereign",
+      "kind": "base",
+      "url": "./cards/rift-sovereign.png",
+      "bytes": 3019750
+    },
+    {
+      "id": "wandering_colossus",
+      "kind": "base",
+      "url": "./cards/foundations/wandering_colossus.webp",
+      "bytes": 361854
+    },
+    {
+      "id": "death_incarnate",
+      "kind": "base",
+      "url": "./cards/death-incarnate.png",
+      "bytes": 2633327
+    },
+    {
+      "id": "famine_sovereign",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/famine_sovereign.webp",
+      "bytes": 330134
+    },
+    {
+      "id": "glacier_sovereign",
+      "kind": "base",
+      "url": "./cards/glacier-sovereign.png",
+      "bytes": 3081960
+    },
+    {
+      "id": "igna_eternal_flame",
+      "kind": "base",
+      "url": "./cards/igna-eternal-flame.png",
+      "bytes": 2968406
+    },
+    {
+      "id": "ironclad_colossus",
+      "kind": "base",
+      "url": "./cards/ironclad-colossus.png",
+      "bytes": 3135949
+    },
+    {
+      "id": "prism_titan",
+      "kind": "base",
+      "url": "./cards/shattered-pacts/prism_titan.webp",
+      "bytes": 446026
+    },
+    {
+      "id": "the_archon",
+      "kind": "base",
+      "url": "./cards/the-archon.png",
+      "bytes": 3090891
+    },
+    {
+      "id": "the_unbroken",
+      "kind": "base",
+      "url": "./cards/the-unbroken.png",
+      "bytes": 2803603
+    },
+    {
+      "id": "void_leviathan",
+      "kind": "base",
+      "url": "./cards/void-leviathan.png",
+      "bytes": 2631634
+    },
+    {
+      "id": "frost-sage-winter-ink",
+      "kind": "variant",
+      "url": "/cards/variants/frost-sage-winter-ink.webp",
+      "bytes": 487414
+    },
+    {
+      "id": "chaos-drake-vermilion-tempest",
+      "kind": "variant",
+      "url": "/cards/variants/chaos-drake-vermilion-tempest.webp",
+      "bytes": 632388
+    },
+    {
+      "id": "ancient-guardian-hollow-sentinel",
+      "kind": "variant",
+      "url": "/cards/variants/ancient-guardian-hollow-sentinel.webp",
+      "bytes": 493234
+    },
+    {
+      "id": "village-scout-lanternwood",
+      "kind": "variant",
+      "url": "/cards/variants/village-scout-lanternwood.webp",
+      "bytes": 373120
+    },
+    {
+      "id": "wandering-blade-moonlit-ronin",
+      "kind": "variant",
+      "url": "/cards/variants/wandering-blade-moonlit-ronin.webp",
+      "bytes": 406272
+    },
+    {
+      "id": "shield-warden-brass-saint",
+      "kind": "variant",
+      "url": "/cards/variants/shield-warden-brass-saint.webp",
+      "bytes": 626512
+    },
+    {
+      "id": "thunder-hawk-storm-scroll",
+      "kind": "variant",
+      "url": "/cards/variants/thunder-hawk-storm-scroll.webp",
+      "bytes": 588592
+    },
+    {
+      "id": "iron-golem-porcelain-giant",
+      "kind": "variant",
+      "url": "/cards/variants/iron-golem-porcelain-giant.webp",
+      "bytes": 434500
+    },
+    {
+      "id": "forge-apprentice-ember-tapestry",
+      "kind": "variant",
+      "url": "/cards/variants/forge-apprentice-ember-tapestry.webp",
+      "bytes": 690886
+    },
+    {
+      "id": "temper-goldsmiths-dream",
+      "kind": "variant",
+      "url": "/cards/variants/temper-goldsmiths-dream.webp",
+      "bytes": 558528
+    },
+    {
+      "id": "igna-eternal-flame-ash-queen",
+      "kind": "variant",
+      "url": "/cards/variants/igna-eternal-flame-ash-queen.webp",
+      "bytes": 399780
+    },
+    {
+      "id": "ironclad-colossus-mossbound",
+      "kind": "variant",
+      "url": "/cards/variants/ironclad-colossus-mossbound.webp",
+      "bytes": 447988
+    },
+    {
+      "id": "mountain-hermit-winter-pilgrim",
+      "kind": "variant",
+      "url": "/cards/variants/mountain-hermit-winter-pilgrim.webp",
+      "bytes": 420806
+    },
+    {
+      "id": "spark-sprite-bottled-starlight",
+      "kind": "variant",
+      "url": "/cards/variants/spark-sprite-bottled-starlight.webp",
+      "bytes": 402024
+    },
+    {
+      "id": "phase-walk-paper-door",
+      "kind": "variant",
+      "url": "/cards/variants/phase-walk-paper-door.webp",
+      "bytes": 404846
+    },
+    {
+      "id": "bone-knight-marionette",
+      "kind": "variant",
+      "url": "/cards/variants/bone-knight-marionette.webp",
+      "bytes": 262246
+    },
+    {
+      "id": "revenant-mourning-porcelain",
+      "kind": "variant",
+      "url": "/cards/variants/revenant-mourning-porcelain.webp",
+      "bytes": 285840
+    },
+    {
+      "id": "mana-surge-celestial-map",
+      "kind": "variant",
+      "url": "/cards/variants/mana-surge-celestial-map.webp",
+      "bytes": 722192
+    },
+    {
+      "id": "arcane-echo-prism-nocturne",
+      "kind": "variant",
+      "url": "/cards/variants/arcane-echo-prism-nocturne.webp",
+      "bytes": 392932
+    },
+    {
+      "id": "chalk-apprentice-chalk-dream",
+      "kind": "variant",
+      "url": "/cards/variants/chalk-apprentice-chalk-dream.webp",
+      "bytes": 517970
+    },
+    {
+      "id": "mercury-scholar-quicksilver-mask",
+      "kind": "variant",
+      "url": "/cards/variants/mercury-scholar-quicksilver-mask.webp",
+      "bytes": 307562
+    },
+    {
+      "id": "glass-familiar-paper-menagerie",
+      "kind": "variant",
+      "url": "/cards/variants/glass-familiar-paper-menagerie.webp",
+      "bytes": 252022
+    },
+    {
+      "id": "ashen-envoy-court-of-ashes",
+      "kind": "variant",
+      "url": "/cards/variants/ashen-envoy-court-of-ashes.webp",
+      "bytes": 458790
+    },
+    {
+      "id": "thorn-seeder-briar-doll",
+      "kind": "variant",
+      "url": "/cards/variants/thorn-seeder-briar-doll.webp",
+      "bytes": 298322
+    },
+    {
+      "id": "tainted-idol-festival-mask",
+      "kind": "variant",
+      "url": "/cards/variants/tainted-idol-festival-mask.webp",
+      "bytes": 215148
+    },
+    {
+      "id": "blight-acolyte-mushroom-court",
+      "kind": "variant",
+      "url": "/cards/variants/blight-acolyte-mushroom-court.webp",
+      "bytes": 499996
+    },
+    {
+      "id": "dusk-leech-abyssal-jewel",
+      "kind": "variant",
+      "url": "/cards/variants/dusk-leech-abyssal-jewel.webp",
+      "bytes": 268952
+    },
+    {
+      "id": "war-standard-fallen-banner",
+      "kind": "variant",
+      "url": "/cards/variants/war-standard-fallen-banner.webp",
+      "bytes": 373716
+    },
+    {
+      "id": "spellfont-moonwell",
+      "kind": "variant",
+      "url": "/cards/variants/spellfont-moonwell.webp",
+      "bytes": 420182
+    },
+    {
+      "id": "prism-titan-cathedral-giant",
+      "kind": "variant",
+      "url": "/cards/variants/prism-titan-cathedral-giant.webp",
+      "bytes": 470812
+    },
+    {
+      "id": "sp-midnight-sovereign",
+      "kind": "variant",
+      "url": "/ui/seasons/shattered-pacts/midnight-sovereign-v2.webp",
+      "bytes": 604092
+    }
+  ],
+  "missing": []
+}

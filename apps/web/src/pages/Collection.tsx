@@ -1,21 +1,19 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
 import {
-  ArrowLeft, MagnifyingGlass, X, DiamondsFour, Hammer,
-  ArrowsClockwise, Warning, Lock,
+  MagnifyingGlass, X, DiamondsFour,
 } from '@phosphor-icons/react'
-import { CARD_DATABASE } from '@tcg/shared'
-import type { CardDefinition, Card, Rarity } from '@tcg/shared'
+import { ARENA_CARD_DATABASE as CARD_DATABASE, ARENA_ARCHETYPES, ARENA_CARD_SETS, arenaCardSetName, getExclusiveCardSeason } from '@tcg/shared'
+import { Link } from 'react-router-dom'
+import { useSeasonTime } from '../hooks/useSeasonTime.ts'
+import type { CardDefinition, Card, Rarity, ArenaArchetype } from '@tcg/shared'
 import { cn } from '../lib/cn.ts'
 import CardComponent from '../components/game/Card.tsx'
 import CardViewer from '../components/game/CardViewer.tsx'
-import {
-  useCollectionStore,
-  excessCopies, neededCopies, totalExcessShards,
-  maxUsefulCopies, SHARD_REFUND, SHARD_CRAFT,
-} from '../stores/useCollectionStore.ts'
-import { useQuestStore } from '../stores/useQuestStore.ts'
+import ArenaMenuHeader from '../components/ui/ArenaMenuHeader.tsx'
+import { useCollectionStore } from '../stores/useCollectionStore.ts'
+import CardArtworkControl from '../components/game/CardArtworkControl.tsx'
+import { CardMasteryControl } from '../components/game/CardMasteryDialog.tsx'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -28,19 +26,8 @@ const RARITY_COLOR: Record<Rarity, string> = {
   common:    'text-stone-400',
 }
 
-const RARITY_BG: Record<Rarity, string> = {
-  legendary: 'bg-amber-900/40 border-amber-700/60',
-  rare:      'bg-blue-900/40 border-blue-700/60',
-  uncommon:  'bg-emerald-900/30 border-emerald-800/60',
-  common:    'bg-stone-900/40 border-stone-800/60',
-}
-
 function toInstance(def: CardDefinition): Card {
   return { ...def, instanceId: def.definitionId, questProgress: 0, isTransformed: false, powerBonus: 0 }
-}
-
-function ShardIcon({ className }: { className?: string }) {
-  return <DiamondsFour weight="duotone" className={cn('inline-block', className)} />
 }
 
 // ─── Detail panel ─────────────────────────────────────────────────────────────
@@ -48,23 +35,14 @@ function ShardIcon({ className }: { className?: string }) {
 interface DetailPanelProps {
   def: CardDefinition
   cards: Record<string, number>
-  shards: number
-  onRefund: (defId: string, count: number) => void
-  onCraft: (defId: string) => void
   onView: (card: Card) => void
   onClose: () => void
 }
 
-function DetailPanel({ def, cards, shards, onRefund, onCraft, onView, onClose }: DetailPanelProps) {
+function DetailPanel({ def, cards, onView, onClose }: DetailPanelProps) {
+  const now = useSeasonTime()
+  const exclusiveSeason = getExclusiveCardSeason(def.definitionId, now)
   const owned = cards[def.definitionId] ?? 0
-  const max = maxUsefulCopies(def.rarity)
-  const excess = excessCopies(cards, def.definitionId)
-  const needed = neededCopies(cards, def.definitionId)
-  const craftCost = SHARD_CRAFT[def.rarity]
-  const refundPer = SHARD_REFUND[def.rarity]
-  const canCraft = needed > 0 && shards >= craftCost
-  const atCap = owned >= max
-
   const inner = (
     <>
       {/* Header */}
@@ -87,86 +65,17 @@ function DetailPanel({ def, cards, shards, onRefund, onCraft, onView, onClose }:
         {/* Name + rarity */}
         <div className="text-center">
           <p className="text-stone-100 font-bold text-sm">{def.name}</p>
-          <p className={cn('text-xs mt-0.5 capitalize', RARITY_COLOR[def.rarity])}>{def.rarity}</p>
+          <p className={cn('text-xs mt-0.5 capitalize', RARITY_COLOR[def.rarity])}>{def.rarity}{def.arenaSet && ` · ${arenaCardSetName(def, now)}`}</p>
         </div>
 
-        {/* Ownership bar */}
-        <div className={cn('rounded-xl border p-3 flex flex-col gap-2', RARITY_BG[def.rarity])}>
-          <div className="flex items-center justify-between text-xs">
-            <span className="text-stone-400">Owned</span>
-            <span className={cn('font-bold tabular-nums', atCap ? RARITY_COLOR[def.rarity] : 'text-stone-300')}>
-              {owned} / {max}
-            </span>
-          </div>
-          <div className="h-1.5 bg-stone-950/60 rounded-full overflow-hidden">
-            <div
-              className={cn('h-full rounded-full transition-all', atCap ? 'bg-amber-500' : 'bg-stone-500')}
-              style={{ width: `${Math.min(owned / max, 1) * 100}%` }}
-            />
-          </div>
-          {excess > 0 && (
-            <p className="text-[10px] text-amber-400/80">
-              {excess} excess {excess === 1 ? 'copy' : 'copies'}
-            </p>
-          )}
-        </div>
+        <CardMasteryControl card={def}/><CardArtworkControl card={def}/>
 
-        {/* Refund section */}
-        {excess > 0 && (
-          <div className="flex flex-col gap-2">
-            <p className="text-stone-500 text-[10px] uppercase tracking-widest font-semibold">Refund Excess</p>
-            <div className="flex flex-col gap-1.5">
-              {Array.from({ length: excess }, (_, i) => i + 1).map(n => (
-                <button
-                  key={n}
-                  onClick={() => onRefund(def.definitionId, n)}
-                  className="flex items-center justify-between px-3 py-2 rounded-lg bg-stone-900/60 border border-stone-800 hover:border-amber-700/50 hover:bg-amber-950/30 transition-colors group"
-                >
-                  <span className="text-xs text-stone-300 group-hover:text-amber-200">
-                    Refund {n} {n === 1 ? 'copy' : 'copies'}
-                  </span>
-                  <span className="flex items-center gap-1 text-xs font-bold text-amber-400">
-                    +{n * refundPer} <ShardIcon className="w-3 h-3" />
-                  </span>
-                </button>
-              ))}
-            </div>
+        {!owned && (exclusiveSeason ? (
+          <div className="px-3 py-3 rounded-lg bg-stone-900/40 border border-stone-800 text-center">
+            <Link to="/shop?tab=pass" className="text-xs text-amber-200">{exclusiveSeason.name} · Premium pass</Link>
+            <p className="text-[10px] text-stone-400 mt-2">Eternal packs unlock {new Date(exclusiveSeason.endsAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short', timeZone: 'UTC' })} (UTC).</p>
           </div>
-        )}
-
-        {/* Craft section */}
-        <div className="flex flex-col gap-2">
-          <p className="text-stone-500 text-[10px] uppercase tracking-widest font-semibold">Craft</p>
-          {atCap ? (
-            <div className="px-3 py-2 rounded-lg bg-stone-900/40 border border-stone-800 text-center">
-              <p className="text-xs text-stone-600">Collection complete</p>
-            </div>
-          ) : (
-            <button
-              onClick={() => onCraft(def.definitionId)}
-              disabled={!canCraft}
-              className={cn(
-                'flex items-center justify-between px-3 py-2.5 rounded-lg border transition-all',
-                canCraft
-                  ? 'bg-violet-950/60 border-violet-700/60 hover:border-violet-500/80 hover:bg-violet-950/80'
-                  : 'bg-stone-900/40 border-stone-800 opacity-50 cursor-not-allowed',
-              )}
-            >
-              <span className="flex items-center gap-1.5 text-xs text-stone-200">
-                <Hammer size={12} weight="duotone" className="text-violet-400" />
-                Craft 1 copy
-              </span>
-              <span className="flex items-center gap-1 text-xs font-bold text-violet-300">
-                {craftCost} <ShardIcon className="w-3 h-3 text-violet-300" />
-              </span>
-            </button>
-          )}
-          {!atCap && !canCraft && (
-            <p className="text-[10px] text-stone-600 text-center">
-              Need {craftCost - shards} more shards
-            </p>
-          )}
-        </div>
+        ) : <Link to="/shop" className="ae-button text-center">Find in {arenaCardSetName(def, now)?.replace(' Set', '')} packs</Link>)}
       </div>
     </>
   )
@@ -198,102 +107,55 @@ function DetailPanel({ def, cards, shards, onRefund, onCraft, onView, onClose }:
   )
 }
 
-const RARITY_GLOW: Record<Rarity, string> = {
-  legendary: 'shadow-[0_0_12px_3px_rgba(251,191,36,0.45)] ring-2 ring-amber-400/70',
-  rare:      'shadow-[0_0_10px_2px_rgba(147,197,253,0.35)] ring-2 ring-blue-400/60',
-  uncommon:  'shadow-[0_0_8px_2px_rgba(52,211,153,0.30)] ring-2 ring-emerald-400/60',
-  common:    'ring-2 ring-stone-500/50',
-}
-
 // ─── Card grid cell ───────────────────────────────────────────────────────────
 
 interface CardCellProps {
   def: CardDefinition
   owned: number
-  max: number
-  excess: number
   selected: boolean
   onClick: () => void
 }
 
-function CardCell({ def, owned, max, excess, selected, onClick }: CardCellProps) {
+function CardCell({ def, owned, selected, onClick }: CardCellProps) {
   const missing = owned === 0
-  const atCap = owned >= max
 
   return (
     <div
       onClick={onClick}
+      role="button"
+      tabIndex={0}
+      aria-label={`Select ${def.name}, ${missing ? 'not owned' : 'owned'}`}
+      aria-pressed={selected}
+      onKeyDown={event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();onClick()}}}
       className={cn(
-        'relative cursor-pointer rounded-xl transition-all duration-150 group',
-        selected && 'ring-2 ring-amber-400 ring-offset-2 ring-offset-stone-950',
-        !selected && atCap && RARITY_GLOW[def.rarity],
+        'relative cursor-pointer rounded-xl transition-all duration-150 group focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-300 focus-visible:outline-offset-4',
       )}
     >
-      {/* Card renders at full opacity always — overlays handle the look */}
-      <div className={cn('transition-all duration-150', missing && 'grayscale brightness-50')}>
+      <div className={cn('ae-card-control transition-all duration-150', selected && 'selected', missing && 'grayscale brightness-75')}>
         <CardComponent card={toInstance(def)} size="sm" />
       </div>
 
-      {/* ── Unowned overlay ── */}
-      {missing && (
-        <div className="absolute inset-0 z-20 rounded-xl bg-stone-950/55 flex flex-col items-center justify-center gap-1 pointer-events-none">
-          <Lock size={22} weight="duotone" className="text-stone-400" />
-          <span className="text-[9px] font-bold text-stone-400 uppercase tracking-widest">Not owned</span>
-        </div>
-      )}
-
-      {/* ── Owned count badge (top-right) ── */}
-      {!missing && (
-        <div className={cn(
-          'absolute top-1.5 right-1.5 z-30 pointer-events-none',
-          'flex items-center gap-0.5 px-2 py-1 rounded-lg font-black text-xs tabular-nums shadow-lg border font-ui',
-          atCap
-            ? 'bg-amber-400 border-amber-200/60 text-stone-950'
-            : 'bg-stone-900 border-stone-600 text-stone-200',
-        )}>
-          {atCap && <span className="leading-none mr-0.5">✓</span>}
-          {owned}/{max}
-        </div>
-      )}
-
-      {/* ── Excess badge (top-left) ── */}
-      {excess > 0 && (
-        <div className="absolute top-1.5 left-1.5 z-30 px-1.5 py-0.5 rounded-lg bg-orange-500 border border-orange-300/60 pointer-events-none shadow-sm">
-          <span className="text-[9px] font-black text-orange-950 font-ui">+{excess}</span>
-        </div>
-      )}
-
-      {/* Hover shine */}
-      <div className="absolute inset-0 rounded-xl bg-white/0 group-hover:bg-white/5 transition-colors pointer-events-none" />
     </div>
   )
 }
 
 // ─── Main page ────────────────────────────────────────────────────────────────
 
-type StatusFilter = 'all' | 'owned' | 'missing' | 'excess'
+type StatusFilter = 'all' | 'owned' | 'missing'
+type SortOrder = 'owned' | 'rarity' | 'cost' | 'name'
 type RarityFilter = Rarity | 'all'
 
 export default function Collection() {
-  const navigate = useNavigate()
-  const { cards, shards, refundCard, refundAllExcess, craftCard } = useCollectionStore()
-  const completeQuest = useQuestStore(s => s.completeQuest)
+  const { cards, gems } = useCollectionStore()
   const [search, setSearch] = useState('')
   const [rarityFilter, setRarityFilter] = useState<RarityFilter>('all')
+  const [cardSet, setCardSet] = useState('all')
+  const [cardType, setCardType] = useState('all')
+  const [archetype, setArchetype] = useState<ArenaArchetype | 'all'>('all')
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all')
+  const [sortOrder, setSortOrder] = useState<SortOrder>('owned')
   const [selectedDefId, setSelectedDefId] = useState<string | null>(null)
   const [viewingCard, setViewingCard] = useState<Card | null>(null)
-
-  // Award "Check Your Cards" quest on first visit each day
-  useEffect(() => { completeQuest('visit_collection') }, [completeQuest])
-
-  // Wrap craftCard to also trigger the craft quest
-  const handleCraft = (defId: string) => {
-    craftCard(defId)
-    completeQuest('craft_card')
-  }
-
-  const excessShardsPreview = useMemo(() => totalExcessShards(cards), [cards])
 
   const selectedDef = selectedDefId
     ? CARD_DATABASE.find(c => c.definitionId === selectedDefId) ?? null
@@ -302,71 +164,40 @@ export default function Collection() {
   const filtered = useMemo(() => {
     return CARD_DATABASE.filter(def => {
       if (def.isTransformTarget) return false
-      if (search && !def.name.toLowerCase().includes(search.toLowerCase())) return false
+      if (cardType !== 'all' && def.type !== cardType) return false
+      if (cardSet !== 'all' && def.arenaSet !== cardSet) return false
+      if (search && !`${def.name} ${def.description} ${def.arenaArchetypes?.join(' ') ?? ''}`.toLowerCase().includes(search.toLowerCase())) return false
+      if (archetype !== 'all' && !def.arenaArchetypes?.includes(archetype)) return false
       if (rarityFilter !== 'all' && def.rarity !== rarityFilter) return false
       const owned = cards[def.definitionId] ?? 0
-      const max = maxUsefulCopies(def.rarity)
-      const excess = Math.max(0, owned - max)
       if (statusFilter === 'owned' && owned === 0) return false
       if (statusFilter === 'missing' && owned > 0) return false
-      if (statusFilter === 'excess' && excess === 0) return false
       return true
     }).sort((a, b) => {
-      // Sort by rarity first, then name
+      if (sortOrder === 'owned') {
+        const ownership = Number((cards[b.definitionId] ?? 0) > 0) - Number((cards[a.definitionId] ?? 0) > 0)
+        if (ownership) return ownership
+      }
+      if (sortOrder === 'name') return a.name.localeCompare(b.name)
+      if (sortOrder === 'cost' && a.cost !== b.cost) return a.cost - b.cost
+      // Use rarity and name to keep each group in a stable order.
       const ri = RARITY_ORDER.indexOf(a.rarity) - RARITY_ORDER.indexOf(b.rarity)
       if (ri !== 0) return ri
       return a.name.localeCompare(b.name)
     })
-  }, [cards, search, rarityFilter, statusFilter])
+  }, [cards, search, rarityFilter, statusFilter, archetype, sortOrder, cardSet, cardType])
 
   const ownedCount = CARD_DATABASE.filter(d => !d.isTransformTarget && (cards[d.definitionId] ?? 0) > 0).length
   const totalCards = CARD_DATABASE.filter(d => !d.isTransformTarget).length
 
   return (
     <div
-      className="h-screen flex flex-col overflow-hidden"
-      style={{ background: 'radial-gradient(ellipse at top, #100c14 0%, #080608 100%)' }}
+      className="arena-library-screen h-screen flex flex-col overflow-hidden"
     >
-      {/* Header */}
-      <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-3 border-b border-stone-900 shrink-0">
-        <button
-          onClick={() => navigate('/')}
-          className="p-1.5 rounded-lg text-stone-500 hover:text-stone-200 hover:bg-stone-900 transition-colors shrink-0"
-        >
-          <ArrowLeft size={16} weight="bold" />
-        </button>
-        <div className="w-px h-4 bg-stone-800 shrink-0" />
-        <DiamondsFour size={16} weight="duotone" className="text-violet-400 shrink-0" />
-        <h1 className="text-stone-200 font-semibold text-sm sm:text-base">Collection</h1>
-        <span className="text-stone-600 text-xs shrink-0">{ownedCount}/{totalCards}</span>
-
-        <div className="ml-auto flex items-center gap-2">
-          {/* Shard balance */}
-          <div className="flex items-center gap-1.5 bg-stone-900 border border-stone-800 rounded-full px-2.5 sm:px-3 py-1">
-            <DiamondsFour size={13} weight="duotone" className="text-violet-400" />
-            <span className="text-stone-200 font-bold text-sm">{shards.toLocaleString()}</span>
-            <span className="hidden sm:inline text-stone-500 text-xs">shards</span>
-          </div>
-
-          {/* Refund-all button */}
-          {excessShardsPreview > 0 && (
-            <button
-              onClick={() => refundAllExcess()}
-              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-orange-950/60 border border-orange-700/50 hover:border-orange-500/70 hover:bg-orange-950/80 text-orange-300 text-xs font-semibold transition-colors"
-            >
-              <ArrowsClockwise size={12} weight="bold" />
-              <span className="hidden sm:inline">Refund all excess</span>
-              <span className="sm:hidden">Refund</span>
-              <span className="text-orange-400/70 hidden sm:inline">
-                (+{excessShardsPreview.toLocaleString()} <DiamondsFour size={10} weight="duotone" className="inline-block -mt-0.5" />)
-              </span>
-            </button>
-          )}
-        </div>
-      </div>
+      <ArenaMenuHeader title="Collection" subtitle={`${ownedCount} of ${totalCards} cards collected`} balance={gems} currency="gems"/>
 
       {/* Filter bar */}
-      <div className="px-3 sm:px-4 py-2.5 border-b border-stone-900 flex items-center gap-2 shrink-0 overflow-x-auto scrollbar-none">
+      <div className="px-3 sm:px-4 py-2.5 border-b border-stone-900 flex flex-wrap items-center gap-2 shrink-0">
         {/* Search */}
         <div className="flex items-center gap-2 bg-stone-900 border border-stone-800 rounded-lg px-3 py-1.5 w-36 sm:w-44 shrink-0">
           <MagnifyingGlass size={13} className="text-stone-500 shrink-0" />
@@ -383,6 +214,7 @@ export default function Collection() {
           )}
         </div>
 
+        <select aria-label="Card archetype" className="ae-input" value={archetype} onChange={event=>setArchetype(event.target.value as ArenaArchetype | 'all')}><option value="all">All archetypes</option>{ARENA_ARCHETYPES.map(item=><option key={item.id} value={item.id}>{item.name}</option>)}</select>
         {/* Rarity */}
         {(['all', 'common', 'uncommon', 'rare', 'legendary'] as RarityFilter[]).map(r => (
           <button
@@ -404,30 +236,14 @@ export default function Collection() {
 
         <div className="w-px h-4 bg-stone-800" />
 
-        {/* Status filter */}
-        {([
-          ['all',     'All'],
-          ['owned',   'Owned'],
-          ['missing', 'Missing'],
-          ['excess',  'Excess'],
-        ] as [StatusFilter, string][]).map(([val, label]) => (
-          <button
-            key={val}
-            onClick={() => setStatusFilter(val)}
-            className={cn(
-              'px-2 py-1 rounded-full text-[10px] font-semibold border transition-colors',
-              statusFilter === val
-                ? val === 'excess'
-                  ? 'bg-orange-950/80 text-orange-200 border-orange-700'
-                  : val === 'missing'
-                  ? 'bg-stone-700 text-stone-200 border-stone-500'
-                  : 'bg-violet-900/60 text-violet-200 border-violet-700'
-                : 'bg-transparent text-stone-500 border-stone-800 hover:border-stone-600 hover:text-stone-300',
-            )}
-          >
-            {label}
-          </button>
-        ))}
+        <select aria-label="Card type" className="ae-input" value={cardType} onChange={event=>setCardType(event.target.value)}><option value="all">All types</option><option value="unit">Units</option><option value="spell">Spells</option><option value="relic">Relics</option></select>
+          <select aria-label="Card set" value={cardSet} onChange={event => setCardSet(event.target.value)} className="ae-input text-[10px]"><option value="all">All sets</option>{ARENA_CARD_SETS.map(set => <option key={set.id} value={set.id}>{set.name}</option>)}</select>
+        <div className="flex items-center gap-1" role="group" aria-label="Card ownership">
+          {([['all', 'All cards'], ['owned', 'Owned'], ['missing', 'Missing']] as [StatusFilter, string][]).map(([value, label]) => <button key={value} onClick={() => setStatusFilter(value)} aria-pressed={statusFilter === value} className={cn('px-3 py-1.5 rounded text-[10px] font-semibold border transition-colors', statusFilter === value ? 'bg-sky-950 text-sky-100 border-sky-700' : 'bg-transparent text-stone-400 border-stone-800 hover:text-stone-200')}>{label}</button>)}
+        </div>
+        <select aria-label="Sort cards" value={sortOrder} onChange={event => setSortOrder(event.target.value as SortOrder)} className="ae-input text-[10px]">
+          <option value="owned">Owned first</option><option value="rarity">Rarity</option><option value="cost">Aether cost</option><option value="name">Name</option>
+        </select>
 
         <span className="ml-auto text-stone-600 text-[10px] shrink-0">{filtered.length} cards</span>
       </div>
@@ -446,8 +262,6 @@ export default function Collection() {
               <AnimatePresence mode="popLayout">
                 {filtered.map(def => {
                   const owned = cards[def.definitionId] ?? 0
-                  const max = maxUsefulCopies(def.rarity)
-                  const excess = Math.max(0, owned - max)
                   return (
                     <motion.div
                       key={def.definitionId}
@@ -460,8 +274,6 @@ export default function Collection() {
                       <CardCell
                         def={def}
                         owned={owned}
-                        max={max}
-                        excess={excess}
                         selected={selectedDefId === def.definitionId}
                         onClick={() => setSelectedDefId(
                           selectedDefId === def.definitionId ? null : def.definitionId,
@@ -480,9 +292,6 @@ export default function Collection() {
           <DetailPanel
             def={selectedDef}
             cards={cards}
-            shards={shards}
-            onRefund={refundCard}
-            onCraft={handleCraft}
             onView={setViewingCard}
             onClose={() => setSelectedDefId(null)}
           />
@@ -491,30 +300,13 @@ export default function Collection() {
         {/* Empty state (no card selected) — desktop only */}
         {!selectedDef && (
           <div className="hidden sm:flex w-64 shrink-0 border-l border-stone-900 flex-col items-center justify-center gap-3 text-stone-700 px-6 text-center">
-            {excessShardsPreview > 0 && (
-              <div className="bg-orange-950/40 border border-orange-800/50 rounded-xl p-4 flex flex-col items-center gap-2 mb-2">
-                <Warning size={20} weight="duotone" className="text-orange-400" />
-                <p className="text-xs text-orange-300/80 leading-relaxed">
-                  You have excess cards worth{' '}
-                  <span className="font-bold text-orange-300">
-                    {excessShardsPreview.toLocaleString()} shards
-                  </span>
-                </p>
-                <button
-                  onClick={() => refundAllExcess()}
-                  className="text-[10px] text-orange-400 hover:text-orange-200 border border-orange-800/60 rounded-lg px-3 py-1.5 transition-colors"
-                >
-                  Refund all excess
-                </button>
-              </div>
-            )}
             <DiamondsFour size={32} weight="duotone" />
-            <p className="text-xs leading-relaxed">Click any card to refund extras or craft missing copies</p>
+            <p className="text-xs leading-relaxed">Select a card to inspect its abilities, borders and artwork.</p>
           </div>
         )}
       </div>
 
-      <CardViewer
+      <CardViewer arena
         card={viewingCard}
         onClose={() => setViewingCard(null)}
         onPrev={(() => {

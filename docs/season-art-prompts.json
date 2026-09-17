@@ -1,0 +1,14 @@
+{
+  "tool": "Built-in image_gen",
+  "assets": [
+    {
+      "path": "apps/web/public/ui/seasons/shattered-pacts/midnight-sovereign.webp",
+      "prompt": "Use case: stylized-concept. Asset type: full-bleed fantasy collectible card alternate artwork, portrait 2:3. Reference image is character identity and quality reference, not an edit target. Create a distinctly new illustration of this same Paradox Regent, handsome adult dark wavy-haired chronomancer with short beard, crown and ornate ivory and gold armor. Variant name for metadata only: 'Midnight Sovereign'. He stands on a broken celestial clock balcony at midnight, three-quarter body turned sideways, looking toward the viewer, holding a small eclipsed sun between both hands; flowing black-blue cloak, suspended glass and golden sand curving around him, silver-blue moonlit ruined towers. Keep recognizable face and royal chronomancer identity; NEW pose and composition, no large foreground hourglass. Premium detailed painterly fantasy card art with rich sapphire, silver and antique gold. Dramatic readable central silhouette, face in upper third, full-bleed to all edges. No text, lettering, logo, frame, UI, numbers or watermark.",
+      "supersededBy": "midnight-sovereign-v2-prompt.json"
+    },
+    {
+      "path": "apps/web/public/ui/seasons/shattered-pacts/astral-covenant.webp",
+      "prompt": "Use case: stylized-concept. Asset type: portrait 2:3 full-bleed fantasy card-back texture for Arena Eternal's Shattered Pacts season. One flat straight-on card back, artwork fills entire canvas, no outer scene, no mockup perspective. An elegant vertically symmetrical silver and aged-gold astrolabe surrounding a glowing sapphire hourglass, fine cracked celestial glass, a dark navy enamel ground, layered slender metallic filigree at the corners and a slim decorative frame inset from the edges. Luxurious tactile engraved metal, deep dark spaces with controlled blue light, crisp recognizable center emblem visible at small size. Theme name 'Astral Covenant' for metadata only, no lettering, no numbers, no typography, no watermark. Illustration rendered with premium fantasy material realism."
+    }
+  ]
+}

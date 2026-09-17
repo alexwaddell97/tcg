@@ -1,282 +1,259 @@
-import { useState } from 'react'
-import type { Card, GameState, LaneState } from '@tcg/shared'
-import { Sword } from '@phosphor-icons/react'
-import { cn } from '../../lib/cn.ts'
-import { useGameStore } from '../../stores/useGameStore.ts'
-import CardViewer from './CardViewer.tsx'
-import { CardMedia } from './CardMedia.tsx'
+import React, { useMemo, useState } from 'react'
+import type { Card, GameState } from '@tcg/shared'
+import { UI_ASSETS } from '../../lib/uiAssets.ts'
 
-interface GameBoardProps {
-  gameState: GameState
-  myPlayerId: string
-  selectedCardId: string | null
-  onLaneClick: (laneIndex: 0 | 1, slotIndex: number) => void
-  onLaneDrop: (laneIndex: 0 | 1, slotIndex: number, cardInstanceId: string) => void
+// Minimal props for now; expand as needed
+type GameBoardProps = {
+	gameState?: GameState | null
+	myPlayerId?: string
+	myCards?: Card[]
+	opponentCardCount?: number
+	canAct?: boolean
+	onPlaceCard?: (cardInstanceId: string, cellIndex: number) => void
+	children?: React.ReactNode
 }
 
-const SLOTS = 6
-
-const rarityBorder: Record<string, string> = {
-  common:    'border-stone-500',
-  uncommon:  'border-emerald-500',
-  rare:      'border-blue-400',
-  legendary: 'border-amber-400',
-}
-
-// Thematic background gradients keyed by location definitionId
-const locationBackground: Record<string, string> = {
-  the_forge:     'radial-gradient(ellipse at bottom, #7c2d12 0%, #431407 50%, #0c0402 100%)',
-  the_summit:    'radial-gradient(ellipse at top, #bfdbfe 0%, #1e3a5f 40%, #0b1220 100%)',
-  the_rift:      'radial-gradient(ellipse at center, #6d28d9 0%, #2e1065 50%, #0a0518 100%)',
-  the_graveyard: 'radial-gradient(ellipse at bottom, #374151 0%, #111827 50%, #030507 100%)',
-  the_sanctum:   'radial-gradient(ellipse at top, #fef08a 0%, #ca8a04 30%, #0f172a 100%)',
-  the_frontier:  'radial-gradient(ellipse at center, #166534 0%, #14532d 40%, #071a0f 100%)',
-  the_archive:   'radial-gradient(ellipse at top, #312e81 0%, #1e1b4b 50%, #0a0820 100%)',
-  the_void:      'radial-gradient(ellipse at center, #1a0030 0%, #0a0014 50%, #000000 100%)',
-}
-
-function BoardCard({ card, onInspect }: { card: Card; onInspect?: () => void }) {
-  const totalPower = card.power + (card.powerBonus ?? 0)
-  const hasPowerBonus = (card.powerBonus ?? 0) !== 0
-
-  return (
-    <div
-      className={cn(
-        'relative rounded border-2 overflow-hidden w-full aspect-2/3 cursor-pointer transition-all duration-150 hover:brightness-110',
-        rarityBorder[card.rarity] ?? 'border-stone-500',
-        card.isTransformed && 'ring-1 ring-amber-400',
-      )}
-      onClick={onInspect}
-    >
-      <div className="absolute inset-0 bg-stone-950">
-        {card.imageUrl
-          ? <CardMedia card={card} className="w-full h-full object-cover" objectPosition="top" />
-          : <span className="absolute inset-0 flex items-center justify-center text-xl opacity-20">⚔️</span>
-        }
-      </div>
-
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 inset-x-0 h-8 bg-linear-to-t from-black/80 to-transparent pointer-events-none" />
-
-      {/* Power badge */}
-      {card.type !== 'spell' && (
-        <div className={cn(
-          'absolute bottom-0.5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-px px-1 py-px rounded-xs font-black text-[9px] sm:text-[10px] font-ui border whitespace-nowrap',
-          hasPowerBonus
-            ? 'bg-emerald-950/90 border-emerald-500/60 text-emerald-300'
-            : 'bg-stone-950/90 border-stone-600/60 text-amber-200'
-        )}>
-          <Sword size={7} weight="fill" className="shrink-0" />{totalPower}
-        </div>
-      )}
-
-      {card.isTransformed && (
-        <div className="absolute top-0.5 right-0.5 w-2.5 h-2.5 rounded-full bg-amber-400 text-[7px] flex items-center justify-center text-stone-950 font-bold">❆</div>
-      )}
-    </div>
-  )
-}
-
-function SlotGrid({ placed, side, isTarget, cols = 3, onSlotClick, onSlotDrop, onCardInspect }: {
-  placed: { card: Card; slotIndex: number }[]
-  side: 'mine' | 'opponent'
-  isTarget: boolean
-  cols?: 3 | 6
-  onSlotClick?: (slotIndex: number) => void
-  onSlotDrop?: (slotIndex: number, cardInstanceId: string) => void
-  onCardInspect?: (card: Card) => void
-}) {
-  const [dragOverSlot, setDragOverSlot] = useState<number | null>(null)
-  const isDragging = useGameStore((s) => s.isDragging)
-
-  return (
-    <div className={cn('grid gap-0.5 p-1', cols === 6 ? 'grid-cols-6' : 'grid-cols-3 sm:gap-1 sm:p-2')}>
-      {Array.from({ length: SLOTS }).map((_, i) => {
-        const lookupIndex = side === 'opponent' ? (i + 3) % SLOTS : i
-        const item = placed.find(p => p.slotIndex === lookupIndex)
-        if (item) {
-          return (
-            <BoardCard
-              key={item.card.instanceId}
-              card={item.card}
-              onInspect={onCardInspect ? () => onCardInspect(item.card) : undefined}
-            />
-          )
-        }
-        const clickable = isTarget && side === 'mine' && onSlotClick
-        const droppable = side === 'mine' && onSlotDrop
-        const isDraggedOver = dragOverSlot === i
-        return (
-          <div
-            key={i}
-            onClick={clickable ? () => onSlotClick(i) : undefined}
-            onDragOver={droppable ? (e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; setDragOverSlot(i) } : undefined}
-            onDragEnter={droppable ? (e) => { e.preventDefault(); setDragOverSlot(i) } : undefined}
-            onDragLeave={droppable ? () => setDragOverSlot(null) : undefined}
-            onDrop={droppable ? (e) => {
-              e.preventDefault()
-              setDragOverSlot(null)
-              const cardInstanceId = e.dataTransfer.getData('text/plain')
-              if (cardInstanceId) onSlotDrop(i, cardInstanceId)
-            } : undefined}
-            className={cn(
-              'rounded border border-dashed w-full aspect-2/3 transition-all duration-150',
-              isDraggedOver && droppable
-                ? 'border-amber-400 bg-amber-400/30 scale-105 shadow-amber-400/30'
-                : isDragging && droppable
-                  ? 'border-emerald-400/80 bg-emerald-400/10 animate-pulse'
-                  : clickable
-                    ? 'border-amber-400/70 bg-amber-400/10 cursor-pointer hover:bg-amber-400/20 hover:border-amber-400'
-                    : isTarget && side === 'mine'
-                      ? 'border-amber-400/30 bg-amber-400/5'
-                      : side === 'mine'
-                        ? 'border-emerald-900/30'
-                        : 'border-red-900/30'
-            )}
-          />
-        )
-      })}
-    </div>
-  )
-}
-
-function LaneZone({
-  lane,
-  laneIndex,
-  myPlayerId,
-  isTarget,
-  onSlotClick,
-  onSlotDrop,
+function SideHand({
+	entries,
+	isOpponent = false,
+	className,
 }: {
-  lane: LaneState
-  laneIndex: 0 | 1
-  myPlayerId: string
-  isTarget: boolean
-  onSlotClick: (slotIndex: number) => void
-  onSlotDrop: (slotIndex: number, cardInstanceId: string) => void
+	entries: Array<Card | boolean | undefined>
+	isOpponent?: boolean
+	className?: string
 }) {
-  const opponentId = Object.keys(lane.halves).find(id => id !== myPlayerId)
-  const myHalf = lane.halves[myPlayerId]
-  const oppHalf = opponentId ? lane.halves[opponentId] : undefined
-  const [viewingCard, setViewingCard] = useState<Card | null>(null)
+	const topRow = entries.slice(0, 3)
+	const bottomRow = entries.slice(3, 5)
+	const slotWidthClass = 'w-[31%] min-w-[68px] max-w-[96px] sm:min-w-[78px] sm:max-w-[108px] lg:min-w-[96px] lg:max-w-[124px]'
 
-  const myPower = myHalf?.power ?? 0
-  const oppPower = oppHalf?.power ?? 0
-  const iWinning = myPower > oppPower
-  const theyWinning = oppPower > myPower
+	const renderSlot = (entry: Card | boolean | undefined, key: string) => {
+		if (isOpponent) {
+			return Boolean(entry)
+				? <RailSlot key={key} back />
+				: <RailSlot key={key} hidden />
+		}
 
-  const myBg = myHalf ? locationBackground[myHalf.definitionId] : undefined
-  const oppBg = oppHalf ? locationBackground[oppHalf.definitionId] : undefined
+		return <RailSlot key={key} card={entry as Card | undefined} />
+	}
 
-  return (
-    <>
-      <div
-        className={cn(
-          'flex flex-col rounded-xl border-2 overflow-hidden transition-all w-full',
-          isTarget ? 'border-amber-400 shadow-lg shadow-amber-400/20' : 'border-stone-700/60'
-        )}
-        style={{ background: '#0d0b09' }}
-      >
-        {/* ── Opponent half ── */}
-        <div
-          className="flex-1 flex flex-col border-b border-stone-800/60 relative bg-red-950/15"
-          style={oppBg ? { backgroundImage: oppBg } : undefined}
-        >
-          <div className="flex items-center justify-between px-2 pt-1.5">
-            <div className="flex flex-col">
-              <p className="text-red-700/70 text-[10px] uppercase tracking-widest font-bold">Opp</p>
-              {oppHalf && <p className="text-stone-400 text-[9px] leading-tight">{oppHalf.name}</p>}
-            </div>
-            {oppHalf && (
-              <span className="inline-flex items-center gap-0.5 px-1.5 py-px rounded-xs font-black text-xs font-ui bg-stone-950/80 border border-red-900/60 text-red-400">
-                <Sword size={8} weight="fill" className="shrink-0" />{oppPower}
-              </span>
-            )}
-          </div>
-          {oppHalf && (
-            <SlotGrid placed={oppHalf.placed} side="opponent" isTarget={false} onCardInspect={setViewingCard} />
-          )}
-        </div>
-
-        {/* ── Lane centre bar: my half info + VS scores ── */}
-        <div className="shrink-0 flex items-center justify-between px-2 py-1 bg-black/40 border-b border-stone-800/40 gap-2">
-          <div className="flex-1 min-w-0">
-            {myHalf && (
-              <>
-                <p className="text-amber-100 font-bold text-xs sm:text-sm leading-tight truncate">{myHalf.name}</p>
-                <p className="text-stone-500 text-[9px] leading-tight line-clamp-2">{myHalf.effect.description}</p>
-              </>
-            )}
-          </div>
-          <div className="shrink-0 flex flex-col items-center gap-0.5">
-            <span className={cn(
-              'text-base font-black tabular-nums leading-none',
-              theyWinning ? 'text-red-400' : 'text-stone-700'
-            )}>{oppPower}</span>
-            <span className="text-stone-700 text-[8px] uppercase font-bold">vs</span>
-            <span className={cn(
-              'text-base font-black tabular-nums leading-none',
-              iWinning ? 'text-emerald-400' : 'text-stone-700'
-            )}>{myPower}</span>
-          </div>
-        </div>
-
-        {/* ── My half ── */}
-        <div
-          className="flex-1 flex flex-col relative bg-emerald-950/10"
-          style={myBg ? { backgroundImage: myBg } : undefined}
-        >
-          <div className="flex items-center justify-between px-2 pt-1.5">
-            <p className="text-emerald-700/70 text-[10px] uppercase tracking-widest font-bold">You</p>
-            {myHalf && (
-              <span className="inline-flex items-center gap-0.5 px-1.5 py-px rounded-xs font-black text-xs font-ui bg-stone-950/80 border border-emerald-900/60 text-emerald-400">
-                <Sword size={8} weight="fill" className="shrink-0" />{myPower}
-              </span>
-            )}
-          </div>
-          {myHalf && (
-            <SlotGrid
-              placed={myHalf.placed}
-              side="mine"
-              isTarget={isTarget}
-              onSlotClick={onSlotClick}
-              onSlotDrop={onSlotDrop}
-              onCardInspect={setViewingCard}
-            />
-          )}
-        </div>
-      </div>
-
-      <CardViewer card={viewingCard} onClose={() => setViewingCard(null)} />
-    </>
-  )
+	return (
+		<div className={`shrink-0 w-full max-w-[420px] lg:w-[40vw] lg:min-w-[190px] lg:max-w-[360px] ${className ?? ''}`}>
+			<div className="flex flex-col gap-1 sm:gap-1.5">
+				<div className="flex justify-center gap-1 sm:gap-1.5">
+					{topRow.map((entry, i) => (
+						<div key={`top-wrap-${i}`} className={slotWidthClass}>
+							{renderSlot(entry, `top-${i}`)}
+						</div>
+					))}
+				</div>
+				<div className="flex justify-center gap-1 sm:gap-1.5">
+					{bottomRow.map((entry, i) => (
+						<div key={`bot-wrap-${i}`} className={slotWidthClass}>
+							{renderSlot(entry, `bot-${i}`)}
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	)
 }
 
-export default function GameBoard({ gameState, myPlayerId, selectedCardId, onLaneClick, onLaneDrop }: GameBoardProps) {
-  const canTarget = selectedCardId !== null && gameState.phase === 'planning'
+function RailSlot({ card, hidden, back }: { card?: Card; hidden?: boolean; back?: boolean }) {
+	if (hidden) {
+		return (
+			<div className="w-full aspect-[2/3] rounded-xs border border-stone-700/50 bg-black/25" />
+		)
+	}
 
-  return (
-    <div
-      className="w-full h-full flex flex-col justify-center gap-2 p-1.5 sm:p-2 overflow-hidden rounded-xl sm:rounded-2xl border border-stone-800/50"
-      style={{ background: '#111009' }}
-    >
-      {/* 2-column grid: Lane 0 | Lane 1 */}
-      <div className="grid grid-cols-2 gap-1.5 sm:gap-2 h-full">
-        {gameState.lanes.map((lane) => {
-          const li = lane.laneIndex
-          return (
-            <LaneZone
-              key={li}
-              lane={lane}
-              laneIndex={li}
-              myPlayerId={myPlayerId}
-              isTarget={canTarget}
-              onSlotClick={(slotIndex) => onLaneClick(li, slotIndex)}
-              onSlotDrop={(slotIndex, cardInstanceId) => onLaneDrop(li, slotIndex, cardInstanceId)}
-            />
-          )
-        })}
-      </div>
-    </div>
-  )
+	if (back) {
+		return (
+			<div className="relative w-full aspect-[2/3] rounded-xs overflow-hidden border border-stone-600/80 bg-stone-900">
+                <img src={UI_ASSETS.cardBack} alt="Card back" draggable={false} className="w-full h-full object-cover" />
+			</div>
+		)
+	}
+
+	if (!card) {
+		return (
+			<div className="w-full aspect-[2/3] rounded-xs border border-dashed border-stone-700/60 bg-black/20" />
+		)
+	}
+
+	return (
+		<div className="relative w-full aspect-[2/3] rounded-xs overflow-hidden border border-stone-600/70 bg-stone-950">
+			{card.imageUrl ? (
+				<img src={card.imageUrl} alt={card.name} draggable={false} className="w-full h-full object-cover" style={{ objectPosition: 'top' }} />
+			) : (
+				<div className="absolute inset-0 flex items-center justify-center text-stone-500 text-xl">✦</div>
+			)}
+			<div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-black/20" />
+		</div>
+	)
+}
+
+function BoardPlacedCard({ card, isMine }: { card: Card; isMine: boolean }) {
+	return (
+		<div
+			className={`relative w-full h-full overflow-hidden ${isMine ? 'border-emerald-500/70' : 'border-rose-500/70'} border`}
+		>
+			{card.imageUrl ? (
+				<img src={card.imageUrl} alt={card.name} draggable={false} className="w-full h-full object-cover" style={{ objectPosition: 'top' }} />
+			) : (
+				<div className="absolute inset-0 flex items-center justify-center text-stone-500 text-xl">✦</div>
+			)}
+			<div className="absolute inset-0 bg-linear-to-t from-black/65 via-transparent to-black/20" />
+		</div>
+	)
+}
+
+/**
+ * Triple Triad style board: visually dominant, centered, with decorative background.
+ * All other UI should be unobtrusive and secondary.
+ */
+export default function GameBoard({
+	gameState,
+	myPlayerId = '',
+	myCards = [],
+	opponentCardCount = 5,
+	canAct = false,
+	onPlaceCard,
+	children,
+}: GameBoardProps) {
+	const myFive = Array.from({ length: 5 }, (_, i) => myCards[i])
+	const oppFive = Array.from({ length: 5 }, (_, i) => i < opponentCardCount)
+	const [selectedCardId, setSelectedCardId] = useState<string | null>(null)
+	const [dragOverCell, setDragOverCell] = useState<number | null>(null)
+
+	const boardCells = useMemo(() => {
+		if (!gameState) return Array.from({ length: 9 }, () => null)
+		return Array.from({ length: 9 }, (_, index) => gameState.board?.[index] ?? null)
+	}, [gameState])
+
+	const handleDrop = (cellIndex: number, cardInstanceId: string) => {
+		if (!canAct || !onPlaceCard) return
+		onPlaceCard(cardInstanceId, cellIndex)
+		setSelectedCardId(null)
+	}
+
+	const handleCellClick = (cellIndex: number) => {
+		if (!canAct || !selectedCardId || !onPlaceCard) return
+		handleDrop(cellIndex, selectedCardId)
+	}
+
+	return (
+		<div
+			className="relative flex flex-col items-center justify-center min-h-screen w-full bg-gradient-to-br from-[#18181b] via-[#23272e] to-[#0b0b0e] overflow-hidden"
+			style={{ zIndex: 1 }}
+		>
+			{/* Decorative board background */}
+			<div className="absolute inset-0 pointer-events-none z-0">
+				<div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(120,120,140,0.10),transparent_70%)]" />
+				<div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.08),transparent_70%)]" />
+			</div>
+
+			<div className="relative z-10 w-full max-w-8xl px-1 sm:px-3 flex flex-col lg:flex-row items-center justify-center gap-2 sm:gap-3 lg:gap-3">
+				{/* Your 5 cards (left) */}
+				<div className="order-3 lg:order-1 shrink-0 w-full max-w-[360px] sm:max-w-[400px] lg:w-[40vw] lg:min-w-[190px] lg:max-w-[360px]">
+					<div className="flex flex-col gap-1 sm:gap-1.5">
+						<div className="flex justify-center gap-1 sm:gap-1.5">
+							{myFive.slice(0, 3).map((card, i) => {
+								const isSelected = card?.instanceId === selectedCardId
+								return (
+									<div key={`top-wrap-${i}`} className="w-[31%] min-w-[68px] max-w-[96px] sm:min-w-[78px] sm:max-w-[108px] lg:min-w-[96px] lg:max-w-[124px]">
+										<div
+											onClick={() => card && canAct && setSelectedCardId(card.instanceId)}
+											draggable={Boolean(card && canAct)}
+											onDragStart={(e) => {
+												if (!card) return
+												e.dataTransfer.effectAllowed = 'move'
+												e.dataTransfer.setData('text/plain', card.instanceId)
+												setSelectedCardId(card.instanceId)
+											}}
+											className={isSelected ? 'ring-2 ring-amber-400 rounded-xs' : undefined}
+										>
+											<RailSlot card={card} />
+										</div>
+									</div>
+								)
+							})}
+						</div>
+						<div className="flex justify-center gap-1 sm:gap-1.5">
+							{myFive.slice(3, 5).map((card, i) => {
+								const isSelected = card?.instanceId === selectedCardId
+								return (
+									<div key={`bot-wrap-${i}`} className="w-[31%] min-w-[68px] max-w-[96px] sm:min-w-[78px] sm:max-w-[108px] lg:min-w-[96px] lg:max-w-[124px]">
+										<div
+											onClick={() => card && canAct && setSelectedCardId(card.instanceId)}
+											draggable={Boolean(card && canAct)}
+											onDragStart={(e) => {
+												if (!card) return
+												e.dataTransfer.effectAllowed = 'move'
+												e.dataTransfer.setData('text/plain', card.instanceId)
+												setSelectedCardId(card.instanceId)
+											}}
+											className={isSelected ? 'ring-2 ring-amber-400 rounded-xs' : undefined}
+										>
+											<RailSlot card={card} />
+										</div>
+									</div>
+								)
+							})}
+						</div>
+					</div>
+				</div>
+
+				{/* Main board grid */}
+				<div
+					className="order-2 relative grid grid-cols-3 grid-rows-3 gap-0 p-1.5 sm:p-2 lg:p-3 rounded-3xl shadow-2xl border-4 border-stone-700/40 bg-gradient-to-br from-[#23272e] via-[#18181b] to-[#0b0b0e] w-[min(94vw,62vh,460px)] lg:w-[min(62vw,54vh,460px)]"
+					style={{
+						aspectRatio: '2/3',
+						boxSizing: 'border-box',
+					}}
+				>
+					{boardCells.map((cell, i) => {
+						if (cell) {
+							return (
+								<div key={i} className="flex items-center justify-center bg-black/35 rounded-none border border-stone-700/70 w-full h-full aspect-[2/3] shadow-inner overflow-hidden">
+									<BoardPlacedCard card={cell.card} isMine={cell.ownerId === myPlayerId} />
+								</div>
+							)
+						}
+
+						const isOver = dragOverCell === i
+						return (
+							<button
+								key={i}
+								type="button"
+								onClick={() => handleCellClick(i)}
+								onDragOver={(e) => {
+									e.preventDefault()
+									if (!canAct) return
+									e.dataTransfer.dropEffect = 'move'
+									setDragOverCell(i)
+								}}
+								onDragLeave={() => setDragOverCell(null)}
+								onDrop={(e) => {
+									e.preventDefault()
+									setDragOverCell(null)
+									const cardInstanceId = e.dataTransfer.getData('text/plain')
+									if (cardInstanceId) handleDrop(i, cardInstanceId)
+								}}
+								className={`flex items-center justify-center rounded-none border border-stone-700/70 w-full h-full aspect-[2/3] shadow-inner transition-colors ${
+									isOver ? 'bg-amber-500/25' : 'bg-black/35'
+								}`}
+							>
+								<span className="text-stone-600 text-lg font-semibold">{i + 1}</span>
+							</button>
+						)
+					})}
+				</div>
+
+				{/* Opponent 5 cards (right) */}
+				<SideHand entries={oppFive} isOpponent className="hidden lg:block order-1 lg:order-3" />
+			</div>
+
+			{/* Children for overlays or built-in UI */}
+			{children}
+		</div>
+	)
 }

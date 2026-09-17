@@ -1,0 +1,83 @@
+/* Effects float over the fixed board geometry; none consumes layout space. */
+.fx-power { --effect-color:#ffda85; --effect-glow:#f6ac4655; }
+.fx-growth { --effect-color:#9df6c8; --effect-glow:#3cdb9c55; }
+.fx-drain { --effect-color:#f7a0e2; --effect-glow:#d843ae55; }
+.fx-arcane { --effect-color:#c4b4ff; --effect-glow:#8862eb66; }
+.fx-ward { --effect-color:#a4e7ff; --effect-glow:#44b6ed55; }
+.fx-transmutation { --effect-color:#b7e5f4; --effect-glow:#7198dd55; }
+.fx-affliction { --effect-color:#e7a8ee; --effect-glow:#a349c05c; }
+.fx-sabotage { --effect-color:#f0b497; --effect-glow:#d267644d; }
+.fx-conduits { --effect-color:#ffe0a0; --effect-glow:#ebbd4f4d; }
+.clash-side-yours { --entry-y:55px; --entry-rotate:-8deg; }
+.clash-side-theirs { --entry-y:-55px; --entry-rotate:8deg; }
+.clash-board-card.is-queued { animation:clash-queue-arrive 220ms ease-out both; }
+.clash-board-card.is-arriving { animation:clash-card-arrive var(--reveal-duration) cubic-bezier(.16,.75,.3,1) both; z-index:8; }
+.clash-board-card.is-resolving,.clash-board-card.is-affected { z-index:9; }
+.clash-board-card.is-arriving::after,.clash-board-card.is-resolving::after,.clash-board-card.is-affected::after { content:''; position:absolute; inset:-2px; z-index:12; border:1px solid var(--effect-color); border-radius:5px; box-shadow:0 0 10px var(--effect-glow); pointer-events:none; }
+.clash-board-card.is-arriving::after,.clash-board-card.is-resolving::after { border-width:2px; box-shadow:0 0 15px var(--effect-glow),inset 0 0 8px var(--effect-glow); }
+.clash-board-card.is-affected .ae-card-power { color:var(--effect-color); }
+.clash-reveal-burst { position:absolute; inset:0; z-index:6; pointer-events:none; }
+.clash-card-effect { position:absolute; inset:0; z-index:6; pointer-events:none; color:var(--effect-color); }
+.clash-card-effect svg { display:block; width:100%; height:100%; overflow:visible; }
+.clash-transmute-orbit { stroke:#d4ddff; stroke-width:.8; transform-origin:50px 65px; animation:clash-alchemy-orbit var(--reveal-duration) ease-in-out both; }
+.clash-transmute-equation { stroke:#fff0c5; stroke-width:1.2; transform-origin:50px 65px; animation:clash-sigil-breathe var(--reveal-duration) ease-out both; }
+.clash-affliction-invocation { transform-origin:50px 70px; animation:clash-sigil-breathe var(--reveal-duration) ease-out both; }
+.clash-transmute-blue { animation:clash-shard-exchange-blue var(--reveal-duration) cubic-bezier(.2,.7,.4,1) both; }
+.clash-transmute-gold { animation:clash-shard-exchange-gold var(--reveal-duration) cubic-bezier(.2,.7,.4,1) both; }
+.clash-affliction-veins { stroke:#e3a4ed; stroke-width:1; stroke-linecap:round; stroke-linejoin:bevel; stroke-dasharray:1; animation:clash-affliction-spread var(--reveal-duration) ease-out both; }
+.clash-affliction-fracture { stroke:#f6cff9; stroke-width:.8; animation:clash-sigil-breathe var(--reveal-duration) ease-out both; }
+.clash-sabotage-seal { transform-origin:51px 74px; animation:clash-seal-stamp var(--reveal-duration) cubic-bezier(.2,.8,.3,1) both; }
+.clash-conduit-sigil { transform-origin:50px 72px; animation:clash-sigil-breathe var(--reveal-duration) ease-out both; }
+.effect-conduits.is-recipient .clash-conduit-sigil { opacity:.65; }
+.clash-conduit-threads { position:absolute; inset:0; z-index:22; width:100%; height:100%; pointer-events:none; overflow:visible; }
+.clash-conduit-thread-halo { stroke-width:5; opacity:.09; animation:clash-thread-fade var(--reveal-duration) ease-out both; }
+.clash-conduit-thread { stroke-width:.8; stroke-dasharray:1; animation:clash-thread-draw var(--reveal-duration) ease-out both; }
+.clash-conduit-pulse { stroke-width:2; stroke-linecap:round; stroke-dasharray:.035 .965; animation:clash-thread-pulse var(--reveal-duration) ease-in-out both; }
+.clash-conduit-arrival { stroke-width:.8; transform-origin:center; transform-box:fill-box; animation:clash-thread-arrival var(--reveal-duration) ease-out both; }
+.clash-impact-ring { position:absolute; inset:-6%; border:2px solid var(--effect-color); border-radius:16%; box-shadow:0 0 14px var(--effect-glow),inset 0 0 12px var(--effect-glow); animation:clash-impact-ring var(--reveal-duration) ease-out both; }
+.clash-impact-spark { position:absolute; left:50%; top:50%; height:5px; width:5px; border-radius:50%; background:var(--effect-color); box-shadow:0 0 8px var(--effect-color); animation:clash-impact-spark var(--reveal-duration) ease-out both; }
+.clash-power-change { position:absolute; z-index:14; top:18%; left:50%; translate:-50% 0; color:#b6ffd9; font-size:clamp(15px,calc(var(--card-width) * .32),28px); font-weight:800; line-height:1; text-shadow:0 2px 3px #06151a,0 0 10px #164331; pointer-events:none; animation:clash-power-rise var(--reveal-duration) ease-out both; }
+.clash-power-change.is-negative { color:#ffacd6; text-shadow:0 2px 3px #20091c,0 0 10px #81305e; }
+.clash-ability-pop { position:absolute; z-index:14; left:50%; bottom:34%; translate:-50% 0; padding:3px 6px; border-radius:4px; background:#07131eea; color:var(--effect-color); font-weight:700; font-size:clamp(8px,calc(var(--card-width) * .13),12px); line-height:1.15; white-space:nowrap; text-shadow:0 1px 2px #000; pointer-events:none; animation:clash-ability-pop var(--reveal-duration) ease-out both; }
+.clash-site-impact { position:absolute; inset:-4px; border:2px solid var(--effect-color); box-shadow:0 0 20px var(--effect-glow),inset 0 0 25px var(--effect-glow); pointer-events:none; animation:clash-site-impact var(--reveal-duration) ease-out both; }
+.clash-site-score.score-changing > span { animation:clash-score-bump var(--reveal-duration) ease-out both; }
+.clash-score-delta { position:absolute; z-index:15; left:calc(50% + 19px); padding:2px 4px; border-radius:3px; color:#b6ffd9; background:#07131ef0; font-size:clamp(10px,1.4vw,13px); font-weight:800; font-variant-numeric:tabular-nums; line-height:1.2; pointer-events:none; animation:clash-score-delta var(--reveal-duration) ease-out both; }
+.clash-score-delta.their-score { top:4px; }
+.clash-score-delta.your-score { bottom:4px; }
+.clash-score-delta.is-negative { color:#ffacd6; }
+.clash-spell-reveal { --entry-y:45px; --entry-rotate:-8deg; position:absolute; top:50%; left:50%; translate:-50% -50%; width:clamp(60px,var(--card-width),104px); aspect-ratio:2/3; z-index:20; filter:drop-shadow(0 0 22px var(--effect-glow)); pointer-events:none; animation:clash-card-arrive var(--reveal-duration) ease-out both; }
+.clash-spell-reveal.is-theirs { --entry-y:-45px; --entry-rotate:8deg; }
+.clash-spell-reveal.is-casting { animation:clash-spell-cast var(--reveal-duration) ease-out both; }
+.clash-screen.is-revealing .clash-hand-card { cursor:default; }
+.clash-screen.is-revealing .clash-hand-card:hover { translate:0; filter:none; }
+@keyframes clash-queue-arrive { from { opacity:.2; transform:translateY(18px) scale(.9); } to { opacity:1; transform:none; } }
+@keyframes clash-card-arrive {
+  0% { opacity:0; transform:perspective(600px) translateY(var(--entry-y)) rotateY(85deg) rotate(var(--entry-rotate)) scale(.72); }
+  60% { opacity:1; transform:perspective(600px) translateY(-4px) rotateY(-12deg) rotate(0) scale(1.09); }
+  82% { transform:perspective(600px) translateY(2px) rotateY(3deg) scale(.98); }
+  100% { opacity:1; transform:none; }
+}
+@keyframes clash-impact-ring { 0% { opacity:0; transform:scale(.9); } 20% { opacity:.95; } 100% { opacity:0; transform:scale(1.23); } }
+@keyframes clash-impact-spark { 0% { opacity:0; transform:rotate(var(--spark-angle)) translateX(8px) scale(.5); } 15% { opacity:1; } 100% { opacity:0; transform:rotate(var(--spark-angle)) translateX(calc(var(--card-width) * .8)) scale(0); } }
+@keyframes clash-power-rise { 0% { opacity:0; transform:translateY(8px) scale(.85); } 18%,82% { opacity:1; transform:translateY(0) scale(1); } 100% { opacity:0; transform:translateY(-6px); } }
+@keyframes clash-ability-pop { 0% { opacity:0; transform:translateY(6px); } 15%,85% { opacity:1; transform:none; } 100% { opacity:0; transform:translateY(-4px); } }
+@keyframes clash-score-delta { 0% { opacity:0; transform:scale(.85); } 15%,85% { opacity:1; transform:scale(1); } 100% { opacity:0; transform:scale(1); } }
+@keyframes clash-site-impact { 0% { opacity:0; } 20% { opacity:.8; } 100% { opacity:0; } }
+@keyframes clash-score-bump { 0% { transform:scale(1); } 22% { transform:scale(1.35); } 65%,100% { transform:scale(1); } }
+@keyframes clash-spell-cast { 0%,35% { opacity:1; transform:scale(1); } 65% { opacity:.8; transform:scale(1.08); } 100% { opacity:0; transform:scale(.82); } }
+@keyframes clash-alchemy-orbit { 0% { opacity:0; transform:rotate(-35deg) scale(.65); } 30% { opacity:.8; } 85% { opacity:.6; } 100% { opacity:0; transform:rotate(145deg) scale(1.1); } }
+@keyframes clash-shard-exchange-blue { 0% { opacity:0; transform:translate(0,0); } 15% { opacity:.95; } 50% { transform:translate(30px,42px); } 80% { opacity:.9; } 100% { opacity:0; transform:translate(60px,0); } }
+@keyframes clash-shard-exchange-gold { 0% { opacity:0; transform:translate(0,0); } 15% { opacity:.95; } 50% { transform:translate(-30px,-12px); } 80% { opacity:.9; } 100% { opacity:0; transform:translate(-60px,0); } }
+@keyframes clash-affliction-spread { 0% { stroke-dashoffset:1; opacity:0; } 20% { opacity:.85; } 75% { stroke-dashoffset:0; opacity:.7; } 100% { stroke-dashoffset:0; opacity:0; } }
+@keyframes clash-seal-stamp { 0% { opacity:0; transform:scale(1.8) rotate(-18deg); } 27% { opacity:.92; transform:scale(.9) rotate(6deg); } 43%,70% { opacity:.92; transform:scale(1) rotate(0); } 100% { opacity:0; transform:scale(1.04); } }
+@keyframes clash-sigil-breathe { 0% { opacity:0; transform:scale(.82); } 28% { opacity:.85; transform:scale(1.05); } 65% { opacity:.55; } 100% { opacity:0; transform:scale(1.1); } }
+@keyframes clash-thread-draw { 0% { opacity:0; stroke-dashoffset:1; } 20% { opacity:.9; } 70% { opacity:.7; stroke-dashoffset:0; } 100% { opacity:0; stroke-dashoffset:0; } }
+@keyframes clash-thread-pulse { 0% { stroke-dashoffset:.035; opacity:0; } 15% { opacity:1; } 85% { opacity:1; } 100% { stroke-dashoffset:-.965; opacity:0; } }
+@keyframes clash-thread-fade { 0%,100% { opacity:0; } 30%,65% { opacity:.12; } }
+@keyframes clash-thread-arrival { 0%,55% { opacity:0; transform:scale(.4); } 78% { opacity:.9; } 100% { opacity:0; transform:scale(2); } }
+@media (prefers-reduced-motion:reduce) {
+  .clash-board-card.is-queued,.clash-board-card.is-arriving,.clash-spell-reveal,.clash-spell-reveal.is-casting,.clash-site-score.score-changing > span { animation:none; }
+  .clash-reveal-burst,.clash-site-impact { display:none; }
+  .clash-power-change,.clash-ability-pop,.clash-score-delta { animation:none; }
+  .clash-card-effect,.clash-conduit-threads { display:none; }
+}

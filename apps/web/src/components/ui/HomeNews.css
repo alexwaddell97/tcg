@@ -1,0 +1,34 @@
+.ae-home-news { position:absolute; top:50%; left:clamp(24px,3vw,48px); transform:translateY(-50%); display:flex; flex-direction:column; width:clamp(190px,21vw,280px); max-height:calc(100dvh - 200px); border:1px solid #a38d5b66; border-radius:8px; overflow:hidden; background:linear-gradient(135deg,#13212df5,#0b141df5); box-shadow:0 12px 32px #0006; font-family:var(--ae-font-ui); }
+.ae-home-news > header { display:flex; align-items:center; gap:8px; padding:16px; border-bottom:1px solid #a38d5b33; color:#d5bd88; }
+.ae-home-news > header h2 { font-family:var(--ae-font-ui); font-size:12px; font-weight:600; }
+.ae-home-news-entries { min-height:0; overflow-y:auto; scrollbar-width:thin; scrollbar-color:#a38d5b55 transparent; }
+.ae-home-news-entry { display:block; width:100%; text-align:left; transition:background .15s; }
+.ae-home-news-entry + .ae-home-news-entry { border-top:1px solid #8599a126; }
+.ae-home-news-entry:hover { background:#536b7620; }
+.ae-home-news-entry > img { display:block; width:100%; height:115px; object-fit:cover; object-position:center 45%; border-bottom:1px solid #a38d5b33; }
+.ae-home-news-copy { position:relative; display:flex; flex-direction:column; align-items:start; gap:7px; padding:15px 30px 16px 16px; }
+.ae-home-news-category { font-size:9px; line-height:1.4; color:#b9a77f; text-transform:uppercase; letter-spacing:.1em; }
+.ae-home-news-copy > strong { font-weight:600; font-size:14px; line-height:1.35; color:#e8e0ce; }
+.ae-home-news-entry.is-featured .ae-home-news-copy > strong { font-size:18px; }
+.ae-home-news-summary { color:#a6b8c2; font-size:11px; line-height:1.6; }
+.ae-home-news-copy > svg { position:absolute; right:12px; top:17px; color:#b8a16f; }
+.ae-home-news-all { flex:none; display:flex; justify-content:space-between; padding:13px 16px; border-top:1px solid #a38d5b33; color:#ddc58f; font-size:11px; }
+.ae-home-news-all:hover { background:#b1985020; }
+.ae-home-news :is(button,a):focus-visible { outline-offset:-3px; }
+.ae-news-dialog { margin:auto; padding:0; width:min(560px,calc(100vw - 28px)); max-height:calc(100dvh - 48px); border:1px solid #a38d5b88; border-radius:10px; background:linear-gradient(135deg,#15242e,#0b151e); color:#dfded5; box-shadow:0 20px 80px #000a; font-family:var(--ae-font-ui); }
+.ae-news-dialog::backdrop { background:#030a12dc; backdrop-filter:blur(8px); }
+.ae-news-dialog > header { position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:17px 22px; border-bottom:1px solid #a38d5b44; background:#13212c; }
+.ae-news-dialog > header h2 { font-family:var(--ae-font-ui); color:#e7d6af; font-size:16px; font-weight:600; }
+.ae-news-dialog > header button { display:grid; place-items:center; width:32px; height:32px; border-radius:4px; color:#c4b792; }
+.ae-news-dialog > header button:hover { background:#9c865229; }
+.ae-news-dialog article { padding:24px; }
+.ae-news-dialog article + article { border-top:1px solid #a38d5b33; }
+.ae-news-dialog article h3 { margin:8px 0 16px; font-family:var(--ae-font-ui); font-size:21px; font-weight:600; color:#efe2c8; }
+.ae-news-dialog ul { display:flex; flex-direction:column; gap:12px; list-style:disc; padding-left:17px; }
+.ae-news-dialog li { font-size:12px; line-height:1.75; color:#bdcbd1; padding-left:3px; }
+.ae-news-dialog li::marker { color:#bda474; }
+.ae-news-dialog article > a { display:inline-flex; align-items:center; gap:12px; margin-top:22px; color:#e8ca89; font-size:12px; }
+@media(min-width:801px) and (max-width:1100px) { .ae-home-news { width:190px; left:24px; } .ae-home-center { margin-left:220px; } .ae-home-news > header { padding:14px 12px; gap:6px; } .ae-home-news > header h2 { font-size:11px; } .ae-home-news-copy { padding-left:12px; } }
+@media(max-width:800px) { .ae-home-news { display:none; } }
+@media(max-height:760px) and (min-width:801px) { .ae-home-news { max-height:calc(100dvh - 170px); } .ae-home-news-entry > img { height:80px; } .ae-home-news-copy { padding-block:12px; gap:5px; } }
+@media(prefers-reduced-motion:reduce) { .ae-home-news-entry { transition:none; } }

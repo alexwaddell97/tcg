@@ -1,0 +1,21 @@
+{
+  "tool": "Built-in image_gen",
+  "outputDirectory": "apps/web/public/cards/variants",
+  "assets": [
+    {
+      "id": "frost_sage_ink",
+      "file": "frost-sage.png",
+      "prompt": "Use case: stylized-concept alternate card illustration. Portrait 2:3, full bleed, artwork only, no text, lettering, typography, border, card frame, numbers, UI or watermark. Reference is character identity only, radically change the artistic medium and scene. Strong silhouette readable at small card size. Frost Sage as a minimalist East Asian brush-and-ink scroll illustration: the same elderly white-haired white-bearded mage with jagged ice crown and tall crystal-tipped staff, standing in profile on a small snowy bridge beneath a twisted pine, trailing ivory robes with teal wash edges, three curling ink-brush snow clouds. Large expressive black brushwork, soft bleeding indigo watercolor, unpainted warm parchment, subtle vermilion accents in scarf and setting sun. Hand-painted calligraphic energy but NO actual calligraphy. Character fills most of the portrait with face in upper third. Elegant flat shapes and visible paper texture, completely unlike realistic blue armored original. Variant name metadata: Winter Ink."
+    },
+    {
+      "id": "chaos_drake_woodblock",
+      "file": "chaos-drake.png",
+      "prompt": "Use case: stylized-concept alternate card illustration. Portrait 2:3, full bleed, artwork only, no text, lettering, typography, border, card frame, numbers, UI or watermark. Reference is character identity only, radically change the artistic medium and scene. Strong silhouette readable at small card size. Chaos Drake as an antique Japanese-inspired color WOODBLOCK print, a black horned winged dragon with jagged scales, molten throat and long tail twisting diagonally over stylized crashing jade sea waves. Dragon still has two long swept horns, sharp bat wings, volcanic red fissures. Vermilion sun behind head, ochre clouds, ivory paper texture, black carved outlines, limited flat vermilion/teal/ochre palette, slightly misregistered ink and carved hatching. Dramatic diagonal upward pose with tail framing bottom, face in upper third. Entire piece convincingly printed ink on paper, no photorealism or rendered lighting. Variant metadata: Vermilion Tempest."
+    },
+    {
+      "id": "ancient_guardian_hollow",
+      "file": "ancient-guardian.png",
+      "prompt": "Use case: stylized-concept alternate card illustration. Portrait 2:3, full bleed, artwork only, no text, lettering, typography, border, card frame, numbers, UI or watermark. Reference is character identity only, radically change the artistic medium and scene. Strong silhouette readable at small card size. Ancient Guardian as a dark folklore charcoal-and-gouache illustration, now a cursed forest knight: preserve the huge armored humanoid silhouette, horned helmet, broad shield and greatsword, but the armor is hollow cracked stone tangled with black roots and pale fungi, haunted emerald fire in visor and chest. Bent over a ruined cemetery gate, leaning on a broken stone sword, shield resembling a rotten tree trunk, small spectral moths emerging from joints. Ominous blackthorn forest, muted moss, bone ivory, peat black, muted rust. Chunky expressive painted marks, scratched charcoal crosshatching, foggy layered shapes, striking stylized storybook cover, not digital realism. Face/head near upper third, full-body fills card, no gore. Variant metadata: Hollow Sentinel."
+    }
+  ]
+}

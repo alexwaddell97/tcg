@@ -1,0 +1,19 @@
+/* Native CSS cursors keep the OS pointer responsive, including during card drags.
+   The 4,3 hotspot is the tip of every 32px shard. Touch uses platform defaults. */
+@media (hover: hover) and (pointer: fine) {
+  :root {
+    --ae-cursor: url('/ui/cursors/aether-default.svg') 4 3, default;
+    --ae-cursor-hover: url('/ui/cursors/aether-hover.svg') 4 3, pointer;
+    --ae-cursor-drag: url('/ui/cursors/aether-drag.svg') 4 3, grabbing;
+  }
+  body { cursor: var(--ae-cursor); }
+  body :is(button, a[href], summary, select, label[for], [role="button"], [role="checkbox"], .cursor-pointer, input[type="range"]) {
+    cursor: var(--ae-cursor-hover) !important;
+  }
+  body :is(button:disabled, [aria-disabled="true"]) { cursor: var(--ae-cursor) !important; }
+  body :is(input:not([type="range"]):not([type="checkbox"]):not([type="radio"]), textarea, [contenteditable="true"]) {
+    cursor: text !important;
+  }
+  body .clash-screen.is-dragging-card,
+  body .clash-screen.is-dragging-card * { cursor: var(--ae-cursor-drag) !important; }
+}
